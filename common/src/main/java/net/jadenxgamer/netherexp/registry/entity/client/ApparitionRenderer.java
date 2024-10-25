@@ -13,6 +13,7 @@ import net.minecraft.world.entity.monster.MagmaCube;
 import org.jetbrains.annotations.NotNull;
 
 public class ApparitionRenderer extends MobRenderer<Apparition, ApparitionModel<Apparition>> {
+
     public ApparitionRenderer(EntityRendererProvider.Context context) {
         super(context, new ApparitionModel<>(context.bakeLayer(JNEModelLayers.APPARITION_LAYER)), 0.8f);
         this.addLayer(new ApparitionGlowlayer<>(this));

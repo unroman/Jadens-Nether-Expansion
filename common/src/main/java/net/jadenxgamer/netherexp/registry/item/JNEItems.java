@@ -191,6 +191,9 @@ public class JNEItems {
     public static final RegistrySupplier<Item> CEREBRAGE_SEEDS = registerItem("cerebrage_seeds", () ->
             new CerebrageSeedItem(new Item.Properties()));
 
+    public static final RegistrySupplier<Item> ROASTED_BONE = registerItem("roasted_bone", () ->
+            new Item(new Item.Properties().food(JNEFoods.ROASTED_BONE).stacksTo(16)));
+
     // NETHERITE ARTIFACTS
 
     public static final RegistrySupplier<Item> SHOTGUN_CORE = registerItem("shotgun_core", () ->

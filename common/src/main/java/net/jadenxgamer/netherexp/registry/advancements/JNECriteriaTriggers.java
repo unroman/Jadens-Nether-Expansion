@@ -6,6 +6,7 @@ import net.minecraft.advancements.critereon.PlayerTrigger;
 import net.minecraft.resources.ResourceLocation;
 
 public class JNECriteriaTriggers extends CriteriaTriggers {
+    public static PlayerTrigger TAME_STAMPEDE;
     public static PlayerTrigger GROW_CEREBRAGE_CLARET;
     public static PlayerTrigger PLANTED_CEREBRAGE;
     public static PlayerTrigger BROKEN_FOSSIL_FUEL_ORE;
@@ -16,6 +17,7 @@ public class JNECriteriaTriggers extends CriteriaTriggers {
     public static PlayerTrigger KILLED_WITH_PUMP_CHARGE;
 
     public static void init() {
+        TAME_STAMPEDE = JNECriteriaTriggers.register(new PlayerTrigger(new ResourceLocation(NetherExp.MOD_ID, "tame_stampede")));
         GROW_CEREBRAGE_CLARET = JNECriteriaTriggers.register(new PlayerTrigger(new ResourceLocation(NetherExp.MOD_ID, "grow_cerebrage_claret")));
         PLANTED_CEREBRAGE = JNECriteriaTriggers.register(new PlayerTrigger(new ResourceLocation(NetherExp.MOD_ID, "planted_cerebrage")));
         BROKEN_FOSSIL_FUEL_ORE = JNECriteriaTriggers.register(new PlayerTrigger(new ResourceLocation(NetherExp.MOD_ID, "broken_fossil_fuel_ore")));

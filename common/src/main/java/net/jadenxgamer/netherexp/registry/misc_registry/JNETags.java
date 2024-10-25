@@ -64,6 +64,7 @@ public class JNETags {
         public static final TagKey<EntityType<?>> IMMUNE_TO_GRAVE_CLOUDS = createEntityTypeTag("immune_to_grave_clouds"); // Grave Clouds don't damage or slow down entities in this tag
         public static final TagKey<EntityType<?>> IGNORES_SOUL_SAND_SLOWNESS = createEntityTypeTag("ignores_soul_sand_slowness"); // Soul Sand won't slow down entities in this tag
         public static final TagKey<EntityType<?>> ECTO_SLAB_POUNCE_DAMAGES = createEntityTypeTag("ecto_slab_pounce_damages"); // Ecto Slab Pounce Damages Entities in this tag
+        public static final TagKey<EntityType<?>> STAMPEDE_CANNOT_RUN_OVER = createEntityTypeTag("stampede_cannot_run_over"); // Stampede cannot run over mobs in this tag
         public static final TagKey<EntityType<?>> CAN_DAMAGE_UNDERGROUND_ECTO_SLABS = createEntityTypeTag("can_damage_underground_ecto_slabs"); // Ecto Slabs can be hurt by entities in this tag
         public static final TagKey<EntityType<?>> IGNORES_BLOCK_COLLISION = createEntityTypeTag("ignores_block_collision"); // Entities in this tag will ignore all block collision
         public static final TagKey<EntityType<?>> IGNORES_TREACHEROUS_CANDLE = createEntityTypeTag("ignores_treacherous_candle"); // Mobs in this do not care about the Treacherous Candle if the opportunity to break it is available

@@ -1,5 +1,6 @@
 package net.jadenxgamer.netherexp.forge;
 
+import net.jadenxgamer.netherexp.forge.client.AgitatedOverlayForge;
 import net.jadenxgamer.netherexp.mixin.block.ItemPropertiesAccessor;
 import net.jadenxgamer.netherexp.registry.block.JNEBlockEntityType;
 import net.jadenxgamer.netherexp.registry.block.entity.client.JNEBrushableBlockRenderer;
@@ -40,7 +41,7 @@ public class NetherExpForgeClient {
     }
 
     public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
-//        event.registerAboveAll("shotgun_temprature", ShotgunTemperatureOverlayForge.HUD);
+        event.registerAboveAll("agitated", AgitatedOverlayForge.HUD);
     }
 
     public static void onClientSetup(FMLClientSetupEvent event) {

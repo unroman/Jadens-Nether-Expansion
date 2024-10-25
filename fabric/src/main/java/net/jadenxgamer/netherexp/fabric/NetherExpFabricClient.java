@@ -7,7 +7,9 @@ import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.jadenxgamer.netherexp.NetherExpClient;
+import net.jadenxgamer.netherexp.fabric.client.AgitatedOverlayFabric;
 import net.jadenxgamer.netherexp.mixin.block.ItemPropertiesAccessor;
 import net.jadenxgamer.netherexp.registry.block.JNEBlockEntityType;
 import net.jadenxgamer.netherexp.registry.block.JNEBlocks;
@@ -38,7 +40,7 @@ public class NetherExpFabricClient implements ClientModInitializer {
                 new ResourceLocation("angle"),
                 new CompassItemPropertyFunction((level, stack, entity) -> SanctumCompassItem.getStructurePosition(stack.getOrCreateTag()))
         );
-//        HudRenderCallback.EVENT.register(new ShotgunTemperatureOverlayFabric());
+        HudRenderCallback.EVENT.register(new AgitatedOverlayFabric());
         
         // BLOCK OPACITY
         BlockRenderLayerMap.INSTANCE.putBlock(JNEBlocks.NETHERITE_GRATE.get(), RenderType.cutout());

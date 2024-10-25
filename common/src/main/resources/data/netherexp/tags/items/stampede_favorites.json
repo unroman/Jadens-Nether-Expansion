@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "minecraft:bone_block",
-    "netherexp:bone_cortical"
+    "netherexp:roasted_bone"
   ]
 }

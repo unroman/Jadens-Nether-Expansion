@@ -572,6 +572,7 @@
   "enchantment.netherexp.barrage.desc": "Increases shots fired at once of the Shotgun-Fist.",
   "enchantment.netherexp.artemis.desc": "Increases range of the bullets and arrows for Shotgun-Fist and Bows",
 
+  "item.netherexp.roasted_bone": "Roasted Bone",
   "block.netherexp.cerebrage_skull": "Cerebrage Skull",
   "item.netherexp.cerebrage": "Cerebrage",
   "item.netherexp.cerebrage_seeds": "Cerebrage Seeds",
@@ -582,6 +583,16 @@
   "advancements.nether.brain_food.description": "Plant Cerebrage Seeds inside a skeleton skull",
   "advancements.nether.big_brain_time.title": "Yeah, This is Big Brain Time",
   "advancements.nether.big_brain_time.description": "Grow a Brain Tree by overgrowing cerebrage with bone-meal",
+  "advancements.nether.rodeo_stampede.title": "Rodeo Stampede",
+  "advancements.nether.rodeo_stampede.description": "befriend a stampede by feeding it roasted bones",
+
+  "subtitles.entity.stampede.ambient": "Stampede gurgles",
+  "subtitles.entity.stampede.hurt": "Stampede hurts",
+  "subtitles.entity.stampede.death": "Stampede dies",
+  "subtitles.entity.stampede.step": "Stampede stomps",
+  "subtitles.entity.stampede.attack": "Stampede tramples",
+  "subtitles.entity.stampede.eat": "Stampede chews its food",
+  "subtitles.entity.stampede.agitated": "Stampede gets agitated",
 
   "itemGroup.netherexp.netherexp_tab": "Jaden's Nether Expansion"
 }

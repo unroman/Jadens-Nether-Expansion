@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CWH",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:bone"
+    },
+    "H": {
+      "tag": "netherexp:cooked_hogham"
+    },
+    "C": {
+      "item": "netherexp:cerebrage"
+    },
+    "W": {
+      "item": "minecraft:warped_fungus"
+    }
+  },
+  "result": {
+    "item": "netherexp:roasted_bone",
+    "count": 1
+  }
+}

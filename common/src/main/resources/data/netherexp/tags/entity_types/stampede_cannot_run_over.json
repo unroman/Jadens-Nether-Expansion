@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "netherexp:stampede",
+    "minecraft:strider",
+    "minecraft:wither",
+    "minecraft:ender_dragon",
+    "minecraft:silverfish",
+    "minecraft:endermite"
+  ]
+}

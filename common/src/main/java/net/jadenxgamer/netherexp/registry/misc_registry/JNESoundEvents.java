@@ -187,6 +187,13 @@ public class JNESoundEvents {
     public static RegistrySupplier<SoundEvent> ENTITY_BANSHEE_TELEPORT = registerSoundEvents("entity.banshee.teleport");
     public static RegistrySupplier<SoundEvent> ENTITY_BANSHEE_SHOOT = registerSoundEvents("entity.banshee.shoot");
 
+    public static RegistrySupplier<SoundEvent> ENTITY_STAMPEDE_AMBIENT = registerSoundEvents("entity.stampede.ambient");
+    public static RegistrySupplier<SoundEvent> ENTITY_STAMPEDE_HURT = registerSoundEvents("entity.stampede.hurt");
+    public static RegistrySupplier<SoundEvent> ENTITY_STAMPEDE_DEATH = registerSoundEvents("entity.stampede.death");
+    public static RegistrySupplier<SoundEvent> ENTITY_STAMPEDE_STEP = registerSoundEvents("entity.stampede.step");
+    public static RegistrySupplier<SoundEvent> ENTITY_STAMPEDE_EAT = registerSoundEvents("entity.stampede.eat");
+    public static RegistrySupplier<SoundEvent> ENTITY_STAMPEDE_AGITATED = registerSoundEvents("entity.stampede.agitated");
+
     public static RegistrySupplier<SoundEvent> ENTITY_PLAYER_HURT_IGNEOUS_THORNS = registerSoundEvents("entity.player.hurt_igneous_thorns");
     public static RegistrySupplier<SoundEvent> ENTITY_PLAYER_HURT_SUFFOCATION = registerSoundEvents("entity.player.hurt_suffocation");
 

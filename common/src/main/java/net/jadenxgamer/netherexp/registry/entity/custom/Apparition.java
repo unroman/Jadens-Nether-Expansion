@@ -292,6 +292,17 @@ public class Apparition extends Monster implements FlyingAnimal {
                 return false;
             }
         }
+        else if (livingEntity instanceof Strider strider) {
+            Stampede stampede = strider.convertTo(JNEEntityType.STAMPEDE.get(), false);
+            if (stampede != null) {
+                stampede.finalizeSpawn(serverLevel, serverLevel.getCurrentDifficultyAt(stampede.blockPosition()), MobSpawnType.CONVERSION, new Zombie.ZombieGroupData(false, false), null);
+                if (strider.hasCustomName()) {
+                    stampede.setCustomName(strider.getCustomName());
+                }
+                this.discard();
+                return false;
+            }
+        }
         else if (livingEntity instanceof Blaze blaze) {
             Banshee banshee = blaze.convertTo(JNEEntityType.BANSHEE.get(), false);
             if (banshee != null) {
@@ -471,6 +482,20 @@ public class Apparition extends Monster implements FlyingAnimal {
                             banshee.setCustomName(apparition.getCustomName());
                         }
                         level.addFreshEntity(banshee);
+                    }
+                }
+                else if (level.getBlockState(target).is(JNEBlocks.TRAMPLE_GARGOYLE_STATUE.get()) && apparition.getPreference() == 2) {
+                    Stampede stampede = JNEEntityType.STAMPEDE.get().create(level);
+                    if (stampede != null) {
+                        if (level instanceof ServerLevel serverLevel) {
+                            stampede.finalizeSpawn(serverLevel, level.getCurrentDifficultyAt(this.blockPos), MobSpawnType.MOB_SUMMONED, null, null);
+                        }
+                        stampede.setPos(apparition.getX(), apparition.getY(), apparition.getZ());
+                        stampede.setChangeType(0);
+                        if (apparition.hasCustomName()) {
+                            stampede.setCustomName(apparition.getCustomName());
+                        }
+                        level.addFreshEntity(stampede);
                     }
                 }
                 else {

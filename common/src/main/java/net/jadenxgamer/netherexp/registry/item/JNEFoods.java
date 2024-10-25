@@ -11,4 +11,5 @@ public class JNEFoods {
     public static final FoodProperties PIZZA_SLICE = new FoodProperties.Builder().nutrition(6).saturationMod(1.0f).effect(new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0f).build();
     public static final FoodProperties WRAITHING_FLESH = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.1F).effect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 600, 2), 0.8F).meat().build();
     public static final FoodProperties CEREBRAGE = new FoodProperties.Builder().nutrition(5).saturationMod(0.6f).fast().build();
+    public static final FoodProperties ROASTED_BONE = new FoodProperties.Builder().nutrition(9).saturationMod(0.8f).fast().effect(new MobEffectInstance(MobEffects.WEAKNESS, 80, 0), 0.5F).build();
 }

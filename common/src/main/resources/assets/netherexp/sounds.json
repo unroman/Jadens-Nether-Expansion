@@ -1228,6 +1228,57 @@
       "netherexp:mob/banshee/shoot"
     ]
   },
+  "entity.stampede.ambient": {
+    "subtitle": "subtitles.entity.stampede.ambient",
+    "sounds": [
+      "netherexp:mob/stampede/idle1",
+      "netherexp:mob/stampede/idle2",
+      "netherexp:mob/stampede/idle3",
+      "netherexp:mob/stampede/idle4",
+      "netherexp:mob/stampede/idle5",
+      "netherexp:mob/stampede/idle6"
+    ]
+  },
+  "entity.stampede.hurt": {
+    "subtitle": "subtitles.entity.stampede.hurt",
+    "sounds": [
+      "netherexp:mob/stampede/hurt1",
+      "netherexp:mob/stampede/hurt2",
+      "netherexp:mob/stampede/hurt3"
+    ]
+  },
+  "entity.stampede.death": {
+    "subtitle": "subtitles.entity.stampede.death",
+    "sounds": [
+      "netherexp:mob/stampede/death1",
+      "netherexp:mob/stampede/death2",
+      "netherexp:mob/stampede/death3"
+    ]
+  },
+  "entity.stampede.step": {
+    "subtitle": "subtitles.entity.stampede.step",
+    "sounds": [
+      "netherexp:mob/stampede/step1",
+      "netherexp:mob/stampede/step2",
+      "netherexp:mob/stampede/step3",
+      "netherexp:mob/stampede/step4"
+    ]
+  },
+  "entity.stampede.eat": {
+    "subtitle": "subtitles.entity.stampede.eat",
+    "sounds": [
+      "mob/strider/eat1",
+      "mob/strider/eat2",
+      "mob/strider/eat3"
+    ]
+  },
+  "entity.stampede.agitated": {
+    "subtitle": "subtitles.entity.stampede.agitated",
+    "sounds": [
+      "netherexp:mob/stampede/agitated1",
+      "netherexp:mob/stampede/agitated2"
+    ]
+  },
   "entity.ecto_slab.jump": {
     "sounds": [
       "netherexp:mob/ecto_slab/jump1",
