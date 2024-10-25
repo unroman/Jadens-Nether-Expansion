@@ -11,6 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -58,7 +59,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.function.Predicate;
 
-public class Stampede extends Monster implements NeutralMob, ItemSteerable, Saddleable, PlayerRideable {
+public class Stampede extends Monster implements NeutralMob, ItemSteerable, Saddleable, PlayerRideable, RiderShieldingMount {
     private int changeType = 1;
     private static final Ingredient FOOD_ITEMS = Ingredient.of(JNETags.Items.STAMPEDE_EDIBLE);
     static final Predicate<ItemEntity> PICKABLE_DROP_FILTER = (item) -> !item.hasPickUpDelay() && item.isAlive() && item.getItem().is(JNETags.Items.STAMPEDE_EDIBLE);
@@ -68,6 +69,7 @@ public class Stampede extends Monster implements NeutralMob, ItemSteerable, Sadd
     private static final EntityDataAccessor<Boolean> TAMED = SynchedEntityData.defineId(Stampede.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> ANGRY = SynchedEntityData.defineId(Stampede.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> EATING = SynchedEntityData.defineId(Stampede.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> IS_PATRICK = SynchedEntityData.defineId(Stampede.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> EATING_TIME = SynchedEntityData.defineId(Stampede.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> AGITATED = SynchedEntityData.defineId(Stampede.class, EntityDataSerializers.INT);
     private static final UniformInt ANGER_TIME_RANGE = TimeUtil.rangeOfSeconds(20, 39);
@@ -75,6 +77,7 @@ public class Stampede extends Monster implements NeutralMob, ItemSteerable, Sadd
     public final AnimationState chewAnimationState = new AnimationState();
     public final AnimationState grinAnimationState = new AnimationState();
     public final AnimationState idleAnimationState = new AnimationState();
+    private int stepSoundCooldown = 0;
     private int idleAnimationTimeout = 0;
     private int angerTime;
     private UUID angryAt;
@@ -147,7 +150,7 @@ public class Stampede extends Monster implements NeutralMob, ItemSteerable, Sadd
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 80.0)
-                .add(Attributes.MOVEMENT_SPEED, 0.33)
+                .add(Attributes.MOVEMENT_SPEED, 0.30)
                 .add(Attributes.ATTACK_DAMAGE, 8.0)
                 .add(Attributes.ATTACK_KNOCKBACK, 4.0)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 3.0)
@@ -179,6 +182,9 @@ public class Stampede extends Monster implements NeutralMob, ItemSteerable, Sadd
 
     @Override
     public void aiStep() {
+        if (this.stepSoundCooldown > 0) {
+            this.stepSoundCooldown--;
+        }
         if (this.isInWaterOrRain()) {
             if (getChangeType() == 0) {
                 this.level().playSound(null, this.getX(), this.getY(), this.getZ(), JNESoundEvents.ENTITY_APPARITION_DEATH.get(), SoundSource.NEUTRAL, 1.0f, 1.0f);
@@ -206,19 +212,15 @@ public class Stampede extends Monster implements NeutralMob, ItemSteerable, Sadd
                 this.setEating(true);
                 if (eating > 100) {
                     if (item.is(JNETags.Items.STAMPEDE_FAVORITES) && !this.getIsTamed()) {
-                        if (random.nextInt(5) == 0) {
+                        if (!level().isClientSide && random.nextInt(5) == 0) {
                             this.setIsTamed(true);
-                            for(int i = 0; i < 12; ++i) {
-                                this.level().addParticle(ParticleTypes.HEART, this.getRandomX(0.5), this.getRandomY() - 0.25, this.getRandomZ(0.5), 0.0, 0.0, 0.0);
-                            }
                             List<ServerPlayer> nearbyPlayers = this.level().getEntitiesOfClass(ServerPlayer.class, new AABB(this.blockPosition()).inflate(6.5, 6.5, 6.5));
                             for (ServerPlayer serverPlayer : nearbyPlayers) {
                                 JNECriteriaTriggers.TAME_STAMPEDE.trigger(serverPlayer);
                             }
-                        } else {
-                            for(int i = 0; i < 12; ++i) {
-                                this.level().addParticle(ParticleTypes.SMOKE, this.getRandomX(0.5), this.getRandomY() - 0.25, this.getRandomZ(0.5), 0.0, 0.0, 0.0);
-                            }
+                        }
+                        for(int i = 0; i < 12; ++i) {
+                            this.level().addParticle(ParticleTypes.HEART, this.getRandomX(0.5), this.getRandomY() - 0.25, this.getRandomZ(0.5), 0.0, 0.0, 0.0);
                         }
                     }
                     this.setItemSlot(EquipmentSlot.MAINHAND, Items.AIR.getDefaultInstance());
@@ -409,7 +411,7 @@ public class Stampede extends Monster implements NeutralMob, ItemSteerable, Sadd
 
     @Override
     protected float getRiddenSpeed(Player player) {
-        return (float)(0.27 * (double)this.steering.boostFactor());
+        return (float)(0.23 * (double)this.steering.boostFactor());
     }
 
     @Override
@@ -433,10 +435,11 @@ public class Stampede extends Monster implements NeutralMob, ItemSteerable, Sadd
         this.getEntityData().define(ANGRY, false);
         this.getEntityData().define(EATING, false);
         this.getEntityData().define(EATING_TIME, 0);
-        this.entityData.define(BOOST_TIME, 0);
-        this.entityData.define(SADDLE_ID, false);
-        this.entityData.define(TAMED, false);
-        this.entityData.define(AGITATED, 0);
+        this.getEntityData().define(IS_PATRICK, false);
+        this.getEntityData().define(BOOST_TIME, 0);
+        this.getEntityData().define(SADDLE_ID, false);
+        this.getEntityData().define(TAMED, false);
+        this.getEntityData().define(AGITATED, 0);
     }
 
     @Override
@@ -446,6 +449,7 @@ public class Stampede extends Monster implements NeutralMob, ItemSteerable, Sadd
         nbt.putBoolean("Tamed", this.getIsTamed());
         nbt.putInt("Agitated", this.getAgitated());
         nbt.putBoolean("Saddled", this.entityData.get(SADDLE_ID));
+        nbt.putBoolean("Patrick", this.getIsPatrick());
     }
 
     @Override
@@ -455,6 +459,14 @@ public class Stampede extends Monster implements NeutralMob, ItemSteerable, Sadd
         this.setIsTamed(nbt.getBoolean("Tamed"));
         this.setAgitated(nbt.getInt("Agitated"));
         this.entityData.set(SADDLE_ID, nbt.getBoolean("Saddled"));
+        this.setIsPatrick(nbt.getBoolean("Patrick"));
+    }
+
+    public void setCustomName(@Nullable Component name) {
+        super.setCustomName(name);
+        if (!this.getIsPatrick() && name != null && name.getString().equals("Patrick")) {
+            this.setIsPatrick(true);
+        }
     }
 
     public int getEatingTime() {
@@ -503,6 +515,19 @@ public class Stampede extends Monster implements NeutralMob, ItemSteerable, Sadd
 
     public void setChangeType(int changeType) {
         this.changeType = changeType;
+    }
+
+    public boolean getIsPatrick() {
+        return getEntityData().get(IS_PATRICK);
+    }
+
+    private void setIsPatrick(boolean patrick) {
+        getEntityData().set(IS_PATRICK, patrick);
+    }
+
+    @Override
+    public double getRiderShieldingHeight() {
+        return 1.5;
     }
 
     ////////
@@ -616,18 +641,29 @@ public class Stampede extends Monster implements NeutralMob, ItemSteerable, Sadd
     // SOUNDS //
     ////////////
 
+    @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(JNESoundEvents.ENTITY_STAMPEDE_STEP.get(), 0.8F, 1.0F);
+        if (this.isVehicle()) {
+            if (stepSoundCooldown <= 0) {
+                this.playSound(JNESoundEvents.ENTITY_STAMPEDE_STEP.get(), 0.7F, 1.0F);
+                stepSoundCooldown = 10;
+            }
+        } else {
+            this.playSound(JNESoundEvents.ENTITY_STAMPEDE_STEP.get(), 0.7F, 1.0F);
+        }
     }
 
+    @Override
     protected SoundEvent getAmbientSound() {
         return JNESoundEvents.ENTITY_STAMPEDE_AMBIENT.get();
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource arg) {
         return JNESoundEvents.ENTITY_STAMPEDE_HURT.get();
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return JNESoundEvents.ENTITY_STAMPEDE_DEATH.get();
     }

@@ -2089,6 +2089,59 @@ public class JNEAnimationDefinition {
                     new AnimationChannel(AnimationChannel.Targets.ROTATION,
                             new Keyframe(0f, KeyframeAnimations.degreeVec(0f, 12.5f, 0f),
                                     AnimationChannel.Interpolations.LINEAR))).build();
+    public static final AnimationDefinition STAMPEDE_PATRICK = AnimationDefinition.Builder.withLength(2f).looping()
+            .addAnimation("head",
+                    new AnimationChannel(AnimationChannel.Targets.ROTATION,
+                            new Keyframe(0f, KeyframeAnimations.degreeVec(0f, 7.5f, 0f),
+                                    AnimationChannel.Interpolations.CATMULLROM),
+                            new Keyframe(0.5f, KeyframeAnimations.degreeVec(0f, 0f, -7.5f),
+                                    AnimationChannel.Interpolations.CATMULLROM),
+                            new Keyframe(1f, KeyframeAnimations.degreeVec(0f, -7.5f, 0f),
+                                    AnimationChannel.Interpolations.CATMULLROM),
+                            new Keyframe(1.5f, KeyframeAnimations.degreeVec(0f, 0f, 7.5f),
+                                    AnimationChannel.Interpolations.CATMULLROM),
+                            new Keyframe(2f, KeyframeAnimations.degreeVec(0f, 7.5f, 0f),
+                                    AnimationChannel.Interpolations.CATMULLROM)))
+            .addAnimation("right_ear",
+                    new AnimationChannel(AnimationChannel.Targets.ROTATION,
+                            new Keyframe(0f, KeyframeAnimations.degreeVec(0f, 0f, -10f),
+                                    AnimationChannel.Interpolations.CATMULLROM),
+                            new Keyframe(0.5f, KeyframeAnimations.degreeVec(0f, 0f, -17.5f),
+                                    AnimationChannel.Interpolations.CATMULLROM),
+                            new Keyframe(1f, KeyframeAnimations.degreeVec(0f, 0f, -10f),
+                                    AnimationChannel.Interpolations.CATMULLROM),
+                            new Keyframe(1.5f, KeyframeAnimations.degreeVec(0f, 0f, 2.5f),
+                                    AnimationChannel.Interpolations.CATMULLROM),
+                            new Keyframe(2f, KeyframeAnimations.degreeVec(0f, 0f, -10f),
+                                    AnimationChannel.Interpolations.CATMULLROM)))
+            .addAnimation("left_ear",
+                    new AnimationChannel(AnimationChannel.Targets.ROTATION,
+                            new Keyframe(0f, KeyframeAnimations.degreeVec(0f, 0f, 10f),
+                                    AnimationChannel.Interpolations.CATMULLROM),
+                            new Keyframe(0.5f, KeyframeAnimations.degreeVec(0f, 0f, 17.5f),
+                                    AnimationChannel.Interpolations.CATMULLROM),
+                            new Keyframe(1f, KeyframeAnimations.degreeVec(0f, 0f, 10f),
+                                    AnimationChannel.Interpolations.CATMULLROM),
+                            new Keyframe(1.5f, KeyframeAnimations.degreeVec(0f, 0f, -2.5f),
+                                    AnimationChannel.Interpolations.CATMULLROM),
+                            new Keyframe(2f, KeyframeAnimations.degreeVec(0f, 0f, 10f),
+                                    AnimationChannel.Interpolations.CATMULLROM)))
+            .addAnimation("left_leg",
+                    new AnimationChannel(AnimationChannel.Targets.POSITION,
+                            new Keyframe(0f, KeyframeAnimations.posVec(0f, -1f, 0f),
+                                    AnimationChannel.Interpolations.LINEAR)))
+            .addAnimation("left_leg",
+                    new AnimationChannel(AnimationChannel.Targets.ROTATION,
+                            new Keyframe(0f, KeyframeAnimations.degreeVec(0f, 0f, -15f),
+                                    AnimationChannel.Interpolations.LINEAR)))
+            .addAnimation("right_leg",
+                    new AnimationChannel(AnimationChannel.Targets.POSITION,
+                            new Keyframe(0f, KeyframeAnimations.posVec(0f, -1f, 0f),
+                                    AnimationChannel.Interpolations.LINEAR)))
+            .addAnimation("right_leg",
+                    new AnimationChannel(AnimationChannel.Targets.ROTATION,
+                            new Keyframe(0f, KeyframeAnimations.degreeVec(0f, 0f, 15f),
+                                    AnimationChannel.Interpolations.LINEAR))).build();
 
     // BANSHEE
          public static final AnimationDefinition BANSHEE_IDLE = AnimationDefinition.Builder.withLength(2f).looping()

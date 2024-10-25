@@ -272,7 +272,7 @@ public class Vessel extends Monster implements RangedAttackMob {
     public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
         this.setChangeType(nbt.getInt("ChangeType"));
-        if (nbt.contains("Johnny", 99)) {
+        if (nbt.contains("ShotgunGuy", 99)) {
             this.isShotgunGuy = nbt.getBoolean("ShotgunGuy");
         }
     }

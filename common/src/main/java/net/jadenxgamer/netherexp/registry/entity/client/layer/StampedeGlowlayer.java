@@ -17,6 +17,6 @@ public class StampedeGlowlayer<T extends LivingEntity> extends EyesLayer<T, Stam
 
     @Override
     public @NotNull RenderType renderType() {
-        return RenderType.eyes(new ResourceLocation(NetherExp.MOD_ID, "textures/entity/stampede_glow.png"));
+        return RenderType.eyes(new ResourceLocation(NetherExp.MOD_ID, "textures/entity/stampede/stampede_glow.png"));
     }
 }
