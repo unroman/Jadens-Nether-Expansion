@@ -35,9 +35,7 @@ public class MobBottleItem<T extends Entity> extends Item {
     private Supplier<SoundEvent> soundEventSupplier;
 
     public MobBottleItem(RegistrySupplier<EntityType<T>> entityTypeSupplier, Properties properties) {
-        this(entityTypeSupplier, () -> {
-            return SoundEvents.BOTTLE_EMPTY;
-        }, properties);
+        this(entityTypeSupplier, () -> SoundEvents.BOTTLE_EMPTY, properties);
     }
 
     public MobBottleItem(RegistrySupplier<EntityType<T>> entityTypeSupplier, Supplier<SoundEvent> soundEventSupplier, Properties properties) {
