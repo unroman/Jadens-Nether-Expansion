@@ -8,6 +8,8 @@ import net.jadenxgamer.netherexp.registry.block.custom.*;
 import net.jadenxgamer.netherexp.registry.item.JNEItems;
 import net.jadenxgamer.netherexp.registry.item.custom.GargoyleStatueItem;
 import net.jadenxgamer.netherexp.registry.misc_registry.*;
+import net.jadenxgamer.netherexp.registry.particle.JNEParticleTypes;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -566,10 +568,10 @@ public class JNEBlocks {
     // Particle Emitters
 
     public static final RegistrySupplier<Block> CRIMSON_SPORESHROOM = registerBlock("crimson_sporeshroom", () ->
-            new SporeshroomBlock(BlockBehaviour.Properties.of().strength(0.5f).pushReaction(PushReaction.DESTROY).sound(SoundType.FUNGUS), 1, JNETags.Biomes.HAS_CRIMSON_SPORES));
+            new SporeshroomBlock(BlockBehaviour.Properties.of().strength(0.5f).pushReaction(PushReaction.DESTROY).sound(SoundType.FUNGUS), () -> ParticleTypes.CRIMSON_SPORE, JNEParticleTypes.CRIMSON_SMOG, JNETags.Biomes.HAS_CRIMSON_SPORES));
 
     public static final RegistrySupplier<Block> WARPED_SPORESHROOM = registerBlock("warped_sporeshroom", () ->
-            new SporeshroomBlock(BlockBehaviour.Properties.of().strength(0.5f).pushReaction(PushReaction.DESTROY).sound(SoundType.FUNGUS), 2, JNETags.Biomes.HAS_WARPED_SPORES));
+            new SporeshroomBlock(BlockBehaviour.Properties.of().strength(0.5f).pushReaction(PushReaction.DESTROY).sound(SoundType.FUNGUS), () -> ParticleTypes.WARPED_SPORE, JNEParticleTypes.WARPED_SMOG, JNETags.Biomes.HAS_WARPED_SPORES));
 
     public static final RegistrySupplier<Block> SOULED_GEYSER = registerBlock("souled_geyser", () ->
             new GeyserBlock(BlockBehaviour.Properties.copy(JNEBlocks.SOUL_SLATE.get()).pushReaction(PushReaction.DESTROY).sound(JNESoundType.SOUL_SLATE), 1, false, JNETags.Biomes.HAS_ASH));
@@ -729,7 +731,7 @@ public class JNEBlocks {
             new Block(BlockBehaviour.Properties.copy(Blocks.SHROOMLIGHT).lightLevel((state) -> 12)), "cinderscapes");
 
     public static final RegistrySupplier<Block> UMBRAL_SPORESHROOM = registerCompatBlock("umbral_sporeshroom", () ->
-            new SporeshroomBlock(BlockBehaviour.Properties.of().strength(0.5f).pushReaction(PushReaction.DESTROY).sound(SoundType.FUNGUS), 3, JNETags.Biomes.HAS_WARPED_SPORES), "cinderscapes");
+            new SporeshroomBlock(BlockBehaviour.Properties.of().strength(0.5f).pushReaction(PushReaction.DESTROY).sound(SoundType.FUNGUS), () -> ParticleTypes.WARPED_SPORE, JNEParticleTypes.UMBRAL_SMOG, JNETags.Biomes.HAS_WARPED_SPORES), "cinderscapes");
 
     public static final RegistrySupplier<Block> BLACKSTONIC_GEYSER = registerCompatBlock("blackstonic_geyser", () ->
             new GeyserBlock(BlockBehaviour.Properties.copy(Blocks.BLACKSTONE).pushReaction(PushReaction.DESTROY).sound(JNESoundType.SOUL_SLATE), 2, true, JNETags.Biomes.HAS_WHITE_ASH), "cinderscapes");
@@ -756,7 +758,7 @@ public class JNEBlocks {
             new Block(BlockBehaviour.Properties.copy(Blocks.SHROOMLIGHT).lightLevel((state) -> 10)), "gardens_of_the_dead");
 
     public static final RegistrySupplier<Block> SOULBLIGHT_SPORESHROOM = registerCompatBlock("soulblight_sporeshroom", () ->
-            new SporeshroomBlock(BlockBehaviour.Properties.of().strength(0.5f).pushReaction(PushReaction.DESTROY).sound(SoundType.FUNGUS), 1, JNETags.Biomes.HAS_SOULBLIGHT_SPORES), "gardens_of_the_dead");
+            new SporeshroomBlock(BlockBehaviour.Properties.of().strength(0.5f).pushReaction(PushReaction.DESTROY).sound(SoundType.FUNGUS), JNEParticleTypes.GOLD_GLIMMER, JNEParticleTypes.CRIMSON_SMOG, JNETags.Biomes.HAS_SOULBLIGHT_SPORES), "gardens_of_the_dead");
 
 
     ////////////////

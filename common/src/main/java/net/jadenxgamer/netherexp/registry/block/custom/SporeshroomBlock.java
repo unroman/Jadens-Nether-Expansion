@@ -2,10 +2,9 @@ package net.jadenxgamer.netherexp.registry.block.custom;
 
 import net.jadenxgamer.netherexp.config.JNEConfigs;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNESoundEvents;
-import net.jadenxgamer.netherexp.registry.particle.JNEParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
@@ -38,6 +37,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
 public class SporeshroomBlock extends Block implements SimpleWaterloggedBlock, BonemealableBlock {
 
@@ -50,23 +50,23 @@ public class SporeshroomBlock extends Block implements SimpleWaterloggedBlock, B
     private static final VoxelShape STANDING_SHAPE = Shapes.join(Block.box(0, 7, 0, 16, 16, 16), Block.box(5, 0, 5, 11, 8, 11), BooleanOp.OR);
     private static final VoxelShape HANGING_SHAPE = Shapes.join(Block.box(0, 0, 0, 16, 9, 16), Block.box(5, 9, 5, 11, 17, 11), BooleanOp.OR);
 
-    /**
-     * type is used to define what kind of particle it should produce
-     * 1 - Crimson
-     * 2 - Warped
-     * 3 - Umbral (mod compat)
-     */
-    protected final int type;
+    private final Supplier<SimpleParticleType> sporeParticle;
+    private final Supplier<SimpleParticleType> smogParticle;
+
+    protected final TagKey<Biome> homeBiome;
 
     /**
-     * the block will not produce particles if inside this biome tag
+     * If you're on Architectury/Forge call RegistrySuppliers otherwise Wrappers work too
+     *
+     * @param sporeSupplier - defines the particle that'll generate around the sporeshroom
+     * @param smogSupplier - defines the particle that rises from the center of the block
+     * @param biomeTag - spores will NOT be produced inside the provided tag key
      */
-    protected final TagKey<Biome> biome;
-
-    public SporeshroomBlock(Properties properties, int type, TagKey<Biome> biome) {
+    public SporeshroomBlock(Properties properties, Supplier<SimpleParticleType> sporeSupplier, Supplier<SimpleParticleType> smogSupplier, TagKey<Biome> biomeTag) {
         super(properties);
-        this.type = type;
-        this.biome = biome;
+        this.sporeParticle = sporeSupplier;
+        this.smogParticle = smogSupplier;
+        this.homeBiome = biomeTag;
         this.registerDefaultState(this.defaultBlockState().setValue(HANGING, false).setValue(WATERLOGGED, false).setValue(ACTIVE, false));
     }
 
@@ -139,47 +139,18 @@ public class SporeshroomBlock extends Block implements SimpleWaterloggedBlock, B
         int k = pos.getZ();
         boolean hanging = state.getValue(HANGING);
         boolean active = state.getValue(ACTIVE);
-        boolean homeBiome = level.getBiome(pos).is(this.biome);
+        boolean homeBiome = level.getBiome(pos).is(this.homeBiome);
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
         for (int l = 0; l < 14; ++l) {
             mutable.set(i + Mth.nextInt(random, -20, 20), j + random.nextInt(20), k + Mth.nextInt(random, -20, 20));
             BlockState blockState = level.getBlockState(mutable);
             if (blockState.isSolidRender(level, mutable)) continue;
             if (active && !homeBiome) {
-                biomeParticles(level, mutable, random);
+                level.addParticle(this.sporeParticle.get(), (double)mutable.getX() + random.nextDouble(), (double)mutable.getY() + random.nextDouble(), (double)mutable.getZ() + random.nextDouble(), 0.0, 0.0, 0.0);
             }
         }
         if (active) {
-            smokeParticles(level, pos, random, hanging);
-        }
-    }
-    private void biomeParticles(Level level, BlockPos.MutableBlockPos mutable, RandomSource random)  {
-        switch (type) {
-            default: {
-                level.addParticle(ParticleTypes.CRIMSON_SPORE, (double)mutable.getX() + random.nextDouble(), (double)mutable.getY() + random.nextDouble(), (double)mutable.getZ() + random.nextDouble(), 0.0, 0.0, 0.0);
-                break;
-            }
-            case 2, 3: {
-                level.addParticle(ParticleTypes.WARPED_SPORE, (double)mutable.getX() + random.nextDouble(), (double)mutable.getY() + random.nextDouble(), (double)mutable.getZ() + random.nextDouble(), 0.0, 0.0, 0.0);
-                break;
-            }
-        }
-    }
-
-    private void smokeParticles(Level level, BlockPos pos, RandomSource random, boolean hanging) {
-        switch (type) {
-            default: {
-                level.addParticle(JNEParticleTypes.CRIMSON_SMOG.get(), (double)pos.getX() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + 1.1, (double)pos.getZ() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), 0.0, (hanging ? -0.008 : 0.008), 0.0);
-                break;
-            }
-            case 2: {
-                level.addParticle(JNEParticleTypes.WARPED_SMOG.get(), (double)pos.getX() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + 1.1, (double)pos.getZ() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), 0.0, (hanging ? -0.008 : 0.008), 0.0);
-                break;
-            }
-            case 3: {
-                level.addParticle(JNEParticleTypes.UMBRAL_SMOG.get(), (double)pos.getX() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + 1.1, (double)pos.getZ() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), 0.0, (hanging ? -0.008 : 0.008), 0.0);
-                break;
-            }
+            level.addParticle(this.smogParticle.get(), (double)pos.getX() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + 1.1, (double)pos.getZ() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), 0.0, (hanging ? -0.008 : 0.008), 0.0);
         }
     }
 
