@@ -56,8 +56,6 @@ public class SporeshroomBlock extends Block implements SimpleWaterloggedBlock, B
     protected final TagKey<Biome> homeBiome;
 
     /**
-     * If you're on Architectury/Forge call RegistrySuppliers otherwise Wrappers work too
-     *
      * @param sporeSupplier - defines the particle that'll generate around the sporeshroom
      * @param smogSupplier - defines the particle that rises from the center of the block
      * @param biomeTag - spores will NOT be produced inside the provided tag key

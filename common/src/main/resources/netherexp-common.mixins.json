@@ -47,7 +47,6 @@
     "entity.ZombifiedPiglinMixin",
     "item.AxeItemMixin",
     "item.BlockItemMixin",
-    "item.BowItemMixin",
     "item.EnchantmentMixin",
     "item.ItemMixin",
     "item.ItemStackMixin",

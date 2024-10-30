@@ -4,6 +4,7 @@ import net.jadenxgamer.netherexp.config.JNEConfigs;
 import net.jadenxgamer.netherexp.registry.particle.JNEParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -22,35 +23,28 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
 public class GeyserBlock extends Block {
-
     public static final BooleanProperty COOLDOWN = BooleanProperty.create("cooldown");
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
-
-    /**
-     * type is used to define what kind of particle it should produce
-     * 1 - Ash
-     * 2 - White Ash
-     * 3 - Fire Spark
-     */
-    protected final int type;
-
-    /**
-     * spark is a boolean which handles if the block produces fire sparks
-     */
     protected final boolean spark;
+    private final Supplier<SimpleParticleType> ashParticle;
+    private final Supplier<SimpleParticleType> smokeParticle;
+    protected final TagKey<Biome> homeBiome;
 
     /**
-     * the block will not produce particles if inside this biome tag
+     * @param ashSupplier - defines the particle that'll generate around the geyser
+     * @param smokeSupplier - defines the particle that rises from the center of the block
+     * @param spark - if true the block will produce lava sparks when not in cooldown
+     * @param biome - ash particles will NOT be produced inside the provided tag key
      */
-    protected final TagKey<Biome> biome;
-
-    public GeyserBlock(Properties properties, int type, boolean spark, TagKey<Biome> biome) {
+    public GeyserBlock(Properties properties, Supplier<SimpleParticleType> ashSupplier, Supplier<SimpleParticleType> smokeSupplier, boolean spark, TagKey<Biome> biome) {
         super(properties);
-        this.type = type;
+        this.ashParticle = ashSupplier;
+        this.smokeParticle = smokeSupplier;
         this.spark = spark;
-        this.biome = biome;
+        this.homeBiome = biome;
         registerDefaultState(this.defaultBlockState().setValue(COOLDOWN, false).setValue(ACTIVE, false));
     }
 
@@ -90,7 +84,7 @@ public class GeyserBlock extends Block {
         int z = pos.getZ();
         boolean active = state.getValue(ACTIVE);
         boolean cooldown = state.getValue(COOLDOWN);
-        boolean homeBiome = level.getBiome(pos).is(this.biome);
+        boolean homeBiome = level.getBiome(pos).is(this.homeBiome);
         float f = random.nextFloat();
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
         for (int l = 0; l < 14; ++l) {
@@ -98,49 +92,14 @@ public class GeyserBlock extends Block {
             BlockState blockState = level.getBlockState(mutable);
             if (blockState.isSolidRender(level, mutable)) continue;
             if (active && !homeBiome) {
-                // we use switch case because architectury is a bitch and registers particles late causing a null exception
-                biomeParticles(level, mutable, random);
+                level.addParticle(this.ashParticle.get(), (double)mutable.getX() + random.nextDouble(), (double)mutable.getY() + random.nextDouble(), (double)mutable.getZ() + random.nextDouble(), 0.0, 0.0, 0.0);
             }
         }
         if (active) {
-            smokeParticles(level, pos, random);
+            level.addParticle(this.smokeParticle.get(), (double)pos.getX() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + 1.5, (double)pos.getZ() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), 0.0, 0.012, 0.0);
         }
         if (!cooldown && this.spark && f < 0.3f) {
             level.addParticle(ParticleTypes.LAVA, (double)pos.getX() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + 1.5, (double)pos.getZ() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), 0.0, 0.012, 0.0);
-        }
-    }
-
-    private void biomeParticles(Level level, BlockPos.MutableBlockPos mutable, RandomSource random)  {
-        switch (type) {
-            default: {
-                level.addParticle(ParticleTypes.ASH, (double)mutable.getX() + random.nextDouble(), (double)mutable.getY() + random.nextDouble(), (double)mutable.getZ() + random.nextDouble(), 0.0, 0.0, 0.0);
-                break;
-            }
-            case 2: {
-                level.addParticle(ParticleTypes.WHITE_ASH, (double)mutable.getX() + random.nextDouble(), (double)mutable.getY() + random.nextDouble(), (double)mutable.getZ() + random.nextDouble(), 0.0, 0.0, 0.0);
-                break;
-            }
-            case 3: {
-                level.addParticle(JNEParticleTypes.FIRE_SPARK.get(), (double)mutable.getX() + random.nextDouble(), (double)mutable.getY() + random.nextDouble(), (double)mutable.getZ() + random.nextDouble(), 0.0, 0.0, 0.0);
-                break;
-            }
-        }
-    }
-
-    private void smokeParticles(Level level, BlockPos pos, RandomSource random) {
-        switch (type) {
-            default: {
-                level.addParticle(JNEParticleTypes.BLACK_SMOKE.get(), (double)pos.getX() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + 1.5, (double)pos.getZ() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), 0.0, 0.012, 0.0);
-                break;
-            }
-            case 2: {
-                level.addParticle(JNEParticleTypes.WHITE_SMOKE.get(), (double)pos.getX() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + 1.5, (double)pos.getZ() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), 0.0, 0.012, 0.0);
-                break;
-            }
-            case 3: {
-                level.addParticle(JNEParticleTypes.RED_SMOKE.get(), (double)pos.getX() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + 1.5, (double)pos.getZ() + 0.5 + random.nextDouble() / 4.0 * (double)(random.nextBoolean() ? 1 : -1), 0.0, 0.012, 0.0);
-                break;
-            }
         }
     }
 

@@ -6,7 +6,8 @@
   "client": [
   ],
   "mixins": [
-    "forge.AbstractArrowMixin"
+    "forge.AbstractArrowMixin",
+    "forge.BowItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

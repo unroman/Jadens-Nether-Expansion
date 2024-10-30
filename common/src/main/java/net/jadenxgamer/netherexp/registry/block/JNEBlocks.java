@@ -130,14 +130,11 @@ public class JNEBlocks {
             new FrogmistBlock(BlockBehaviour.Properties.of().noCollission().pushReaction(PushReaction.DESTROY).instabreak().requiresCorrectToolForDrops().noOcclusion().noParticlesOnBreak().sound(SoundType.SAND)));
 
     public static final RegistrySupplier<Block> SOUL_SWIRLS = registerBlock("soul_swirls", () ->
-            new SwirlsBlock(7, 3, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).replaceable().noCollission().instabreak().sound(SoundType.NETHER_SPROUTS), 1));
+            new SwirlsBlock(7, 3, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).replaceable().noCollission().instabreak()
+                    .lightLevel(state -> state.getValue(SwirlsBlock.COOLDOWN) ? 5 : 0).sound(SoundType.NETHER_SPROUTS), JNEParticleTypes.SWIRL_POP));
 
     public static final RegistrySupplier<Block> WRAITHING_LESION = registerBlock("wraithing_lesion", () ->
             new WraithingLesionBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(1.5f, 1.0f).pushReaction(PushReaction.DESTROY).randomTicks().sound(SoundType.MUD)));
-
-
-    public static final RegistrySupplier<Block> SHALE_SWIRLS = registerCompatBlock("shale_swirls", () ->
-            new SwirlsBlock(7, 3, BlockBehaviour.Properties.copy(SOUL_SWIRLS.get()), 2), "cinderscapes");
 
     public static final RegistrySupplier<Block> ECTO_SOUL_SAND = registerBlock("ecto_soul_sand", () ->
             new EctoSoulSandBlock(BlockBehaviour.Properties.copy(Blocks.SOUL_SAND).lightLevel((state) -> 4).randomTicks()));
@@ -574,10 +571,10 @@ public class JNEBlocks {
             new SporeshroomBlock(BlockBehaviour.Properties.of().strength(0.5f).pushReaction(PushReaction.DESTROY).sound(SoundType.FUNGUS), () -> ParticleTypes.WARPED_SPORE, JNEParticleTypes.WARPED_SMOG, JNETags.Biomes.HAS_WARPED_SPORES));
 
     public static final RegistrySupplier<Block> SOULED_GEYSER = registerBlock("souled_geyser", () ->
-            new GeyserBlock(BlockBehaviour.Properties.copy(JNEBlocks.SOUL_SLATE.get()).pushReaction(PushReaction.DESTROY).sound(JNESoundType.SOUL_SLATE), 1, false, JNETags.Biomes.HAS_ASH));
+            new GeyserBlock(BlockBehaviour.Properties.copy(JNEBlocks.SOUL_SLATE.get()).pushReaction(PushReaction.DESTROY).sound(JNESoundType.SOUL_SLATE), () -> ParticleTypes.ASH, JNEParticleTypes.BLACK_SMOKE, false, JNETags.Biomes.HAS_ASH));
 
     public static final RegistrySupplier<Block> BASALTIC_GEYSER = registerBlock("basaltic_geyser", () ->
-            new GeyserBlock(BlockBehaviour.Properties.copy(Blocks.BASALT).pushReaction(PushReaction.DESTROY).sound(SoundType.BASALT), 2, true, JNETags.Biomes.HAS_WHITE_ASH));
+            new GeyserBlock(BlockBehaviour.Properties.copy(Blocks.BASALT).pushReaction(PushReaction.DESTROY).sound(SoundType.BASALT), () -> ParticleTypes.WHITE_ASH, JNEParticleTypes.WHITE_SMOKE, true, JNETags.Biomes.HAS_WHITE_ASH));
     
     // White Ash
 
@@ -734,10 +731,10 @@ public class JNEBlocks {
             new SporeshroomBlock(BlockBehaviour.Properties.of().strength(0.5f).pushReaction(PushReaction.DESTROY).sound(SoundType.FUNGUS), () -> ParticleTypes.WARPED_SPORE, JNEParticleTypes.UMBRAL_SMOG, JNETags.Biomes.HAS_WARPED_SPORES), "cinderscapes");
 
     public static final RegistrySupplier<Block> BLACKSTONIC_GEYSER = registerCompatBlock("blackstonic_geyser", () ->
-            new GeyserBlock(BlockBehaviour.Properties.copy(Blocks.BLACKSTONE).pushReaction(PushReaction.DESTROY).sound(JNESoundType.SOUL_SLATE), 2, true, JNETags.Biomes.HAS_WHITE_ASH), "cinderscapes");
+            new GeyserBlock(BlockBehaviour.Properties.copy(Blocks.BLACKSTONE).pushReaction(PushReaction.DESTROY).sound(JNESoundType.SOUL_SLATE), () -> ParticleTypes.WHITE_ASH, JNEParticleTypes.WHITE_SMOKE, true, JNETags.Biomes.HAS_WHITE_ASH), "cinderscapes");
 
     public static final RegistrySupplier<Block> ASHEN_GEYSER = registerCompatBlock("ashen_geyser", () ->
-            new GeyserBlock(BlockBehaviour.Properties.copy(Blocks.NETHERRACK).pushReaction(PushReaction.DESTROY).sound(JNESoundType.SOUL_SLATE), 1, true, JNETags.Biomes.HAS_ASH), "cinderscapes");
+            new GeyserBlock(BlockBehaviour.Properties.copy(Blocks.NETHERRACK).pushReaction(PushReaction.DESTROY).sound(JNESoundType.SOUL_SLATE), () -> ParticleTypes.ASH, JNEParticleTypes.BLACK_SMOKE, true, JNETags.Biomes.HAS_ASH), "cinderscapes");
 
     public static final RegistrySupplier<Block> UMBRAL_WART_BEARD = registerCompatBlock("umbral_wart_beard", () ->
             new BeardBlock(BlockBehaviour.Properties.copy(JNEBlocks.NETHER_WART_BEARD.get())), "cinderscapes");
@@ -750,6 +747,9 @@ public class JNEBlocks {
 
     public static final RegistrySupplier<Block> UMBRAL_NYLIUM_PATH = registerCompatBlock("umbral_nylium_path", () ->
             new NyliumPathBlock(BlockBehaviour.Properties.copy(Blocks.NETHERRACK).sound(SoundType.NYLIUM)), "cinderscapes");
+
+    public static final RegistrySupplier<Block> SHALE_SWIRLS = registerCompatBlock("shale_swirls", () ->
+            new SwirlsBlock(7, 3, BlockBehaviour.Properties.copy(SOUL_SWIRLS.get()), JNEParticleTypes.SHALE_SWIRL_POP), "cinderscapes");
 
     /**
      * Gardens of The Dead

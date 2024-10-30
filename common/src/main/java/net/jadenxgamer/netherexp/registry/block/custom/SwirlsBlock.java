@@ -8,9 +8,9 @@ import net.jadenxgamer.netherexp.registry.entity.JNEEntityType;
 import net.jadenxgamer.netherexp.registry.entity.custom.EctoSlab;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNESoundEvents;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNETags;
-import net.jadenxgamer.netherexp.registry.particle.JNEParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -33,17 +33,22 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
+import java.util.function.Supplier;
+
 public class SwirlsBlock
 extends AmethystClusterBlock
 implements BonemealableBlock {
 
     public static final BooleanProperty COOLDOWN = BooleanProperty.create("cooldown");
 
-    protected final int type;
+    private final Supplier<SimpleParticleType> particle;
 
-    public SwirlsBlock(int height, int xzOffset, Properties properties, int type) {
+    /**
+     * @param particleSupplier - defines the particle that generates once the swirl is activated
+     */
+    public SwirlsBlock(int height, int xzOffset, Properties properties, Supplier<SimpleParticleType> particleSupplier) {
         super(height, xzOffset, properties);
-        this.type = type;
+        this.particle = particleSupplier;
         registerDefaultState(this.defaultBlockState().setValue(COOLDOWN, false).setValue(WATERLOGGED, false).setValue(FACING, Direction.UP));
     }
 
@@ -108,16 +113,7 @@ implements BonemealableBlock {
         double z = (double)pos.getZ() + random.nextDouble();
         int i = random.nextInt(20);
         if (cooldown && i == 0 ) {
-            switch (type) {
-                default: {
-                    level.addParticle(JNEParticleTypes.SWIRL_POP.get(), x, y, z, Mth.nextDouble(random, -0.02, 0.02), 0.08, Mth.nextDouble(random, -0.02, 0.02));
-                    break;
-                }
-                case 2: {
-                    level.addParticle(JNEParticleTypes.SHALE_SWIRL_POP.get(), x, y, z, Mth.nextDouble(random, -0.02, 0.02), 0.08, Mth.nextDouble(random, -0.02, 0.02));
-                    break;
-                }
-            }
+            level.addParticle(this.particle.get(), x, y, z, Mth.nextDouble(random, -0.02, 0.02), 0.08, Mth.nextDouble(random, -0.02, 0.02));
         }
     }
 
@@ -130,16 +126,7 @@ implements BonemealableBlock {
             double e = axis == Direction.Axis.X ? 0.5 + 0.5625 * (double) direction.getStepX() : (double) random.nextFloat();
             double f = axis == Direction.Axis.Y ? 0.5 + 0.5625 * (double) direction.getStepY() : (double) random.nextFloat();
             double g = axis == Direction.Axis.Z ? 0.5 + 0.5625 * (double) direction.getStepZ() : (double) random.nextFloat();
-            switch (type) {
-                default: {
-                    level.addParticle(JNEParticleTypes.SWIRL_POP.get(), (double)pos.getX() + e, (double)pos.getY() + f, (double)pos.getZ() + g, 0.0, 0.02, 0.0);
-                    break;
-                }
-                case 2: {
-                    level.addParticle(JNEParticleTypes.SHALE_SWIRL_POP.get(), (double)pos.getX() + e, (double)pos.getY() + f, (double)pos.getZ() + g, 0.0, 0.02, 0.0);
-                    break;
-                }
-            }
+            level.addParticle(this.particle.get(), (double)pos.getX() + e, (double)pos.getY() + f, (double)pos.getZ() + g, 0.0, 0.02, 0.0);
         }
     }
 
