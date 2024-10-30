@@ -562,5 +562,27 @@
   "item.netherexp.firearm_pottery_sherd": "Silah Çömlek Parçası",
   "item.netherexp.botanical_pottery_sherd": "Botanik Çömlek Parçası",
 
+  "item.netherexp.roasted_bone": "Kemik Kavurması",
+  "block.netherexp.cerebrage_skull": "Beyin Lahanası Kafatası",
+  "item.netherexp.cerebrage": "Beyin Lahanası",
+  "item.netherexp.cerebrage_seeds": "Beyin Lahanası Tohumu",
+  "block.netherexp.wraithing_lesion": "Perili Lezyon",
+  "block.netherexp.cerebrage_claret_stem": "Kan Kırmızısı Lahana Kök",
+  "block.netherexp.cerebrage_claret_hyphae": "Kan Kırmızısı Lahana Hif",
+  "advancements.nether.brain_food.title": "Beyin Yemeği",
+  "advancements.nether.brain_food.description": "Beyin Lahanası Tohumunu bir iskelet kafatasının içine ek",
+  "advancements.nether.big_brain_time.title": "Zeki Olma Zamanı",
+  "advancements.nether.big_brain_time.description": "Beyin lahanasını kemik tozu ile büyüterek bir Beyin Ağacı Yetiştir",
+  "advancements.nether.rodeo_stampede.title": "Kaçışan Rodeosu",
+  "advancements.nether.rodeo_stampede.description": "bir kaçışanı kemik kavurması ile besleyerek evcilleştir",
+
+  "subtitles.entity.stampede.ambient": "Kaçışan gurulduyor",
+  "subtitles.entity.stampede.hurt": "Kaçışan hasar aldı",
+  "subtitles.entity.stampede.death": "Kaçışan öldü",
+  "subtitles.entity.stampede.step": "Kaçışan sert adımlarla yürüyor",
+  "subtitles.entity.stampede.attack": "Kaçışan tepiniyor",
+  "subtitles.entity.stampede.eat": "Kaçışan yemeğini çiğniyor",
+  "subtitles.entity.stampede.agitated": "Kaçışan sinirlendi",
+
   "itemGroup.netherexp.netherexp_tab": "Jaden's Nether Expansion"
 }
