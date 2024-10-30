@@ -158,11 +158,6 @@ public class Stampede extends Monster implements NeutralMob, ItemSteerable, Sadd
                .add(Attributes.FOLLOW_RANGE, 32.0);
     }
 
-    @Override
-    public int getMaxFallDistance() {
-        return 6;
-    }
-
     protected void dropEquipment() {
         super.dropEquipment();
         if (this.isSaddled()) {
