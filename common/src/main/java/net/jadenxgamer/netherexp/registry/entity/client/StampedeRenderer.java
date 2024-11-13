@@ -1,12 +1,8 @@
 package net.jadenxgamer.netherexp.registry.entity.client;
 
 import net.jadenxgamer.netherexp.NetherExp;
-import net.jadenxgamer.netherexp.registry.entity.client.layer.ApparitionGlowlayer;
 import net.jadenxgamer.netherexp.registry.entity.client.layer.StampedeGlowlayer;
-import net.jadenxgamer.netherexp.registry.entity.custom.OldStampede;
 import net.jadenxgamer.netherexp.registry.entity.custom.Stampede;
-import net.minecraft.client.model.StriderModel;
-import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.SaddleLayer;
