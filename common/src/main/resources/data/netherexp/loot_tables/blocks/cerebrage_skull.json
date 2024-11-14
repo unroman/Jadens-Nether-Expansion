@@ -24,6 +24,34 @@
           "name": "netherexp:cerebrage_seeds"
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "netherexp:cerebrage",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3,
+                "max": 6
+              },
+              "add": false
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "netherexp:cerebrage_skull",
+              "properties": {
+                "age": "3"
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }

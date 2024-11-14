@@ -10,6 +10,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.boss.EnderDragonPart;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
@@ -59,11 +60,8 @@ public class SoulBullet extends AbstractArrow {
     protected void onHitEntity(EntityHitResult entityHitResult) {
         Entity entity = entityHitResult.getEntity();
         entity.hurt(this.damageSources().source(JNEDamageSources.SOUL_BULLET), 1);
-        if (entity instanceof Mob mob && mob.getTarget() == null) {
-            mob.setTarget((LivingEntity) this.getOwner());
-            if (getOwner() instanceof Player player) {
-                mob.setLastHurtByPlayer(player);
-            }
+        if (entity instanceof Monster monster && monster.getTarget() == null) {
+            monster.setTarget((LivingEntity) this.getOwner());
         }
         if (!this.level().isClientSide) {
             this.playSound(getDefaultHitGroundSoundEvent(), 0.3f, 1.0f);

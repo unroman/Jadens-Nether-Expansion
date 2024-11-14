@@ -6,10 +6,11 @@
     }
   ],
   "placement": {
-    "type": "minecraft:random_spread",
+    "type": "minecraft:concentric_rings",
     "salt": 1253950950,
-    "spread_type": "triangular",
-    "spacing": 85,
-    "separation": 75
+    "distance": 32,
+    "spread": 3,
+    "count": 256,
+    "preferred_biomes": "#netherexp:has_structure/sanctum"
   }
 }
