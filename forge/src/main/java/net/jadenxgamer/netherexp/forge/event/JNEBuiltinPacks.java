@@ -79,10 +79,24 @@ public class JNEBuiltinPacks {
         event.addRepositorySource((packConsumer) ->
                 packConsumer.accept(
                         Pack.create("nethers_delight_compat",
-                                Component.literal("My Nether's Delight Compatibility"),
+                                Component.literal("JNE + My Nether's Delight Compatibility"),
                                 true,
                                 (path) -> new PathPackResources(path, file, true),
                                 new Pack.Info(Component.literal("Compatibility for My Nether's Delight"), SharedConstants.getCurrentVersion().getPackVersion(PackType.SERVER_DATA), FeatureFlagSet.of()),
+                                PackType.SERVER_DATA, Pack.Position.TOP, true, PackSource.BUILT_IN)));
+    }
+
+    // Compatibility for Alex's Caves
+    public static void dpAlexCavesCompat(AddPackFindersEvent event) {
+        IModFileInfo mod = ModList.get().getModFileById(NetherExp.MOD_ID);
+        Path file = mod.getFile().findResource("resourcepacks/alexscaves_compat");
+        event.addRepositorySource((packConsumer) ->
+                packConsumer.accept(
+                        Pack.create("alexscaves_compat",
+                                Component.literal("JNE + Alex's Caves Compatibility"),
+                                true,
+                                (path) -> new PathPackResources(path, file, true),
+                                new Pack.Info(Component.literal("Compatibility for Alex's Caves"), SharedConstants.getCurrentVersion().getPackVersion(PackType.SERVER_DATA), FeatureFlagSet.of()),
                                 PackType.SERVER_DATA, Pack.Position.TOP, true, PackSource.BUILT_IN)));
     }
 }

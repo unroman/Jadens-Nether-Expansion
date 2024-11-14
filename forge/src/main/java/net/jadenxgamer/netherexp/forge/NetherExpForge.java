@@ -124,6 +124,9 @@ public class NetherExpForge {
             if (NetherExp.compatNethersDelight()) {
                 JNEBuiltinPacks.dpNethersDelightCompat(event);
             }
+            if (NetherExp.compatAlexsCaves()) {
+                JNEBuiltinPacks.dpAlexCavesCompat(event);
+            }
         }
     }
 }

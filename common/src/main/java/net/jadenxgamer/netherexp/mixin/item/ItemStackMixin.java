@@ -5,6 +5,7 @@ import net.jadenxgamer.netherexp.config.JNEForgeConfigs;
 import net.jadenxgamer.netherexp.registry.item.custom.AntidoteItem;
 import net.jadenxgamer.netherexp.registry.item.custom.GrenadeAntidoteItem;
 import net.jadenxgamer.netherexp.registry.item.custom.WillOWispItem;
+import net.jadenxgamer.netherexp.registry.misc_registry.JNETags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PotionItem;
@@ -19,20 +20,23 @@ public abstract class ItemStackMixin {
 
     @Shadow public abstract Item getItem();
 
+    @Shadow public abstract boolean is(Item arg);
+
     @Inject(
             method = "getMaxStackSize",
             at = @At(value = "HEAD"),
             cancellable = true
     )
     private void netherexp$setCustomMaxStackSize(CallbackInfoReturnable<Integer> cir) {
+        ItemStack stack = ((ItemStack) (Object) this);
         // changes the stack size of vanilla and some of our modded items to dynamically change stack sizes with configs
-        if (this.getItem() instanceof PotionItem) {
+        if (this.getItem() instanceof PotionItem && !stack.is(JNETags.Items.DOESNT_MODIFY_POTION_STACK_SIZE)) {
             cir.setReturnValue(JNEConfigs.POTION_STACK_SIZE.get());
         }
-        if (this.getItem() instanceof AntidoteItem) {
+        if (this.getItem() instanceof AntidoteItem && !stack.is(JNETags.Items.DOESNT_MODIFY_POTION_STACK_SIZE)) {
             cir.setReturnValue(JNEConfigs.POTION_STACK_SIZE.get());
         }
-        if (this.getItem() instanceof GrenadeAntidoteItem) {
+        if (this.getItem() instanceof GrenadeAntidoteItem && !stack.is(JNETags.Items.DOESNT_MODIFY_POTION_STACK_SIZE)) {
             cir.setReturnValue(JNEConfigs.POTION_STACK_SIZE.get());
         }
         if (this.getItem() instanceof WillOWispItem) {

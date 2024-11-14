@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.jadenxgamer.netherexp.NetherExp;
+import net.jadenxgamer.netherexp.fabric.event.JNEBuiltinPacks;
 import net.jadenxgamer.netherexp.fabric.event.WartBeardGrowerEvent;
 import net.jadenxgamer.netherexp.fabric.loot.JNELootModifiers;
 import net.jadenxgamer.netherexp.fabric.worldgen.*;

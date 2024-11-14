@@ -16,10 +16,7 @@ public abstract class ItemMixin {
             cancellable = true
     )
     private void netherexp$getCraftingRemainingItem(CallbackInfoReturnable<Item> cir) {
-        /*
-         * I'm using a mixin to make Netherite Artifacts non-consumable cuz it can't call itself in registry
-         * otherwise it will throw a registry object not found error
-        */
+        // makes this item non-consumable
         Item item = ((Item) (Object) this);
         if (item instanceof NetheriteArtifactItem) {
             cir.setReturnValue(item);

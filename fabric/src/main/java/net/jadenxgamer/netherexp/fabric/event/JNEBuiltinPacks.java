@@ -1,4 +1,4 @@
-package net.jadenxgamer.netherexp.fabric;
+package net.jadenxgamer.netherexp.fabric.event;
 
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
@@ -27,7 +27,7 @@ public class JNEBuiltinPacks {
                 ResourceManagerHelper.registerBuiltinResourcePack(dpLargerNetherBiomes, container, Component.literal("Larger Nether Biomes"), ResourcePackActivationType.ALWAYS_ENABLED);
             }
             if (NetherExp.compatNethersDelight()) {
-                ResourceManagerHelper.registerBuiltinResourcePack(dpNetherDelightsCompat, container, Component.literal("My Nethers Delight Compat"), ResourcePackActivationType.ALWAYS_ENABLED);
+                ResourceManagerHelper.registerBuiltinResourcePack(dpNetherDelightsCompat, container, Component.literal("JNE + My Nethers Delight Compat"), ResourcePackActivationType.ALWAYS_ENABLED);
             }
         });
     }
