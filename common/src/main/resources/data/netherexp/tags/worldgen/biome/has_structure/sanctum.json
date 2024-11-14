@@ -1,6 +1,25 @@
 {
   "replace": false,
   "values": [
-    "minecraft:soul_sand_valley"
+    {
+      "id": "minecraft:soul_sand_valley",
+      "required": false
+    },
+    {
+      "id": "cinderscapes:ashy_shoals",
+      "required": false
+    },
+    {
+      "id": "cinderscapes:blackstone_shales",
+      "required": false
+    },
+    {
+      "id": "gardens_of_the_dead:soulblight_forest",
+      "required": false
+    },
+    {
+      "id": "soulfulnether:fright_forest",
+      "required": false
+    }
   ]
 }
