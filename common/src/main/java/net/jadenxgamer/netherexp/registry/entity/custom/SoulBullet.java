@@ -8,7 +8,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.boss.EnderDragonPart;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -18,6 +20,7 @@ import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.NotNull;
 
 public class SoulBullet extends AbstractArrow {
+
     public SoulBullet(EntityType<? extends AbstractArrow> entityType, Level level) {
         super(entityType, level);
     }
@@ -29,11 +32,13 @@ public class SoulBullet extends AbstractArrow {
 
     public SoulBullet(Level level, LivingEntity owner) {
         super(JNEEntityType.SOUL_BULLET.get(), owner, level);
+        this.setOwner(owner);
     }
 
     public SoulBullet(double d, double e, double f, Level level, LivingEntity owner) {
         super(JNEEntityType.SOUL_BULLET.get(), owner, level);
         this.setPos(d, e, f);
+        this.setOwner(owner);
     }
 
     @Override
@@ -54,6 +59,12 @@ public class SoulBullet extends AbstractArrow {
     protected void onHitEntity(EntityHitResult entityHitResult) {
         Entity entity = entityHitResult.getEntity();
         entity.hurt(this.damageSources().source(JNEDamageSources.SOUL_BULLET), 1);
+        if (entity instanceof Mob mob && mob.getTarget() == null) {
+            mob.setTarget((LivingEntity) this.getOwner());
+            if (getOwner() instanceof Player player) {
+                mob.setLastHurtByPlayer(player);
+            }
+        }
         if (!this.level().isClientSide) {
             this.playSound(getDefaultHitGroundSoundEvent(), 0.3f, 1.0f);
             this.discard();

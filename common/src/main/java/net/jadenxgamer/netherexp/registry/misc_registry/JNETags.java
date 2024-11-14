@@ -28,6 +28,7 @@ public class JNETags {
         public static final TagKey<Block> PIGLIN_CANNOT_SPAWN_ON = createBlockTag("piglin_cannot_spawn_on"); // Piglins cannot spawn on these Blocks
         public static final TagKey<Block> HOGLIN_CANNOT_SPAWN_ON = createBlockTag("hoglin_cannot_spawn_on"); // Hoglins cannot spawn on these Blocks
         public static final TagKey<Block> SOUL_SAND_BLOCKS = createBlockTag("soul_sand_blocks"); // Blocks in this tag are considered Soul Sand
+        public static final TagKey<Block> SOUL_CROP_MUTATION_BLOCKS = createBlockTag("soul_crop_mutation_blocks"); // Blocks in this tag can change certain crops that are planned on it
         public static final TagKey<Block> WEEPING_VINES_FEATURE_VALID = createBlockTag("weeping_vines_feature_valid"); // Weeping Vines can generate on these Blocks
         public static final TagKey<Block> WART_BEARD_FEATURE_VALID = createBlockTag("wart_beard_feature_valid"); // Warped Wart Beard can generate on these Blocks
         public static final TagKey<Block> ROOTS_PLANTABLE_ON = createBlockTag("roots_plantable_on"); // Nether Roots are Plantable on these Blocks

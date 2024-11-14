@@ -17,6 +17,6 @@ public class NetherFlowerBlock extends FlowerBlock {
 
     @Override
     public boolean canSurvive(BlockState floor, LevelReader level, BlockPos pos) {
-        return floor.is(JNETags.Blocks.SOUL_SAND_BLOCKS) || floor.is(BlockTags.NYLIUM) || floor.is(Blocks.SOUL_SOIL) || super.canSurvive(floor, level, pos);
+        return floor.is(JNETags.Blocks.SOUL_CROP_MUTATION_BLOCKS) || floor.is(BlockTags.NYLIUM) || floor.is(Blocks.SOUL_SOIL) || super.canSurvive(floor, level, pos);
     }
 }

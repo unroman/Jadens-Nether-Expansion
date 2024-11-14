@@ -19,7 +19,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.projectile.Fireball;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.entity.projectile.LargeFireball;
-import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -36,14 +35,14 @@ public abstract class ThrownItemRendererMixin <T extends Entity & ItemSupplier> 
     private FireballModel<T> fireballModel;
 
     @Unique
-    private boolean isConfigEnabled = JNEConfigs.REDESIGNED_FIREBALLS.get();
+    private boolean isConfigEnabled = JNEConfigs.THREED_FIREBALLS.get();
 
     protected ThrownItemRendererMixin(EntityRendererProvider.Context context) {
         super(context);
     }
 
     @Unique
-    private boolean noEntityTextureModelFeature() {
+    private boolean EntityTextureOrModelFeatureLoaded() {
         // turns off redesigned fireballs if either one of these mods are loaded
         return !Platform.isModLoaded("entity_model_features") && !Platform.isModLoaded("entity_texture_features");
     }
@@ -53,7 +52,7 @@ public abstract class ThrownItemRendererMixin <T extends Entity & ItemSupplier> 
             at = @At(value = "TAIL")
     )
     private void netherexp$init(EntityRendererProvider.Context context, CallbackInfo ci) {
-        if (!noEntityTextureModelFeature()) {
+        if (!EntityTextureOrModelFeatureLoaded()) {
             return;
         }
         if (isConfigEnabled) {
@@ -67,7 +66,7 @@ public abstract class ThrownItemRendererMixin <T extends Entity & ItemSupplier> 
             at = @At(value = "TAIL")
     )
     private void netherexp$initTwo(EntityRendererProvider.Context context, float f, boolean bl, CallbackInfo ci) {
-        if (!noEntityTextureModelFeature()) {
+        if (!EntityTextureOrModelFeatureLoaded()) {
             return;
         }
         if (isConfigEnabled) {

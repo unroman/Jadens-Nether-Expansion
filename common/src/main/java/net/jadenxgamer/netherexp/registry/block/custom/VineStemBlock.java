@@ -105,7 +105,7 @@ extends GrowingPlantHeadBlock {
         if (!this.canAttachTo(blockState)) {
             return false;
         } else {
-            return growthOppositeState.is(this.getHeadBlock()) || growthOppositeState.is(this.getBodyBlock()) || growthOppositeState.is(JNETags.Blocks.SOUL_SAND_BLOCKS) || growthOppositeState.is(JNEBlocks.SORROWEED.get());
+            return growthOppositeState.is(this.getHeadBlock()) || growthOppositeState.is(this.getBodyBlock()) || growthOppositeState.is(JNETags.Blocks.SOUL_CROP_MUTATION_BLOCKS) || growthOppositeState.is(JNEBlocks.SORROWEED.get());
         }
     }
 

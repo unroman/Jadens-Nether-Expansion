@@ -36,7 +36,7 @@ extends GrowingPlantBodyBlock {
         if (!this.canAttachTo(blockState)) {
             return false;
         } else {
-            return blockState.is(this.getHeadBlock()) || blockState.is(this.getBodyBlock()) || blockState.is(JNETags.Blocks.SOUL_SAND_BLOCKS);
+            return blockState.is(this.getHeadBlock()) || blockState.is(this.getBodyBlock()) || blockState.is(JNETags.Blocks.SOUL_CROP_MUTATION_BLOCKS);
         }
     }
 

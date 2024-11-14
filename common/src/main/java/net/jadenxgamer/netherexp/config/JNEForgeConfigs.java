@@ -71,9 +71,9 @@ public class JNEForgeConfigs {
     }
 
     private static void registerEntityConfigs(ForgeConfigSpec.Builder BUILDER) {
-        REDESIGNED_FIREBALLS = BUILDER
-                .comment("Ghast and Blaze Fireballs will be redesigned if enabled")
-                .define("redesigned_fireballs", true);
+        THREED_FIREBALLS = BUILDER
+                .comment("Ghast and Blaze Fireballs will render 3D if enabled")
+                .define("3d_fireballs", false);
         DIMINISHING_BLAZES = BUILDER
                 .comment("Blazes get dimmer as their health decreases like in Minecraft Dungeons")
                 .define("diminishing_blazes", true);
@@ -140,6 +140,9 @@ public class JNEForgeConfigs {
     }
 
     private static void registerParticlesAndSoundsConfigs(ForgeConfigSpec.Builder BUILDER) {
+        IMPROVED_FIREBALL_PARTICLES = BUILDER
+                .comment("Fireballs will leave a trail of fire behind")
+                .define("improved_fireball_particles", true);
         IMPROVED_SOUL_FIRE_PARTICLES = BUILDER
                 .comment("Soul Fire will emit unique particles instead of smoke")
                 .define("improved_soul_fire_particles", true);

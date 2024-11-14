@@ -20,7 +20,7 @@ public class AbstractHurtingProjectileMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/projectile/AbstractHurtingProjectile;setSecondsOnFire(I)V")
     )
     private int netherexp$tick(int seconds) {
-        if (JNEConfigs.REDESIGNED_FIREBALLS.get()) {
+        if (JNEConfigs.IMPROVED_FIREBALL_PARTICLES.get()) {
             if (((AbstractHurtingProjectile) (Object) this) instanceof Fireball) {
                 return 0;
             }
@@ -33,7 +33,7 @@ public class AbstractHurtingProjectileMixin {
             at = @At(value = "HEAD")
     )
     private void netherexp$tick(CallbackInfo ci) {
-        if (JNEConfigs.REDESIGNED_FIREBALLS.get()) {
+        if (JNEConfigs.IMPROVED_FIREBALL_PARTICLES.get()) {
             AbstractHurtingProjectile projectile = ((AbstractHurtingProjectile) (Object) this);
             if (projectile instanceof Fireball) {
                 projectile.level().addParticle((projectile instanceof LargeFireball) ? JNEParticleTypes.FIREBALL_TRAIL.get() : JNEParticleTypes.SMALL_FIREBALL_TRAIL.get(), projectile.getRandomX(0.5), projectile.getRandomY(), projectile.getRandomZ(0.5), 0, 0, 0);

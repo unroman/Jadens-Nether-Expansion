@@ -29,7 +29,7 @@ public class JNEConfigs {
     public static Supplier<Integer> POTION_STACK_SIZE = () -> 16;
 
     // Entities
-    public static Supplier<Boolean> REDESIGNED_FIREBALLS = () -> true;
+    public static Supplier<Boolean> THREED_FIREBALLS = () -> true;
     public static Supplier<Boolean> DIMINISHING_BLAZES = () -> true;
     public static Supplier<Boolean> PIXEL_CONSISTENT_MAGMA_CUBES = () -> true;
     public static Supplier<Boolean> SKELETON_FOSSILIZATION = () -> true;
@@ -54,6 +54,7 @@ public class JNEConfigs {
     public static Supplier<Integer> SECONDARY_SUB_BIOME_WEIGHTS = () -> 2;
 
     // Particles & Sounds
+    public static Supplier<Boolean> IMPROVED_FIREBALL_PARTICLES = () -> true;
     public static Supplier<Boolean> IMPROVED_SOUL_FIRE_PARTICLES = () -> true;
     public static Supplier<Boolean> ENABLE_BLACK_ICE_PARTICLES = () -> true;
     public static Supplier<Boolean> ENABLE_ECTOPLASM_PARTICLES = () -> true;

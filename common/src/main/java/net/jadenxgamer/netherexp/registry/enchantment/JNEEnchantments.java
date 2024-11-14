@@ -6,6 +6,7 @@ import net.jadenxgamer.netherexp.NetherExp;
 import net.jadenxgamer.netherexp.registry.enchantment.custom.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
 public class JNEEnchantments {
 

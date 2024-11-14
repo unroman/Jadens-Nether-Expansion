@@ -5,9 +5,9 @@ import net.jadenxgamer.netherexp.registry.block.JNEBlocks;
 import net.jadenxgamer.netherexp.registry.effect.JNEMobEffects;
 import net.jadenxgamer.netherexp.registry.effect.custom.ImmunityEffect;
 import net.jadenxgamer.netherexp.registry.entity.custom.Banshee;
-import net.jadenxgamer.netherexp.registry.fluid.JNEFluids;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNETags;
 import net.jadenxgamer.netherexp.registry.particle.JNEParticleTypes;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -20,8 +20,11 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.Skeleton;
+import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Final;
@@ -46,8 +49,6 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
 
     @Shadow
     public abstract Map<MobEffect, MobEffectInstance> getActiveEffectsMap();
-
-    @Shadow public abstract boolean isDeadOrDying();
 
     public LivingEntityMixin(EntityType<?> type, Level level) {
         super(type, level);
@@ -127,5 +128,23 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
             return ParticleTypes.SOUL;
         }
         return particle;
+    }
+
+    @Inject(
+            method = "remove",
+            at = @At(value = "HEAD")
+    )
+    private void netherexp$customRemoveBehavior(RemovalReason removalReason, CallbackInfo ci) {
+        LivingEntity entity = ((LivingEntity) (Object) this);
+        BlockState floor = this.getBlockStateOn();
+        BlockPos floorPos = this.blockPosition().below();
+        if (floor.is(JNETags.Blocks.FOSSIL_ORE_CONVERTIBLE)) {
+            if (entity instanceof Skeleton && JNEConfigs.SKELETON_FOSSILIZATION.get()) {
+                level().setBlock(floorPos, JNEBlocks.FOSSIL_ORE.get().defaultBlockState(), Block.UPDATE_ALL);
+            }
+            else if (entity instanceof WitherSkeleton && JNEConfigs.WITHER_SKELETON_FOSSILIZATION.get()) {
+                level().setBlock(floorPos, JNEBlocks.FOSSIL_FUEL_ORE.get().defaultBlockState(), Block.UPDATE_ALL);
+            }
+        }
     }
 }

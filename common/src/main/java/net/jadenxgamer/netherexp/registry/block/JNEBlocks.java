@@ -158,7 +158,7 @@ public class JNEBlocks {
             new NetherFlowerBlock(MobEffects.DIG_SPEED, 5, BlockBehaviour.Properties.copy(Blocks.TORCHFLOWER)));
 
     public static final RegistrySupplier<Block> SOUL_TORCHFLOWER_CROP = registerBlockWithoutItem("soul_torchflower_crop", () ->
-            new SoulTorchflowerBlock(BlockBehaviour.Properties.copy(Blocks.TORCHFLOWER_CROP)));
+            new SoulTorchflowerCropBlock(BlockBehaviour.Properties.copy(Blocks.TORCHFLOWER_CROP)));
 
     public static final RegistrySupplier<Block> CEREBRAGE_SKULL = registerBlockWithoutItem("cerebrage_skull", () ->
             new CerebrageBlock(BlockBehaviour.Properties.copy(Blocks.SKELETON_SKULL).randomTicks()));

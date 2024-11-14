@@ -14,10 +14,7 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.projectile.DragonFireball;
-import net.minecraft.world.entity.projectile.Fireball;
-import net.minecraft.world.entity.projectile.LargeFireball;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -40,7 +37,10 @@ public abstract class DragonFireballRendererMixin extends EntityRenderer<DragonF
             at = @At("TAIL")
     )
     private void netherexp$init(EntityRendererProvider.Context context, CallbackInfo ci) {
-        if (JNEConfigs.REDESIGNED_FIREBALLS.get() && !isEMFOrETFLoaded()) {
+        if (!EntityTextureOrModelFeatureLoaded()) {
+            return;
+        }
+        if (JNEConfigs.THREED_FIREBALLS.get()) {
             this.largeFireballModel = new GhastFireBallModel<>(context.bakeLayer(JNEModelLayers.GHAST_FIREBALL_LAYER));
         }
     }
@@ -51,7 +51,7 @@ public abstract class DragonFireballRendererMixin extends EntityRenderer<DragonF
             cancellable = true
     )
     private void netherexp$render(DragonFireball dragonFireball, float f, float g, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, CallbackInfo cir) {
-        if (JNEConfigs.REDESIGNED_FIREBALLS.get() && largeFireballModel != null) {
+        if (JNEConfigs.THREED_FIREBALLS.get() && largeFireballModel != null) {
             cir.cancel();
 
             poseStack.pushPose();
@@ -70,14 +70,14 @@ public abstract class DragonFireballRendererMixin extends EntityRenderer<DragonF
             cancellable = true
     )
     private void netherexp$getTextureLocation(DragonFireball dragonFireball, CallbackInfoReturnable<ResourceLocation> cir) {
-        if (JNEConfigs.REDESIGNED_FIREBALLS.get()) {
+        if (JNEConfigs.THREED_FIREBALLS.get()) {
             cir.setReturnValue(new ResourceLocation(NetherExp.MOD_ID, "textures/entity/dragon_fireball.png"));
         }
     }
 
     @Unique
-    private boolean isEMFOrETFLoaded() {
-        // turns off redesigned fireballs if either of these mods are loaded
-        return Platform.isModLoaded("entity_model_features") || Platform.isModLoaded("entity_texture_features");
+    private boolean EntityTextureOrModelFeatureLoaded() {
+        // turns off redesigned fireballs if either one of these mods are loaded
+        return !Platform.isModLoaded("entity_model_features") && !Platform.isModLoaded("entity_texture_features");
     }
 }
