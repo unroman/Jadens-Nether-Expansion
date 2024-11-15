@@ -1,7 +1,7 @@
 {
   "type": "netherexp:giant_jigsaw",
   "biomes": "#netherexp:has_structure/sanctum",
-  "step": "underground_decoration",
+  "step": "raw_generation",
   "spawn_overrides": {
     "ambient": {
       "bounding_box": "full",

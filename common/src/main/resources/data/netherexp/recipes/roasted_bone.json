@@ -2,7 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "CWH",
-    "###"
+    "###",
+    " F "
   ],
   "key": {
     "#": {
@@ -16,10 +17,13 @@
     },
     "W": {
       "item": "minecraft:warped_fungus"
+    },
+    "F": {
+      "item": "minecraft:fire_charge"
     }
   },
   "result": {
     "item": "netherexp:roasted_bone",
-    "count": 1
+    "count": 3
   }
 }

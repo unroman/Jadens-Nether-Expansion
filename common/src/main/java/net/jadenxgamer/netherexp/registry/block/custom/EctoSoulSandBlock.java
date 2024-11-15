@@ -143,7 +143,7 @@ public class EctoSoulSandBlock extends Block {
             if (structureManager.getStructureAt(pos, serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(BuiltinStructures.FORTRESS)).isValid()) {
                 lootTable = ARCHAEOLOGY_FORTRESS;
             }
-            else if (structureManager.getStructureAt(pos, serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(BuiltinStructures.FORTRESS)).isValid()) {
+            else if (structureManager.getStructureAt(pos, serverLevel.registryAccess().registryOrThrow(Registries.STRUCTURE).get(BuiltinStructures.BASTION_REMNANT)).isValid()) {
                 lootTable = ARCHAEOLOGY_BASTION_REMNANT;
             }
             else if (serverLevel.getBiome(pos).is(Biomes.SOUL_SAND_VALLEY)) {
