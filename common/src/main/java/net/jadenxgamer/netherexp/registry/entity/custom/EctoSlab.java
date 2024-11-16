@@ -545,8 +545,7 @@ public class EctoSlab extends Slime {
             MoveControl var3 = this.ectoSlab.getMoveControl();
             if (var3 instanceof EctoSlabMoveControl ectoSlabMoveControl) {
                 ectoSlabMoveControl.setDirection(this.ectoSlab.getYRot(), this.ectoSlab.isDealsDamage());
-                assert livingEntity != null;
-                if (undergroundTime > 20) {
+                if (undergroundTime > 20 && livingEntity != null) {
                     ectoSlabMoveControl.setWantedPosition(livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), ectoSlab.getAttributeValue(Attributes.MOVEMENT_SPEED));
                 }
             }
