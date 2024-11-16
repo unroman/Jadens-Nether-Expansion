@@ -125,6 +125,9 @@ public class JNEForgeConfigs {
         ECTOPLASM_RUSTS_NETHERITE = BUILDER
                 .comment("Ectoplasm will rust all nearby plated netherite blocks it comes in contact with")
                 .define("ectoplasm_rusts_netherite", true);
+        ECTOPLASM_SOURCE_CONVERSION = BUILDER
+                .comment("When Flowing Ectoplasm is surrounded on two sides by sources it converts to source")
+                .define("ectoplasm_source_conversion", true);
         REDUCE_SOUL_SAND_SLOWNESS = BUILDER
                 .comment("Soul Sand movement speed reduction will be less intrusive when enabled")
                 .define("reduce_soul_sand_slowness", false);

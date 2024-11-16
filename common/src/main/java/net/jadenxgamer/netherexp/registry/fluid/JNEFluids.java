@@ -47,7 +47,7 @@ public class JNEFluids {
             new ArchitecturyBucketItem(JNEFluids.ECTOPLASM, new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET)));
 
     public static final ArchitecturyFluidAttributes ECTOPLASM_ATTRIBUTE = SimpleArchitecturyFluidAttributes.ofSupplier(() -> JNEFluids.FLOWING_ECTOPLASM, () -> JNEFluids.ECTOPLASM)
-            .convertToSource(true).slopeFindDistance(4).dropOff(1).tickDelay(5).explosionResistance(100.0f)
+            .convertToSource(JNEConfigs.ECTOPLASM_SOURCE_CONVERSION.get()).slopeFindDistance(4).dropOff(1).tickDelay(5).explosionResistance(100.0f)
             .luminosity(15).density(-1).temperature(50).viscosity(2000).lighterThanAir(false)
             .sourceTexture(new ResourceLocation("netherexp:block/ectoplasm_still"))
             .flowingTexture(new ResourceLocation("netherexp:block/ectoplasm_flow"))
