@@ -1,6 +1,7 @@
 package net.jadenxgamer.netherexp;
 
 import dev.architectury.platform.Platform;
+import net.jadenxgamer.netherexp.compat.CompatUtil;
 import net.jadenxgamer.netherexp.registry.advancements.JNECriteriaTriggers;
 import net.jadenxgamer.netherexp.registry.block.JNEBlockEntityType;
 import net.jadenxgamer.netherexp.registry.block.JNEBlocks;
@@ -45,70 +46,66 @@ public class NetherExp {
     // MOD COMPATIBILITY CHECKS
 
     public static boolean compatCinderscapes() {
-        return Platform.isModLoaded("cinderscapes");
+        return Platform.isModLoaded(CompatUtil.CINDERSCAPES);
     }
 
     public static boolean compatGardensOfTheDead() {
-        return Platform.isModLoaded("gardens_of_the_dead");
+        return Platform.isModLoaded(CompatUtil.GARDENS_OF_THE_DEAD);
     }
 
     public static boolean compatInfernalExpansion() {
-        return Platform.isModLoaded("infernalexp");
+        return Platform.isModLoaded(CompatUtil.INFERNAL_EXPANSION);
     }
 
     public static boolean compatGreedAndBleed() {
-        return Platform.isModLoaded("greedandbleed");
+        return Platform.isModLoaded(CompatUtil.GREED_AND_BLEED);
     }
 
     public static boolean compatBiomesOPlenty() {
-        return Platform.isModLoaded("biomesoplenty");
+        return Platform.isModLoaded(CompatUtil.BIOMES_O_PLENTY);
     }
 
     public static boolean compatQuark() {
-        return Platform.isModLoaded("quark");
+        return Platform.isModLoaded(CompatUtil.QUARK);
     }
 
     public static boolean compatDiceyVentures() {
-        return Platform.isModLoaded("dicey_ventures");
-    }
-
-    public static boolean compatAmplifiedNether() {
-        return Platform.isModLoaded("starmute");
+        return Platform.isModLoaded(CompatUtil.DICEY_VENTURE);
     }
 
     public static boolean compatFarmersDelight() {
-        return Platform.isModLoaded("farmersdelight");
+        return Platform.isModLoaded(CompatUtil.FARMERS_DELIGHT);
     }
 
     public static boolean compatNethersDelight() {
-        return Platform.isModLoaded("mynethersdelight");
+        return Platform.isModLoaded(CompatUtil.MY_NETHERS_DELIGHT);
     }
 
     public static boolean compatOreganized() {
-        return Platform.isModLoaded("oreganized");
+        return Platform.isModLoaded(CompatUtil.OREGANIZED);
     }
 
     public static boolean compatAlexsCaves() {
-        return Platform.isModLoaded("alexscaves");
+        return Platform.isModLoaded(CompatUtil.ALEXS_CAVES);
     }
 
     public static boolean compatAlexsMobs() {
-        return Platform.isModLoaded("alexsmobs");
+        return Platform.isModLoaded(CompatUtil.ALEXS_MOBS);
     }
 
     public static boolean compatArtsAndCrafts() {
-        return Platform.isModLoaded("arts_and_crafts");
+        return Platform.isModLoaded(CompatUtil.ARTS_AND_CRAFTS);
     }
 
     public static boolean compatCavernsAndChasms() {
-        return Platform.isModLoaded("caverns_and_chasms");
+        return Platform.isModLoaded(CompatUtil.CAVERNS_AND_CHASMS);
     }
 
     public static boolean compatSullysMod() {
-        return Platform.isModLoaded("sullysmod");
+        return Platform.isModLoaded(CompatUtil.SULLYS_MOD);
     }
 
     public static boolean compatSupplementaries() {
-        return Platform.isModLoaded("supplementaries");
+        return Platform.isModLoaded(CompatUtil.SUPPLEMENTARIES);
     }
 }

@@ -8,12 +8,10 @@
     "entity.AbstractClientPlayerMixin",
     "renderer.BlazeRendererMixin",
     "renderer.CameraMixin",
-    "renderer.DragonFireballRendererMixin",
     "renderer.FogRendererMixin",
     "renderer.MagmaCubeRendererMixin",
     "renderer.ParticleEngineMixin",
-    "renderer.PlayerRendererMixin",
-    "renderer.ThrownItemRendererMixin"
+    "renderer.PlayerRendererMixin"
   ],
   "mixins": [
     "block.BlockMixin",

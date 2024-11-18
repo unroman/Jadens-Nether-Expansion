@@ -4,6 +4,7 @@ import dev.architectury.platform.Platform;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.jadenxgamer.netherexp.NetherExp;
+import net.jadenxgamer.netherexp.compat.CompatUtil;
 import net.jadenxgamer.netherexp.registry.block.custom.*;
 import net.jadenxgamer.netherexp.registry.item.JNEItems;
 import net.jadenxgamer.netherexp.registry.item.custom.GargoyleStatueItem;
@@ -755,33 +756,33 @@ public class JNEBlocks {
      * Gardens of The Dead
      */
     public static final RegistrySupplier<Block> SHROOMFRIGHT = registerCompatBlock("shroomfright", () ->
-            new Block(BlockBehaviour.Properties.copy(Blocks.SHROOMLIGHT).lightLevel((state) -> 10)), "gardens_of_the_dead");
+            new Block(BlockBehaviour.Properties.copy(Blocks.SHROOMLIGHT).lightLevel((state) -> 10)), CompatUtil.GARDENS_OF_THE_DEAD);
 
     public static final RegistrySupplier<Block> SOULBLIGHT_SPORESHROOM = registerCompatBlock("soulblight_sporeshroom", () ->
-            new SporeshroomBlock(BlockBehaviour.Properties.of().strength(0.5f).pushReaction(PushReaction.DESTROY).sound(SoundType.FUNGUS), JNEParticleTypes.GOLD_GLIMMER, JNEParticleTypes.CRIMSON_SMOG, JNETags.Biomes.HAS_SOULBLIGHT_SPORES), "gardens_of_the_dead");
+            new SporeshroomBlock(BlockBehaviour.Properties.of().strength(0.5f).pushReaction(PushReaction.DESTROY).sound(SoundType.FUNGUS), null, JNEParticleTypes.CRIMSON_SMOG, JNETags.Biomes.HAS_SOULBLIGHT_SPORES), CompatUtil.GARDENS_OF_THE_DEAD);
 
 
     ////////////////
     // REGISTRIES //
     ////////////////
 
-    private static <T extends Block> RegistrySupplier<T> registerBlock(String name, Supplier<T> block) {
+    public static <T extends Block> RegistrySupplier<T> registerBlock(String name, Supplier<T> block) {
         RegistrySupplier<T> toReturn = BLOCKS.register(name, block);
         JNEItems.ITEMS.register(name, () -> new BlockItem(toReturn.get(), new Item.Properties()));
         return toReturn;
     }
-    private static <T extends Block> RegistrySupplier<T> registerGargoyleBlock(String name, Supplier<T> block) {
+    public static <T extends Block> RegistrySupplier<T> registerGargoyleBlock(String name, Supplier<T> block) {
         RegistrySupplier<T> toReturn = BLOCKS.register(name, block);
         JNEItems.ITEMS.register(name, () -> new GargoyleStatueItem(toReturn.get(), new Item.Properties()));
         return toReturn;
     }
 
-    private static <T extends Block> RegistrySupplier<T> registerBlockWithoutItem(String name, Supplier<T> block) {
+    public static <T extends Block> RegistrySupplier<T> registerBlockWithoutItem(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);
     }
 
 
-    private static <T extends Block> RegistrySupplier<T> registerCompatBlock(String name, Supplier<T> block, String modId) {
+    public static <T extends Block> RegistrySupplier<T> registerCompatBlock(String name, Supplier<T> block, String modId) {
         RegistrySupplier<T> toReturn = BLOCKS.register(name, block);
         // If The Specified ModId is not found, then the Block Item won't be registered
         if (Platform.isModLoaded(modId)) {
