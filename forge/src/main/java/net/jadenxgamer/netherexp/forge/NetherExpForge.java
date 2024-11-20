@@ -5,6 +5,7 @@ import dev.architectury.annotations.ForgeEvent;
 import dev.architectury.platform.forge.EventBuses;
 import net.jadenxgamer.netherexp.NetherExp;
 import net.jadenxgamer.netherexp.NetherExpClient;
+import net.jadenxgamer.netherexp.compat.CompatUtil;
 import net.jadenxgamer.netherexp.config.JNEConfigs;
 import net.jadenxgamer.netherexp.config.JNEForgeConfigs;
 import net.jadenxgamer.netherexp.forge.event.JNEBuiltinPacks;
@@ -121,11 +122,14 @@ public class NetherExpForge {
             if (JNEConfigs.LARGER_NETHER_BIOMES.get()) {
                 JNEBuiltinPacks.dpLargerNetherBiomes(event);
             }
-            if (NetherExp.compatNethersDelight()) {
+            if (CompatUtil.compatNethersDelight()) {
                 JNEBuiltinPacks.dpNethersDelightCompat(event);
             }
-            if (NetherExp.compatAlexsCaves()) {
+            if (CompatUtil.compatAlexsCaves()) {
                 JNEBuiltinPacks.dpAlexCavesCompat(event);
+            }
+            if (CompatUtil.compatGardensOfTheDead()) {
+                JNEBuiltinPacks.dpGardensOfTheDeadCompat(event);
             }
         }
     }

@@ -109,7 +109,7 @@ public class JNEForgeConfigs {
                 .define("ecto_slab_emerging_chance", 40);
         ECTO_SLAB_EMERGING_CHANCE_WITH_UNBOUNDED_SPEED = BUILDER
                 .comment("Defines 1 in specified chance for how often Ecto Slabs emerge from soul swirls if the player has Unbounded Speed")
-                .define("ecto_slab_emerging_with_unbounded_speed", 5);
+                .define("ecto_slab_emerging_with_unbounded_speed", 10);
     }
 
     private static void registerGameMechanicConfigs(ForgeConfigSpec.Builder BUILDER) {

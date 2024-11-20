@@ -3,6 +3,7 @@ package net.jadenxgamer.netherexp.registry.effect;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.jadenxgamer.netherexp.NetherExp;
+import net.jadenxgamer.netherexp.compat.CompatUtil;
 import net.jadenxgamer.netherexp.registry.effect.custom.FogSightEffect;
 import net.jadenxgamer.netherexp.registry.effect.custom.ImmunityEffect;
 import net.jadenxgamer.netherexp.registry.effect.custom.JNEMobEffect;
@@ -87,6 +88,13 @@ public class JNEMobEffects {
 
     public static final RegistrySupplier<MobEffect> UNLUCK_IMMUNITY = MOB_EFFECTS.register("unluck_immunity", () ->
             new ImmunityEffect(MobEffectCategory.BENEFICIAL, 12624973, new ResourceLocation("minecraft", "unluck")));
+
+    /**
+     * MOD COMPAT
+     */
+
+    public static final RegistrySupplier<MobEffect> BRAIN_DAMAGE_IMMUNITY = MOB_EFFECTS.register("brain_damage_immunity", () ->
+            new ImmunityEffect(MobEffectCategory.BENEFICIAL, 0x6e66a4, new ResourceLocation(CompatUtil.OREGANIZED, "stunning")));
 
     public static void init() {
         MOB_EFFECTS.register();

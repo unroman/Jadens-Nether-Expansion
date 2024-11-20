@@ -41,7 +41,7 @@ public class JNEConfigs {
     public static Supplier<Boolean> SUSPICIOUS_SOUL_SAND_FROM_WISP_EMERGING = () -> true;
     public static Supplier<EctoSlabEmerging> ECTO_SLAB_EMERGING_BEHAVIOR = () -> EctoSlabEmerging.UNBOUNDED_SPEED_ONLY;
     public static Supplier<Integer> ECTO_SLAB_EMERGING_CHANCE = () -> 40;
-    public static Supplier<Integer> ECTO_SLAB_EMERGING_CHANCE_WITH_UNBOUNDED_SPEED = () -> 5;
+    public static Supplier<Integer> ECTO_SLAB_EMERGING_CHANCE_WITH_UNBOUNDED_SPEED = () -> 10;
 
     // Game Mechanics
     public static Supplier<NetherFogDistance> NETHER_FOG_DISTANCE = () -> NetherFogDistance.MEDIUM;

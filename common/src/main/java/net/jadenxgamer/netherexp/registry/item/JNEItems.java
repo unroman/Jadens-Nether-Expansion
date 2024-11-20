@@ -28,7 +28,6 @@ import net.jadenxgamer.netherexp.registry.item.custom.WillOWispItem;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNESoundEvents;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNETrimPatterns;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
@@ -80,12 +79,6 @@ public class JNEItems {
 
     public static final RegistrySupplier<Item> NIGHTSPORES = registerItem("nightspores", () ->
         new NightsporesItem(new Item.Properties()));
-
-    public static final RegistrySupplier<Item> BLIGHTSPORES = registerItem("blightspores", () ->
-        new Item(new Item.Properties()));
-
-    public static final RegistrySupplier<Item> FRIGHTSPORES = registerItem("frightspores", () ->
-        new Item(new Item.Properties()));
 
     public static final RegistrySupplier<Item> ANTIDOTE = registerItem("antidote", () ->
         new AntidoteItem(new Item.Properties()));
@@ -216,10 +209,24 @@ public class JNEItems {
     public static final RegistrySupplier<Item> ROASTED_BONE = registerItem("roasted_bone", () ->
         new Item(new Item.Properties().food(JNEFoods.ROASTED_BONE).stacksTo(16)));
 
+
     // NETHERITE ARTIFACTS
 
     public static final RegistrySupplier<Item> SHOTGUN_CORE = registerItem("shotgun_core", () ->
-        new NetheriteArtifactItem(new Item.Properties().fireResistant().stacksTo(1).rarity(Rarity.RARE)));
+            new NetheriteArtifactItem(new Item.Properties().fireResistant().stacksTo(1).rarity(Rarity.RARE)));
+
+    /**
+     * Mod Compat
+     */
+
+    public static final RegistrySupplier<Item> BRIGHTSPORES = registerItem("brightspores", () ->
+            new Item(new Item.Properties()));
+
+    public static final RegistrySupplier<Item> BLIGHTSPORES = registerItem("blightspores", () ->
+            new Item(new Item.Properties()));
+
+    public static final RegistrySupplier<Item> BLIGHTWART = registerItem("blightwart", () ->
+            new BlockItem(JNEBlocks.BLIGHTWART.get(), new Item.Properties()));
 
     private static <T extends Item> RegistrySupplier<T> registerItem(String name, Supplier<T> item) {
         return ITEMS.register(name, item);

@@ -99,4 +99,18 @@ public class JNEBuiltinPacks {
                                 new Pack.Info(Component.literal("Compatibility for Alex's Caves"), SharedConstants.getCurrentVersion().getPackVersion(PackType.SERVER_DATA), FeatureFlagSet.of()),
                                 PackType.SERVER_DATA, Pack.Position.TOP, true, PackSource.BUILT_IN)));
     }
+
+    // Compatibility for Gardens of The Dead
+    public static void dpGardensOfTheDeadCompat(AddPackFindersEvent event) {
+        IModFileInfo mod = ModList.get().getModFileById(NetherExp.MOD_ID);
+        Path file = mod.getFile().findResource("resourcepacks/gardens_of_the_dead_compat");
+        event.addRepositorySource((packConsumer) ->
+                packConsumer.accept(
+                        Pack.create("gardens_of_the_dead_compat",
+                                Component.literal("JNE + Gardens of The Dead Compatibility"),
+                                true,
+                                (path) -> new PathPackResources(path, file, true),
+                                new Pack.Info(Component.literal("Compatibility for Gardens of The Dead"), SharedConstants.getCurrentVersion().getPackVersion(PackType.SERVER_DATA), FeatureFlagSet.of()),
+                                PackType.SERVER_DATA, Pack.Position.TOP, true, PackSource.BUILT_IN)));
+    }
 }
