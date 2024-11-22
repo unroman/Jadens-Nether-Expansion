@@ -786,6 +786,12 @@ public class JNEBlocks {
     public static final RegistrySupplier<Block> YELLOW_NETHER_BRICK_WALL = registerCompatBlock("yellow_nether_brick_wall", () ->
             new WallBlock(BlockBehaviour.Properties.copy(JNEBlocks.YELLOW_NETHER_BRICKS.get())), CompatUtil.GARDENS_OF_THE_DEAD);
 
+    /**
+     * Rubinated Nether
+     */
+    public static final RegistrySupplier<Block> SOUL_RUBY_ORE = registerCompatBlock("soul_ruby_ore", () ->
+            new DropExperienceBlock(BlockBehaviour.Properties.copy(JNEBlocks.SOUL_MAGMA_BLOCK.get()).requiresCorrectToolForDrops(), UniformInt.of(3, 6)), CompatUtil.RUBINATED_NETHER);
+
     ////////////////
     // REGISTRIES //
     ////////////////

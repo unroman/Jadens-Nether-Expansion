@@ -94,6 +94,7 @@ public class JNETags {
         public static final TagKey<Biome> HAS_SOULBLIGHT_SPORES = createBiomeTag("particles/has_soulblight_spores"); // Prevents Soulblight Sporeshroom from creating Particles inside this Biome
         public static final TagKey<Biome> HAS_ASH = createBiomeTag("particles/has_ash"); // Prevents Souled & Ashen Geyser from creating Particles inside this Biome
         public static final TagKey<Biome> HAS_WHITE_ASH = createBiomeTag("particles/has_white_ash"); // Prevents Basaltic & Blackstonic Geyser from creating Particles inside this Biome
+        public static final TagKey<Biome> SOUL_RUBY_ORE_GENERATES = createBiomeTag("soul_ruby_ore_generates"); // Soul Ruby Ores can generate in these biomes if Rubinated Nether is installed
 
         private static TagKey<Biome> createBiomeTag(String name) {
             return TagKey.create(Registries.BIOME, new ResourceLocation(NetherExp.MOD_ID, name));

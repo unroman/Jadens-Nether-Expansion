@@ -1,6 +1,8 @@
-package net.jadenxgamer.netherexp.mixin;
+package net.jadenxgamer.netherexp.forge.mixin;
 
 import net.jadenxgamer.netherexp.compat.CompatUtil;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.loading.FMLLoader;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -8,7 +10,7 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 import java.util.List;
 import java.util.Set;
 
-public class JNEMixinPlugin implements IMixinConfigPlugin {
+public class JNEMixinPluginForge implements IMixinConfigPlugin {
     @Override
     public void onLoad(String mixinPackage) {
 
@@ -21,8 +23,8 @@ public class JNEMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if (mixinClassName.matches("net.jadenxgamer.netherexp.mixin.compat.HugeFlatFungusFeatureMixin")) {
-            return CompatUtil.compatGardensOfTheDead();
+        if (mixinClassName.matches("net.jadenxgamer.netherexp.forge.mixin.compat.HugeFlatFungusFeatureMixin")) {
+            return FMLLoader.getLoadingModList().getModFileById("gardens_of_the_dead") != null;
         }
         return true;
     }

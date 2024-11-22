@@ -26,16 +26,14 @@ public class EntityGeneration {
             settings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(JNEEntityType.VESSEL.get(), 30, 1, 1));
             settings.setSpawnCost(JNEEntityType.APPARITION.get(), 0.7, 0.15);
             settings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(JNEEntityType.APPARITION.get(), 20, 1, 1));
-            settings.setSpawnCost(JNEEntityType.BANSHEE.get(), 0.7, 0.15);
         });
         if (CompatUtil.compatGardensOfTheDead()) {
             BiomeModifications.create(new ResourceLocation(NetherExp.MOD_ID, "soulblight_forest_spawn")).add(ModificationPhase.ADDITIONS, BiomeSelectors.includeByKey(CompatUtil.BiomeKeys.SOULBLIGHT_FOREST), (selectionContext, modificationContext) -> {
                 BiomeModificationContext.SpawnSettingsContext settings = modificationContext.getSpawnSettings();
-                settings.setSpawnCost(JNEEntityType.VESSEL.get(), 0.7, 0.15);
+                settings.setSpawnCost(JNEEntityType.VESSEL.get(), 1.0, 0.8);
                 settings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(JNEEntityType.VESSEL.get(), 30, 1, 1));
-                settings.setSpawnCost(JNEEntityType.APPARITION.get(), 0.7, 0.15);
+                settings.setSpawnCost(JNEEntityType.APPARITION.get(), 1.0, 0.8);
                 settings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(JNEEntityType.APPARITION.get(), 20, 1, 1));
-                settings.setSpawnCost(JNEEntityType.BANSHEE.get(), 0.7, 0.15);
             });
         }
 

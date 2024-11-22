@@ -1,14 +1,10 @@
 package net.jadenxgamer.netherexp.forge.event;
 
-import net.jadenxgamer.netherexp.compat.CompatUtil;
 import net.jadenxgamer.netherexp.registry.block.JNEBlocks;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNETags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.DefaultedRegistry;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -23,7 +19,6 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class RightClickBlockEvent {
 
-    @SuppressWarnings("deprecation")
     public static void WartBeardGrowerEvent(PlayerInteractEvent.RightClickBlock event) {
         Player player = event.getEntity();
         Level level = event.getLevel();
@@ -32,7 +27,6 @@ public class RightClickBlockEvent {
         BlockState bottomState = level.getBlockState(pos.below());
         ItemStack stack = event.getItemStack();
         boolean success = false;
-        DefaultedRegistry<Block> blockRegistry = BuiltInRegistries.BLOCK;
 
         if (stack.is(Items.BONE_MEAL)) {
             if (state.is(JNETags.Blocks.NETHER_WART_BLOCKS) && bottomState.isAir()) {
@@ -41,10 +35,6 @@ public class RightClickBlockEvent {
             }
             else if (state.is(JNETags.Blocks.WARPED_WART_BLOCKS) && bottomState.isAir()) {
                 level.setBlock(pos.below(), JNEBlocks.WARPED_WART_BEARD.get().defaultBlockState(), Block.UPDATE_ALL);
-                success = true;
-            }
-            else if (state.is(blockRegistry.get(new ResourceLocation(CompatUtil.GARDENS_OF_THE_DEAD, "soulblight_wart"))) && bottomState.isAir()) {
-                level.setBlock(pos.below(), JNEBlocks.BLIGHTWART_BEARD.get().defaultBlockState(), Block.UPDATE_ALL);
                 success = true;
             }
         }

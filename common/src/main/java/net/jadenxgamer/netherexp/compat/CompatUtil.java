@@ -1,12 +1,20 @@
 package net.jadenxgamer.netherexp.compat;
 
 import dev.architectury.platform.Platform;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
 
 public class CompatUtil {
+
+    public static String CINDERSCAPES = "cinderscapes";
+    public static String GARDENS_OF_THE_DEAD = "gardens_of_the_dead";
+    public static String INFERNAL_EXPANSION = "infernalexp";
+    public static final String GREED_AND_BLEED = "greedandbleed";
     public static final String BIOMES_O_PLENTY = "biomesoplenty";
     public static final String QUARK = "quark";
     public static final String DICEY_VENTURE = "dicey_ventures";
@@ -19,10 +27,7 @@ public class CompatUtil {
     public static final String CAVERNS_AND_CHASMS = "caverns_and_chasms";
     public static final String SULLYS_MOD = "sullysmod";
     public static final String SUPPLEMENTARIES = "supplementaries";
-    public static String CINDERSCAPES = "cinderscapes";
-    public static String GARDENS_OF_THE_DEAD = "gardens_of_the_dead";
-    public static String INFERNAL_EXPANSION = "infernalexp";
-    public static final String GREED_AND_BLEED = "greedandbleed";
+    public static final String RUBINATED_NETHER = "rubinated_nether";
 
     public static boolean compatCinderscapes() {
         return Platform.isModLoaded(CINDERSCAPES);
@@ -88,11 +93,26 @@ public class CompatUtil {
         return Platform.isModLoaded(SUPPLEMENTARIES);
     }
 
+    public static boolean compatRubinatedNether() {
+        return Platform.isModLoaded(RUBINATED_NETHER);
+    }
+
     public static class BiomeKeys {
         public static final ResourceKey<Biome> SOULBLIGHT_FOREST = register(CompatUtil.GARDENS_OF_THE_DEAD, "soulblight_forest");
 
         private static ResourceKey<Biome> register(String namespace, String id) {
             return ResourceKey.create(Registries.BIOME, new ResourceLocation(namespace, id));
+        }
+    }
+
+    public static class Registry {
+
+        public static Block getBlock(ResourceLocation id) {
+            return BuiltInRegistries.BLOCK.get(id);
+        }
+
+        public static Item getItem(ResourceLocation id) {
+            return BuiltInRegistries.ITEM.get(id);
         }
     }
 }

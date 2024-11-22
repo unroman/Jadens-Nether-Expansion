@@ -1,4 +1,4 @@
-package net.jadenxgamer.netherexp.mixin.compat;
+package net.jadenxgamer.netherexp.fabric.mixin.compat;
 
 import net.jadenxgamer.netherexp.registry.block.JNEBlocks;
 import net.minecraft.world.level.block.Block;
@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Pseudo
-@Mixin(targets = "gardensofthedead.feature.HugeFlatFungusFeature", remap = false)
+@Mixin(targets = "gardensofthedead.feature.HugeFlatFungusFeature")
 public abstract class HugeFlatFungusFeatureMixin {
 
     @Redirect(

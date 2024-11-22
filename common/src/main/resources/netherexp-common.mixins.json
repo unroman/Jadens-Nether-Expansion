@@ -3,7 +3,6 @@
   "package": "net.jadenxgamer.netherexp.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
-  "plugin": "net.jadenxgamer.netherexp.mixin.JNEMixinPlugin",
   "client": [
     "block.ItemPropertiesAccessor",
     "entity.AbstractClientPlayerMixin",
@@ -29,7 +28,6 @@
     "brewing.PotionBrewingAccessor",
     "brewing.PotionBrewingMixin",
     "brewing.PotionSlotMixin",
-    "compat.HugeFlatFungusFeatureMixin",
     "entity.AbstractHurtingProjectileMixin",
     "entity.BlockEntityTypeMixin",
     "entity.DecoratedPotPatternsMixin",

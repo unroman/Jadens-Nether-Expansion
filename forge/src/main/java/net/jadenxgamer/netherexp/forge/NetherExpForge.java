@@ -131,6 +131,9 @@ public class NetherExpForge {
             if (CompatUtil.compatGardensOfTheDead()) {
                 JNEBuiltinPacks.dpGardensOfTheDeadCompat(event);
             }
+            if (CompatUtil.compatRubinatedNether()) {
+                JNEBuiltinPacks.dpRubinatedNetherCompat(event);
+            }
         }
     }
 }
