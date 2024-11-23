@@ -29,13 +29,13 @@ public class JNEBuiltinPacks {
             if (JNEConfigs.LARGER_NETHER_BIOMES.get()) {
                 ResourceManagerHelper.registerBuiltinResourcePack(dpLargerNetherBiomes, container, Component.literal("Larger Nether Biomes"), ResourcePackActivationType.ALWAYS_ENABLED);
             }
-            if (CompatUtil.compatNethersDelight()) {
+            if (CompatUtil.checkNethersDelight()) {
                 ResourceManagerHelper.registerBuiltinResourcePack(dpNetherDelightsCompat, container, Component.literal("JNE + My Nethers Delight Compatibility"), ResourcePackActivationType.ALWAYS_ENABLED);
             }
-            if (CompatUtil.compatGardensOfTheDead()) {
+            if (CompatUtil.checkGardensOfTheDead()) {
                 ResourceManagerHelper.registerBuiltinResourcePack(dpGardensOfTheDeadCompat, container, Component.literal("JNE + Gardens of The Dead Compatibility"), ResourcePackActivationType.ALWAYS_ENABLED);
             }
-            if (CompatUtil.compatRubinatedNether()) {
+            if (CompatUtil.checkRubinatedNether()) {
                 ResourceManagerHelper.registerBuiltinResourcePack(dpRubinatedNetherCompat, container, Component.literal("JNE + Rubinated Nether Compatibility"), ResourcePackActivationType.ALWAYS_ENABLED);
             }
         });

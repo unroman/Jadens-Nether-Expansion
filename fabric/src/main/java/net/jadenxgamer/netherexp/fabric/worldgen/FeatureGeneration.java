@@ -16,7 +16,7 @@ public class FeatureGeneration {
         CrimsonForestFeatures.init();
         WarpedForestFeatures.init();
         BasaltDeltasFeatures.init();
-        if (CompatUtil.compatGardensOfTheDead()) {
+        if (CompatUtil.checkGardensOfTheDead()) {
             SoulblightForestFeatures.init();
         }
 
@@ -41,7 +41,7 @@ public class FeatureGeneration {
 
         // STEP 7 - UNDERGROUND_DECORATION
 
-        if (CompatUtil.compatRubinatedNether()) {
+        if (CompatUtil.checkRubinatedNether()) {
             BiomeModifications.addFeature(BiomeSelectors.tag(JNETags.Biomes.SOUL_RUBY_ORE_GENERATES),
                     GenerationStep.Decoration.UNDERGROUND_DECORATION, JNEPlacedFeatures.SOUL_MAGMA_ORE);
         }

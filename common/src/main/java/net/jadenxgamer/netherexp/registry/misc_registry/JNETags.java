@@ -1,5 +1,6 @@
 package net.jadenxgamer.netherexp.registry.misc_registry;
 
+import dev.architectury.platform.Platform;
 import net.jadenxgamer.netherexp.NetherExp;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -83,9 +84,17 @@ public class JNETags {
         public static final TagKey<Item> STAMPEDE_EDIBLE = createItemTag("stampede_edible"); // Stampedes eat these items to regain health
         public static final TagKey<Item> STAMPEDE_FAVORITES = createItemTag("stampede_favorites"); // Stampedes can be tamed with these items
         public static final TagKey<Item> DOESNT_MODIFY_POTION_STACK_SIZE = createItemTag("doesnt_modify_potion_stack_size"); // Items in this tag override the potion stacksize change config, incase modpack devs might need it
+        public static final TagKey<Item> SILVER_ARMORS = createItemTag("silver_armors"); // Armors made from silver of some kind, used for possessed mobs weakening
 
         private static TagKey<Item> createItemTag(String name) {
             return TagKey.create(Registries.ITEM, new ResourceLocation(NetherExp.MOD_ID, name));
+        }
+        private static TagKey<Item> createCommonItemTag(String forge, String fabric) {
+            if (Platform.isForge()) {
+                return TagKey.create(Registries.ITEM, new ResourceLocation("forge", forge));
+            } else {
+                return TagKey.create(Registries.ITEM, new ResourceLocation("c", fabric));
+            }
         }
     }
     public static class Biomes {

@@ -4,10 +4,13 @@ import com.google.common.base.Suppliers;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.minecraft.util.Mth;
+import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
@@ -46,8 +49,8 @@ public class AddEnchantedItemModifier extends LootModifier {
     @Override
     protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
         ItemStack stack = new ItemStack(item, count);
-        int level = context.getRandom().nextInt(minLevel, maxLevel);
-        stack.enchant(enchantment, level);
+        int level = Mth.nextInt(context.getRandom(), minLevel, maxLevel);
+        EnchantedBookItem.addEnchantment(stack, new EnchantmentInstance(enchantment, level));
 
         if (stack.getCount() < stack.getMaxStackSize()) {
             generatedLoot.add(stack);

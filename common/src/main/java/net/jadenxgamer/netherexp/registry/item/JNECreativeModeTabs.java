@@ -363,7 +363,7 @@ public class JNECreativeModeTabs {
             () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 2).icon(() -> new ItemStack(JNEItems.BLIGHTSPORES.get()))
                     .title(Component.literal("JNE - Mod Compat"))
                     .displayItems((itemDisplayParameters, output) -> {
-                        if (CompatUtil.compatGardensOfTheDead()) {
+                        if (CompatUtil.checkGardensOfTheDead()) {
                             output.accept(JNEBlocks.SHROOMBLIGHT.get());
                             output.accept(JNEItems.BLIGHTSPORES.get());
                             output.accept(JNEBlocks.BLIGHT_SWIRLS.get());
@@ -375,6 +375,9 @@ public class JNECreativeModeTabs {
                             output.accept(JNEBlocks.YELLOW_NETHER_BRICK_STAIRS.get());
                             output.accept(JNEBlocks.YELLOW_NETHER_BRICK_SLAB.get());
                             output.accept(JNEBlocks.YELLOW_NETHER_BRICK_WALL.get());
+                        }
+                        if (CompatUtil.checkRubinatedNether()) {
+                            output.accept(JNEBlocks.SOUL_RUBY_ORE.get());
                         }
                     }).build());
 

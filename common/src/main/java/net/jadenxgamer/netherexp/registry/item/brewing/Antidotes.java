@@ -1,6 +1,5 @@
 package net.jadenxgamer.netherexp.registry.item.brewing;
 
-import net.jadenxgamer.netherexp.NetherExp;
 import net.jadenxgamer.netherexp.compat.CompatUtil;
 import net.minecraft.nbt.CompoundTag;
 
@@ -30,11 +29,11 @@ public class Antidotes {
         ANTIDOTES.add(Antidotes.LEVITATION());
         ANTIDOTES.add(Antidotes.HUNGER());
         ANTIDOTES.add(Antidotes.WITHER());
-        if (CompatUtil.compatDiceyVentures()) {
+        if (CompatUtil.checkDiceyVentures()) {
             ANTIDOTES.add(Antidotes.LUCK());
             ANTIDOTES.add(Antidotes.UNLUCK());
         }
-        if (CompatUtil.compatOreganized()) {
+        if (CompatUtil.checkOreganized()) {
             ANTIDOTES.add(Antidotes.BRAIN_DAMAGE());
         }
     }

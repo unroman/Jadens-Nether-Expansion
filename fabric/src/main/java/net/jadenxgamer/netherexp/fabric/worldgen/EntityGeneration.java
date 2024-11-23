@@ -7,13 +7,10 @@ import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
 import net.jadenxgamer.netherexp.NetherExp;
 import net.jadenxgamer.netherexp.compat.CompatUtil;
 import net.jadenxgamer.netherexp.registry.entity.JNEEntityType;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -27,7 +24,7 @@ public class EntityGeneration {
             settings.setSpawnCost(JNEEntityType.APPARITION.get(), 0.7, 0.15);
             settings.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(JNEEntityType.APPARITION.get(), 20, 1, 1));
         });
-        if (CompatUtil.compatGardensOfTheDead()) {
+        if (CompatUtil.checkGardensOfTheDead()) {
             BiomeModifications.create(new ResourceLocation(NetherExp.MOD_ID, "soulblight_forest_spawn")).add(ModificationPhase.ADDITIONS, BiomeSelectors.includeByKey(CompatUtil.BiomeKeys.SOULBLIGHT_FOREST), (selectionContext, modificationContext) -> {
                 BiomeModificationContext.SpawnSettingsContext settings = modificationContext.getSpawnSettings();
                 settings.setSpawnCost(JNEEntityType.VESSEL.get(), 1.0, 0.8);
