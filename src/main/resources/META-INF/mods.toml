@@ -1,0 +1,24 @@
+modLoader="javafml" #mandatory
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+issueTrackerURL = "https://github.com/ThatJadenXgamer/Jadens-Nether-Expansion/issues"
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+authors="${mod_authors}"
+description='''${mod_description}'''
+credits = "AlwaysMuddy, Shroomaniac, ceasingbonsai17, Sydokiddo, LudoCrypt, Faithful, Wawwior"
+logoFile = "icon.png"
+[[dependencies.${mod_id}]]
+    modId="forge"
+    mandatory=true
+    versionRange="${forge_version_range}"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"

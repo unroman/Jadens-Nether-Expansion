@@ -1,6 +1,0 @@
-{
-  "parent": "netherexp:block/inscribed_panel/template",
-  "textures": {
-    "letter": "netherexp:block/inscribed_panel/7"
-  }
-}
