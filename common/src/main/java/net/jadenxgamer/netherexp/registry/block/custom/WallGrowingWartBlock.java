@@ -32,7 +32,7 @@ public class WallGrowingWartBlock extends Block {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
 
-    private static final Map<Direction, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(Direction.NORTH, Block.box(0.0, 4.0, 5.0, 16.0, 12.0, 16.0), Direction.SOUTH, Block.box(0.0, 4.0, 0.0, 16.0, 12.0, 11.0), Direction.WEST, Block.box(5.0, 4.0, 0.0, 16.0, 12.0, 16.0), Direction.EAST, Block.box(0.0, 4.0, 0.0, 11.0, 12.0, 16.0)));
+    private static final Map<Direction, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(Direction.NORTH, Block.box(0, 0, 6, 16, 16, 16), Direction.SOUTH, Block.box(0, 0, 0, 16, 16, 10), Direction.WEST, Block.box(6, 0, 0, 16, 16, 16), Direction.EAST, Block.box(0, 0, 0, 10, 16, 16)));
 
     private final Supplier<Item> cloneItemSupplier;
 

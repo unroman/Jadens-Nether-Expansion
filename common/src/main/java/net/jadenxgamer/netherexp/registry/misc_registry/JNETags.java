@@ -84,6 +84,7 @@ public class JNETags {
         public static final TagKey<Item> STAMPEDE_EDIBLE = createItemTag("stampede_edible"); // Stampedes eat these items to regain health
         public static final TagKey<Item> STAMPEDE_FAVORITES = createItemTag("stampede_favorites"); // Stampedes can be tamed with these items
         public static final TagKey<Item> DOESNT_MODIFY_POTION_STACK_SIZE = createItemTag("doesnt_modify_potion_stack_size"); // Items in this tag override the potion stacksize change config, incase modpack devs might need it
+        public static final TagKey<Item> DOESNT_SLOWDOWN_WHEN_USING = createItemTag("doesnt_slowdown_when_using"); // Items in this tag do not reduce the player's movement speed if they are moving while using said item
         public static final TagKey<Item> SILVER_ARMORS = createItemTag("silver_armors"); // Armors made from silver of some kind, used for possessed mobs weakening
 
         private static TagKey<Item> createItemTag(String name) {

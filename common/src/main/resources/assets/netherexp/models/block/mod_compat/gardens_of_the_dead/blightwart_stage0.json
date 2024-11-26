@@ -11,6 +11,7 @@
 		{
 			"from": [8, 0, 0],
 			"to": [8, 16, 16],
+			"shade": false,
 			"faces": {
 				"north": {"uv": [0, 0, 0, 16], "texture": "#missing"},
 				"east": {"uv": [16, 0, 0, 16], "texture": "#4"},
@@ -23,6 +24,7 @@
 		{
 			"from": [0.5, 0, 12],
 			"to": [16.5, 16, 12],
+			"shade": false,
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 16], "texture": "#5"},

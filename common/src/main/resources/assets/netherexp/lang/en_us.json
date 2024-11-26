@@ -571,6 +571,14 @@
 
   "block.netherexp.soul_ruby_ore": "Soul Ruby Ore",
 
+  "item.netherexp.necromium_plating": "Necromium Plating",
+  "block.netherexp.necromium_plated_block": "Necromium Plated Block",
+  "block.netherexp.necromium_grate": "Necromium Grate",
+  "block.netherexp.cut_necromium_block": "Cut Necromium Block",
+  "block.netherexp.cut_necromium_slab": "Cut Necromium Slab",
+  "block.netherexp.cut_necromium_stairs": "Cut Necromium Stairs",
+  "block.netherexp.cut_necromium_pillar": "Cut Necromium Pillar",
+
   "item.netherexp.sealed_pottery_sherd": "Sealed Pottery Sherd",
   "item.netherexp.spectre_pottery_sherd": "Spectre Pottery Sherd",
   "item.netherexp.marionette_pottery_sherd": "Marionette Pottery Sherd",
