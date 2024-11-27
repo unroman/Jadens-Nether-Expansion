@@ -1,24 +1,26 @@
 package net.jadenxgamer.netherexp.registry.block.custom;
 
 import com.google.common.collect.Maps;
-import dev.architectury.core.block.ArchitecturyLiquidBlock;
 import net.jadenxgamer.netherexp.config.JNEConfigs;
 import net.jadenxgamer.netherexp.registry.block.JNEBlocks;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNESoundEvents;
+import net.jadenxgamer.netherexp.registry.particle.JNEParticleTypes;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.FlowingFluid;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Map;
-import java.util.function.Supplier;
 
-public class EctoplasmLiquidBlock extends ArchitecturyLiquidBlock {
+public class EctoplasmLiquidBlock extends LiquidBlock {
     /*
      * Based on Alex's Caves AcidBlock.java code with a few tweaks
      * https://github.com/AlexModGuy/AlexsCaves/blob/main/src/main/java/com/github/alexmodguy/alexscaves/server/block/AcidBlock.java
@@ -27,7 +29,7 @@ public class EctoplasmLiquidBlock extends ArchitecturyLiquidBlock {
 
     private static Map<Block, Block> FREEZES;
 
-    public EctoplasmLiquidBlock(Supplier<? extends FlowingFluid> fluid, Properties properties) {
+    public EctoplasmLiquidBlock(RegistryObject<FlowingFluid> fluid, Properties properties) {
         super(fluid, properties);
     }
 
@@ -39,6 +41,27 @@ public class EctoplasmLiquidBlock extends ArchitecturyLiquidBlock {
         }
     }
 
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        BlockPos abovePos = pos.above();
+        if (level.getBlockState(abovePos).isAir() && !level.getBlockState(abovePos).isSolidRender(level, abovePos) && JNEConfigs.ENABLE_ECTOPLASM_PARTICLES.get()) {
+            if (random.nextInt(55) == 0) {
+                double d = (double) pos.getX() + random.nextDouble();
+                double e = (double) pos.getY() + 1.0;
+                double f = (double) pos.getZ() + random.nextDouble();
+                level.addParticle(JNEParticleTypes.ECTORAYS.get(), d, e, f, 0.0, -0.03, 0.0);
+            }
+            if (random.nextInt(18) == 0) {
+                double d = (double) pos.getX() + random.nextDouble();
+                double e = (double) pos.getY() + 1.0;
+                double f = (double) pos.getZ() + random.nextDouble();
+                level.addParticle(JNEParticleTypes.ECTOPLASMA.get(), d, e, f, 0.0, 0.0, 0.0);
+            }
+            if (random.nextInt(600) == 0 && JNEConfigs.ENABLE_ECTOPLASM_SOUNDS.get()) {
+                level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), JNESoundEvents.ECTOPLASM_WHISPERING.get(), SoundSource.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
+            }
+        }
+    }
     @Override
     public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean bl) {
         super.neighborChanged(state, level, pos, block, fromPos, bl);

@@ -1,14 +1,11 @@
 package net.jadenxgamer.netherexp.registry.particle.custom;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Environment(value= EnvType.CLIENT)
 public class EctoraysParticle
 extends TextureSheetParticle {
     EctoraysParticle(ClientLevel level, double x, double y, double z) {
@@ -38,7 +35,7 @@ extends TextureSheetParticle {
         return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
-    @Environment(value=EnvType.CLIENT)
+
     public static class Factory implements ParticleProvider<SimpleParticleType> {
         private final SpriteSet spriteSet;
 

@@ -1,12 +1,9 @@
 package net.jadenxgamer.netherexp.registry.particle.custom;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
-import net.minecraft.core.particles.ShriekParticleOption;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
@@ -81,7 +78,7 @@ public class BurstParticle extends TextureSheetParticle {
         super.tick();
     }
 
-    @Environment(EnvType.CLIENT)
+
     public static class Factory implements ParticleProvider<SimpleParticleType> {
         private final SpriteSet sprite;
 

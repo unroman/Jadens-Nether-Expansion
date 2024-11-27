@@ -1,7 +1,5 @@
 package net.jadenxgamer.netherexp.registry.particle.custom;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.jadenxgamer.netherexp.registry.particle.JNEParticleTypes;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.NoRenderParticle;
@@ -9,7 +7,6 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.core.particles.SimpleParticleType;
 
-@Environment(EnvType.CLIENT)
 public class RedstoneExplosionEmitterParticle extends NoRenderParticle {
     private int age_;
 
@@ -33,7 +30,6 @@ public class RedstoneExplosionEmitterParticle extends NoRenderParticle {
 
     }
 
-    @Environment(EnvType.CLIENT)
     public static class Factory implements ParticleProvider<SimpleParticleType> {
         public Factory() {
         }

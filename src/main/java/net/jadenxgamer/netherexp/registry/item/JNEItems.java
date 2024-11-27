@@ -192,9 +192,6 @@ public class JNEItems {
     public static final RegistryObject<Item> ROASTED_BONE = registerItem("roasted_bone", () ->
         new Item(new Item.Properties().food(JNEFoods.ROASTED_BONE).stacksTo(16)));
 
-    public static final RegistryObject<Item> ECTOPLASM_BUCKET = registerItem("ectoplasm_bucket", () ->
-        new BucketItem(JNEFluids.ECTOPLASM_SOURCE, new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET)));
-
 
     // ARTIFACTS
 

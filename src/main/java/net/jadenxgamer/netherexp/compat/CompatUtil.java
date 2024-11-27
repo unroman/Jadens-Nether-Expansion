@@ -7,7 +7,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fml.loading.FMLLoader;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class CompatUtil {
 
@@ -118,6 +120,10 @@ public class CompatUtil {
 
         public static Item getItem(ResourceLocation id) {
             return BuiltInRegistries.ITEM.get(id);
+        }
+
+        public static FluidType getFluidType(ResourceLocation id) {
+            return ForgeRegistries.FLUID_TYPES.get().getValue(id);
         }
     }
 }

@@ -1,7 +1,5 @@
 package net.jadenxgamer.netherexp.registry.particle.custom;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
@@ -25,7 +23,6 @@ public class EctoplasmaParticle extends SmokeParticle {
         return 15728880;
     }
 
-    @Environment(value= EnvType.CLIENT)
     public static class Factory
             implements ParticleProvider<SimpleParticleType> {
         private final SpriteSet spriteSet;
