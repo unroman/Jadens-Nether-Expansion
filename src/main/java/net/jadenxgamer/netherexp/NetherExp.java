@@ -15,10 +15,12 @@ import net.jadenxgamer.netherexp.registry.fluid.JNEFluids;
 import net.jadenxgamer.netherexp.registry.item.JNECreativeModeTabs;
 import net.jadenxgamer.netherexp.registry.item.JNEItems;
 import net.jadenxgamer.netherexp.registry.item.brewing.JNEPotionRecipe;
+import net.jadenxgamer.netherexp.registry.loot.JNELootModifiers;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNEBuiltinPacks;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNEPaintings;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNESoundEvents;
 import net.jadenxgamer.netherexp.registry.particle.JNEParticleTypes;
+import net.jadenxgamer.netherexp.registry.worldgen.JNEBiomeModifiers;
 import net.jadenxgamer.netherexp.registry.worldgen.feature.JNEFeature;
 import net.jadenxgamer.netherexp.registry.worldgen.structure.JNEStructureType;
 import net.minecraft.server.packs.PackType;
@@ -72,6 +74,9 @@ public class NetherExp {
         JNEFeature.init(modEventBus);
         JNEBlockEntityType.init(modEventBus);
         JNEItems.init(modEventBus);
+
+        JNEBiomeModifiers.init(modEventBus);
+        JNELootModifiers.init(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

@@ -72,6 +72,7 @@ public class JNETags {
         public static final TagKey<EntityType<?>> IGNORES_TREACHEROUS_CANDLE = createEntityTypeTag("ignores_treacherous_candle"); // Mobs in this do not care about the Treacherous Candle if the opportunity to break it is available
         public static final TagKey<EntityType<?>> TARGETS_REGARDLESS_OF_BETRAYED = createEntityTypeTag("targets_regardless_of_betrayed"); // Mobs in this tag find and attack targets even if they have the Betrayed Effect
         public static final TagKey<EntityType<?>> DOES_NOT_BLEED = createEntityTypeTag("does_not_bleed"); // Does not bleed when killed with Bloodshed Enchantment
+        public static final TagKey<EntityType<?>> PIGLINS_AFRAID_OF = createEntityTypeTag("piglins_afraid_of"); // Piglins will flee from mobs in this tag (this use to be in vanilla but mojang removed it for some reason????)
 
         private static TagKey<EntityType<?>> createEntityTypeTag(String name) {
             return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(NetherExp.MOD_ID, name));
