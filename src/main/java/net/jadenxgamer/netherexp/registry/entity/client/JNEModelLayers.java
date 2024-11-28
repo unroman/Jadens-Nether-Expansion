@@ -37,4 +37,10 @@ public class JNEModelLayers {
 
     public static final ModelLayerLocation MIST_CHARGE_LAYER = new ModelLayerLocation(
             new ResourceLocation(NetherExp.MOD_ID, "mist_charge_layer"), "main");
+
+    public static final ModelLayerLocation SHOTGUN_FIST_LAYER = new ModelLayerLocation(
+            new ResourceLocation(NetherExp.MOD_ID, "shotgun_fist_layer"), "main");
+
+    public static final ModelLayerLocation PUMP_CHARGE_SHOTGUN_LAYER = new ModelLayerLocation(
+            new ResourceLocation(NetherExp.MOD_ID, "pump_charge_shotgun_layer"), "main");
 }
