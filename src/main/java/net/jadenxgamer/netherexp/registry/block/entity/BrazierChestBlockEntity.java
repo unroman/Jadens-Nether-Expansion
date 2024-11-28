@@ -66,9 +66,6 @@ public class BrazierChestBlockEntity extends RandomizableContainerBlockEntity {
 
     public void refillLoot() {
         if (this.level != null) {
-            if (this.lootTable != null && refillLootTable == null) {
-                this.refillLootTable = lootTable;
-            }
             if (this.refillLootTable != null) {
                 this.clearContent();
                 setLootTable(this.level, this.level.random, this.getBlockPos(), this.refillLootTable);
@@ -132,13 +129,20 @@ public class BrazierChestBlockEntity extends RandomizableContainerBlockEntity {
 
     public void tick(Level level, BlockPos pos, BlockState state) {
         boolean locked = state.getValue(BrazierChestBlock.LOCKED);
-        assert level != null;
-        if (!locked) {
-            --this.lockTimer;
-            if (this.lockTimer <= 0) {
-                level.setBlock(pos, state.cycle(BrazierChestBlock.LOCKED), 2);
-                level.playSound(null, this.getBlockPos(), SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0f, 1.0f);
-                this.lockTimer = JNEConfigs.BRAZIER_CHEST_REFILL_COOLDOWN.get() * 20;
+        if (level != null) {
+            if (this.lootTable != null && refillLootTable == null) {
+                this.clearContent();
+                this.refillLootTable = lootTable;
+                this.lootTable = null;
+            }
+            if (!locked) {
+                --this.lockTimer;
+                if (this.lockTimer <= 0) {
+                    this.clearContent();
+                    level.setBlock(pos, state.cycle(BrazierChestBlock.LOCKED), 2);
+                    level.playSound(null, this.getBlockPos(), SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0f, 1.0f);
+                    this.lockTimer = JNEConfigs.BRAZIER_CHEST_REFILL_COOLDOWN.get() * 20;
+                }
             }
         }
     }

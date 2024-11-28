@@ -44,7 +44,7 @@ public class EctoplasmLiquidBlock extends LiquidBlock {
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         BlockPos abovePos = pos.above();
-        if (level.getBlockState(abovePos).isAir() && !level.getBlockState(abovePos).isSolidRender(level, abovePos) && JNEConfigs.ENABLE_ECTOPLASM_PARTICLES.get()) {
+        if (state.getFluidState().isSource() && !level.getBlockState(abovePos).isSolidRender(level, abovePos) && JNEConfigs.ENABLE_ECTOPLASM_PARTICLES.get()) {
             if (random.nextInt(55) == 0) {
                 double d = (double) pos.getX() + random.nextDouble();
                 double e = (double) pos.getY() + 1.0;

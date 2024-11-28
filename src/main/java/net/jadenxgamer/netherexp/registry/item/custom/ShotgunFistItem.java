@@ -47,12 +47,6 @@ public class ShotgunFistItem extends ProjectileWeaponItem implements Vanishable,
         nbt.putInt("Ammo", i);
     }
 
-    // Unused, left it here, so I can salvage the hud element code for a later date
-    public static int getTemperature(ItemStack stack) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        return nbt.getInt("Temprature");
-    }
-
     @Override
     public @NotNull ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity user) {
         useProjectile(stack, user);

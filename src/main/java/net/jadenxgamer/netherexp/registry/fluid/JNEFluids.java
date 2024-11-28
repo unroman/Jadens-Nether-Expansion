@@ -32,7 +32,7 @@ public class JNEFluids {
     public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, NetherExp.MOD_ID);
 
     private static ForgeFlowingFluid.Properties ectoplasmProperties() {
-        return new ForgeFlowingFluid.Properties(ECTOPLASM_TYPE, ECTOPLASM_SOURCE, ECTOPLASM_FLOWING).bucket(ECTOPLASM_BUCKET);
+        return new ForgeFlowingFluid.Properties(ECTOPLASM_TYPE, ECTOPLASM_SOURCE, ECTOPLASM_FLOWING).bucket(ECTOPLASM_BUCKET).block(ECTOPLASM).explosionResistance(100.0f);
     }
 
     public static final RegistryObject<FluidType> ECTOPLASM_TYPE = FLUID_TYPES.register("ectoplasm", () ->

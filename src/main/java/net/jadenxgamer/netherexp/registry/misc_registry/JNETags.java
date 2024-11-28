@@ -1,6 +1,5 @@
 package net.jadenxgamer.netherexp.registry.misc_registry;
 
-import dev.architectury.platform.Platform;
 import net.jadenxgamer.netherexp.NetherExp;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -91,12 +90,8 @@ public class JNETags {
         private static TagKey<Item> createItemTag(String name) {
             return TagKey.create(Registries.ITEM, new ResourceLocation(NetherExp.MOD_ID, name));
         }
-        private static TagKey<Item> createCommonItemTag(String forge, String fabric) {
-            if (Platform.isForge()) {
-                return TagKey.create(Registries.ITEM, new ResourceLocation("forge", forge));
-            } else {
-                return TagKey.create(Registries.ITEM, new ResourceLocation("c", fabric));
-            }
+        private static TagKey<Item> createCommonItemTag(String name) {
+            return TagKey.create(Registries.ITEM, new ResourceLocation("forge", name));
         }
     }
     public static class Biomes {

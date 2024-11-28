@@ -43,7 +43,9 @@
     "item.BowItemMixin",
     "item.EnchantmentMixin",
     "item.ItemMixin",
-    "item.ItemStackMixin"
+    "item.ItemStackMixin",
+    "worldgen.BasaltColumnsFeatureMixin",
+    "worldgen.DeltaFeatureMixin"
   ],
   "injectors": {
     "defaultRequire": 1

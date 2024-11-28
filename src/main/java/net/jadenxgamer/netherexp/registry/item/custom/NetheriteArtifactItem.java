@@ -23,6 +23,6 @@ public class NetheriteArtifactItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag tooltipFlag) {
-        tooltip.add(Component.translatable("item.netherexp.non_consumable.tooltip").withStyle(ChatFormatting.BLUE));
+        tooltip.add(Component.translatable("item.netherexp.non_consumable.tooltip").withStyle(ChatFormatting.GRAY));
     }
 }

@@ -23,19 +23,21 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult.Type;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.function.Supplier;
+
 public class MobBottleItem<T extends Entity> extends Item {
 
-    private final EntityType<T> entityType;
+    private final Supplier<EntityType<T>> entityType;
     private final SoundEvent soundEvent;
 
-    public MobBottleItem(EntityType<T> entityType, SoundEvent soundEvent, Properties properties) {
+    public MobBottleItem(Supplier<EntityType<T>> entityType, SoundEvent soundEvent, Properties properties) {
         super(properties);
         this.entityType = entityType;
         this.soundEvent = soundEvent;
     }
 
     public EntityType<?> getEntityType() {
-        return entityType;
+        return entityType.get();
     }
 
     public SoundEvent getSoundEvent() {

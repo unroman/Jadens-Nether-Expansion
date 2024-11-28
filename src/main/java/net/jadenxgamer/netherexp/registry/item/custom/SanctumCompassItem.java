@@ -82,28 +82,30 @@ public class SanctumCompassItem extends ProjectileWeaponItem {
         if (!isActive) {
             player.startUsingItem(hand);
             if (level instanceof ServerLevel serverLevel) {
-                if (!trackedStructure) {
-                    BlockPos structurePos = serverLevel.findNearestMapStructure(JNETags.Structures.SANCTUM_COMPASS_LOCATED, player.blockPosition(), 100, false);
-                    if (structurePos != null) {
-                        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.LODESTONE_COMPASS_LOCK, SoundSource.PLAYERS, 0.7f, 1.0f);
-                        player.awardStat(Stats.ITEM_USED.get(this));
-                        player.swing(hand, true);
+                if (!player.getProjectile(stack).isEmpty() || player.getAbilities().instabuild) {
+                    if (!trackedStructure) {
+                        BlockPos structurePos = serverLevel.findNearestMapStructure(JNETags.Structures.SANCTUM_COMPASS_LOCATED, player.blockPosition(), 100, false);
+                        if (structurePos != null) {
+                            level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.LODESTONE_COMPASS_LOCK, SoundSource.PLAYERS, 0.7f, 1.0f);
+                            player.awardStat(Stats.ITEM_USED.get(this));
+                            player.swing(hand, true);
 
-                        nbt.putBoolean(TRACKED_STRUCTURE, true);
-                        nbt.put(STRUCTURE_POS, NbtUtils.writeBlockPos(structurePos));
-                        DataResult<Tag> structureDimension = Level.RESOURCE_KEY_CODEC.encodeStart(NbtOps.INSTANCE, level.dimension());
-                        structureDimension.result().ifPresent((currentDimension) -> nbt.put(STRUCTURE_DIMENSION, currentDimension));
+                            nbt.putBoolean(TRACKED_STRUCTURE, true);
+                            nbt.put(STRUCTURE_POS, NbtUtils.writeBlockPos(structurePos));
+                            DataResult<Tag> structureDimension = Level.RESOURCE_KEY_CODEC.encodeStart(NbtOps.INSTANCE, level.dimension());
+                            structureDimension.result().ifPresent((currentDimension) -> nbt.put(STRUCTURE_DIMENSION, currentDimension));
+                            this.useWraithingFlesh(stack, player);
+                            nbt.putInt("CustomModelData", 1);
+                            nbt.putBoolean(IS_ACTIVE, true);
+                            JNECriteriaTriggers.ACTIVATE_SANCTUM_COMPASS.trigger((ServerPlayer) player);
+                            return InteractionResultHolder.success(stack);
+                        }
+                    } else {
+                        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.LODESTONE_COMPASS_LOCK, SoundSource.PLAYERS, 0.7f, 1.0f);
                         this.useWraithingFlesh(stack, player);
                         nbt.putInt("CustomModelData", 1);
                         nbt.putBoolean(IS_ACTIVE, true);
-                        JNECriteriaTriggers.ACTIVATE_SANCTUM_COMPASS.trigger((ServerPlayer) player);
-                        return InteractionResultHolder.success(stack);
                     }
-                } else {
-                    level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.LODESTONE_COMPASS_LOCK, SoundSource.PLAYERS, 0.7f, 1.0f);
-                    this.useWraithingFlesh(stack, player);
-                    nbt.putInt("CustomModelData", 1);
-                    nbt.putBoolean(IS_ACTIVE, true);
                 }
             }
         }

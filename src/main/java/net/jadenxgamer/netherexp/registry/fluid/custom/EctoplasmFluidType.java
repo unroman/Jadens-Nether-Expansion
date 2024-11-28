@@ -49,7 +49,7 @@ public class EctoplasmFluidType extends FluidType {
 
     @Override
     public boolean move(FluidState state, LivingEntity entity, Vec3 movementVector, double gravity) {
-        return true;
+        return false;
     }
 
     @Override

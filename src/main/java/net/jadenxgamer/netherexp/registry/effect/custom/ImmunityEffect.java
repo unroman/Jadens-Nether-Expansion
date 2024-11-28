@@ -9,7 +9,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 
-public class ImmunityEffect extends MobEffect {
+public class ImmunityEffect extends IncurableEffect {
     private final ResourceLocation effectResourceLocation;
 
     public ImmunityEffect(MobEffectCategory category, int color, ResourceLocation mobEffect) {

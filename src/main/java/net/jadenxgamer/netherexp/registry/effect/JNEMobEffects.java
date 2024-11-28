@@ -4,7 +4,7 @@ import net.jadenxgamer.netherexp.NetherExp;
 import net.jadenxgamer.netherexp.compat.CompatUtil;
 import net.jadenxgamer.netherexp.registry.effect.custom.FogSightEffect;
 import net.jadenxgamer.netherexp.registry.effect.custom.ImmunityEffect;
-import net.jadenxgamer.netherexp.registry.effect.custom.JNEMobEffect;
+import net.jadenxgamer.netherexp.registry.effect.custom.IncurableEffect;
 import net.jadenxgamer.netherexp.registry.effect.custom.UnboundedSpeedEffect;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
@@ -25,7 +25,7 @@ public class JNEMobEffects {
             new UnboundedSpeedEffect(MobEffectCategory.BENEFICIAL, 1787717));
 
     public static final RegistryObject<MobEffect> BETRAYED = MOB_EFFECTS.register("betrayed", () ->
-            new JNEMobEffect(MobEffectCategory.NEUTRAL, 11730944));
+            new IncurableEffect(MobEffectCategory.NEUTRAL, 11730944));
 
     // IMMUNITY EFFECTS
 

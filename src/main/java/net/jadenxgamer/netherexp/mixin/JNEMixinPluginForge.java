@@ -23,7 +23,7 @@ public class JNEMixinPluginForge implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if (mixinClassName.matches("net.jadenxgamer.netherexp.forge.mixin.compat.HugeFlatFungusFeatureMixin")) {
+        if (mixinClassName.matches("net.jadenxgamer.netherexp.mixin.compat.HugeFlatFungusFeatureMixin")) {
             return CompatUtil.checkGardensOfTheDead();
         }
         return true;

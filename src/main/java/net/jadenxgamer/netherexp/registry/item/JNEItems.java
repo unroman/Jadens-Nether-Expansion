@@ -76,7 +76,7 @@ public class JNEItems {
         new Item(new Item.Properties().food(JNEFoods.PIZZA_SLICE).rarity(Rarity.RARE)));
 
     public static final RegistryObject<Item> WISP_BOTTLE = registerItem("wisp_bottle", () ->
-        new MobBottleItem<>(JNEEntityType.WISP.get(), SoundEvents.BOTTLE_FILL, new Item.Properties().stacksTo(1).craftRemainder(Items.GLASS_BOTTLE)));
+        new MobBottleItem<>(JNEEntityType.WISP, SoundEvents.BOTTLE_FILL, new Item.Properties().stacksTo(1).craftRemainder(Items.GLASS_BOTTLE)));
 
     public static final RegistryObject<Item> SANCTUM_COMPASS = registerItem("sanctum_compass", () ->
         new SanctumCompassItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
