@@ -3,8 +3,9 @@ package net.jadenxgamer.netherexp.registry.item.custom;
 import net.jadenxgamer.netherexp.registry.advancements.JNECriteriaTriggers;
 import net.jadenxgamer.netherexp.registry.enchantment.JNEEnchantments;
 import net.jadenxgamer.netherexp.registry.entity.custom.SoulBullet;
+import net.jadenxgamer.netherexp.registry.item.JNEItemRenderer;
 import net.jadenxgamer.netherexp.registry.item.JNEItems;
-import net.jadenxgamer.netherexp.registry.item.client.JNEItemRenderer;
+import net.jadenxgamer.netherexp.registry.item.client.ItemAnimationState;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNEDamageSources;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNESoundEvents;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -36,9 +37,15 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class PumpChargeShotgunItem extends ProjectileWeaponItem implements Vanishable, IShotgun {
-    public final AnimationState fireAnimationState = new AnimationState();
-    public final AnimationState pumpAnimationState = new AnimationState();
-    public final AnimationState overpumpAnimationState = new AnimationState();
+    public final ItemAnimationState fireAnimationState = new ItemAnimationState();
+    public final ItemAnimationState pumpAnimationState = new ItemAnimationState();
+    public final ItemAnimationState overpumpAnimationState = new ItemAnimationState();
+
+    private int pumpTimeOut;
+    private boolean pumpFlag;
+
+    private int fireTimeOut;
+    private boolean fireFlag;
 
     public PumpChargeShotgunItem(Properties properties) {
         super(properties);
@@ -56,17 +63,16 @@ public class PumpChargeShotgunItem extends ProjectileWeaponItem implements Vanis
 
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean selected) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        if (nbt.getBoolean("PumpFlag")) {
+        if (this.pumpFlag) {
             playPumpAnimation(stack, entity.tickCount);
         }
-        if (nbt.getBoolean("FireFlag")) {
+        if (this.fireFlag) {
             playFireAnimation(stack, entity.tickCount);
         }
         if (getCharge(stack) >= 4) {
-            overpumpAnimationState.startIfStopped(entity.tickCount);
+            overpumpAnimationState.startIfStopped(entity.tickCount, stack);
         } else {
-            overpumpAnimationState.stop();
+            overpumpAnimationState.stop(stack);
         }
     }
 
@@ -95,7 +101,7 @@ public class PumpChargeShotgunItem extends ProjectileWeaponItem implements Vanis
         ItemStack stack = player.getItemInHand(interactionHand);
         int cartridge = EnchantmentHelper.getItemEnchantmentLevel(JNEEnchantments.CARTRIDGE.get(), stack) * 10;
         if (player.isShiftKeyDown() && getCharge(stack) <= 3) {
-            playPumpAnimation(stack);
+            this.pumpFlag = true;
             setCharge(stack, getCharge(stack) + 1);
             player.startUsingItem(interactionHand);
             level.playSound(null, player.getX(), player.getY(), player.getZ(), JNESoundEvents.SHOTGUN_LOAD.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
@@ -114,6 +120,7 @@ public class PumpChargeShotgunItem extends ProjectileWeaponItem implements Vanis
             }
             else {
                 if (!player.getProjectile(stack).isEmpty() || player.getAbilities().instabuild) {
+                    this.fireFlag = true;
                     performShooting(level, player, stack);
                     level.explode(player, player.getX(), player.getY(), player.getZ(), 3, false, Level.ExplosionInteraction.NONE);
                     player.getCooldowns().addCooldown(this, 100);
@@ -138,7 +145,7 @@ public class PumpChargeShotgunItem extends ProjectileWeaponItem implements Vanis
     }
 
     public void performShooting(Level level, LivingEntity user, ItemStack stack) {
-        playFireAnimation(stack);
+        this.fireFlag = true;
 
         int chargeCount = getCharge(stack) * 6;
         int chargeInaccuracy = getCharge(stack) * 8;
@@ -193,45 +200,31 @@ public class PumpChargeShotgunItem extends ProjectileWeaponItem implements Vanis
         nbt.putInt("CustomModelData", i);
     }
 
-    public static void playPumpAnimation(ItemStack stack) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        nbt.putBoolean("PumpFlag", true);
-    }
-
-    public static void playFireAnimation(ItemStack stack) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        nbt.putBoolean("FireFlag", true);
-    }
-
     private void playPumpAnimation(ItemStack stack, int tickCount) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        int timeout = nbt.getInt("PumpTimeOut");
-        if (timeout == 20) {
-            this.pumpAnimationState.startIfStopped(tickCount);
+        if (this.pumpTimeOut == 20) {
+            this.pumpAnimationState.startIfStopped(tickCount, stack);
         }
-        if (timeout > 0) {
-            nbt.putInt("PumpTimeOut", --timeout);
+        if (this.pumpTimeOut > 0) {
+            --this.pumpTimeOut;
         }
-        if (timeout <= 0) {
-            this.pumpAnimationState.stop();
-            nbt.putInt("PumpTimeOut", 20);
-            nbt.putBoolean("PumpFlag", false);
+        if (this.pumpTimeOut <= 0) {
+            this.pumpAnimationState.stop(stack);
+            this.pumpTimeOut = 20;
+            this.pumpFlag = false;
         }
     }
 
     private void playFireAnimation(ItemStack stack, int tickCount) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        int timeout = nbt.getInt("FireTimeOut");
-        if (timeout == 20) {
-            this.fireAnimationState.startIfStopped(tickCount);
+        if (this.fireTimeOut == 20) {
+            this.fireAnimationState.startIfStopped(tickCount, stack);
         }
-        if (timeout > 0) {
-            nbt.putInt("FireTimeOut", --timeout);
+        if (this.fireTimeOut > 0) {
+            --this.fireTimeOut;
         }
-        if (timeout <= 0) {
-            this.fireAnimationState.stop();
-            nbt.putInt("FireTimeOut", 20);
-            nbt.putBoolean("FireFlag", false);
+        if (this.fireTimeOut <= 0) {
+            this.fireAnimationState.stop(stack);
+            this.fireTimeOut = 20;
+            this.fireFlag = false;
         }
     }
 }

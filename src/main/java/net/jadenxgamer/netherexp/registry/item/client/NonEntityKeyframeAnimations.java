@@ -3,7 +3,6 @@ package net.jadenxgamer.netherexp.registry.item.client;
 import net.minecraft.client.animation.AnimationChannel;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.animation.Keyframe;
-import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.Mth;
 import org.joml.Vector3f;
@@ -22,18 +21,15 @@ public class NonEntityKeyframeAnimations {
 
     public static void animate(NonEntityHierarchicalModel pModel, AnimationDefinition pAnimationDefinition, long pAccumulatedTime, float pScale, Vector3f pAnimationVecCache) {
         float $$5 = getElapsedSeconds(pAnimationDefinition, pAccumulatedTime);
-        Iterator var7 = pAnimationDefinition.boneAnimations().entrySet().iterator();
 
-        while(var7.hasNext()) {
-            Map.Entry<String, List<AnimationChannel>> $$6 = (Map.Entry)var7.next();
-            Optional<ModelPart> $$7 = pModel.getAnyDescendantWithName((String)$$6.getKey());
-            List<AnimationChannel> $$8 = (List)$$6.getValue();
+        for (Map.Entry<String, List<AnimationChannel>> stringListEntry : pAnimationDefinition.boneAnimations().entrySet()) {
+            Map.Entry<String, List<AnimationChannel>> $$6 = (Map.Entry) stringListEntry;
+            Optional<ModelPart> $$7 = pModel.getAnyDescendantWithName((String) $$6.getKey());
+            List<AnimationChannel> $$8 = (List) $$6.getValue();
             $$7.ifPresent((p_232330_) -> {
                 $$8.forEach((p_288241_) -> {
                     Keyframe[] $$5x = p_288241_.keyframes();
-                    int $$62 = Math.max(0, Mth.binarySearch(0, $$5x.length, (p_232315_) -> {
-                        return $$5 <= $$5x[p_232315_].timestamp();
-                    }) - 1);
+                    int $$62 = Math.max(0, Mth.binarySearch(0, $$5x.length, (p_232315_) -> $$5 <= $$5x[p_232315_].timestamp()) - 1);
                     int $$72 = Math.min($$5x.length - 1, $$62 + 1);
                     Keyframe $$82 = $$5x[$$62];
                     Keyframe $$9 = $$5x[$$72];

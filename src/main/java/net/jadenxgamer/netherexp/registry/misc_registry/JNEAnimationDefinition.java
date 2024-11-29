@@ -1,4 +1,4 @@
-package net.jadenxgamer.netherexp.registry.entity.animation;
+package net.jadenxgamer.netherexp.registry.misc_registry;
 
 import net.minecraft.client.animation.AnimationChannel;
 import net.minecraft.client.animation.AnimationDefinition;

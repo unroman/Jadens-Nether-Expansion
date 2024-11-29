@@ -2,7 +2,7 @@ package net.jadenxgamer.netherexp.registry.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.jadenxgamer.netherexp.registry.entity.animation.JNEAnimationDefinition;
+import net.jadenxgamer.netherexp.registry.misc_registry.JNEAnimationDefinition;
 import net.jadenxgamer.netherexp.registry.entity.custom.Carcass;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;

@@ -2,8 +2,9 @@ package net.jadenxgamer.netherexp.registry.item.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.jadenxgamer.netherexp.registry.entity.animation.JNEAnimationDefinition;
+import net.jadenxgamer.netherexp.registry.misc_registry.JNEAnimationDefinition;
 import net.jadenxgamer.netherexp.registry.item.custom.PumpChargeShotgunItem;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
@@ -43,10 +44,11 @@ public class PumpChargeShotgunModel extends NonEntityHierarchicalModel {
 	public void setupAnim(ItemStack stack, float ageInTicks) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
 		PumpChargeShotgunItem item = (PumpChargeShotgunItem) stack.getItem();
-		this.animate((item).fireAnimationState, JNEAnimationDefinition.PUMP_CHARGE_SHOTGUN_FIRE, ageInTicks);
-		this.animate((item).pumpAnimationState, JNEAnimationDefinition.PUMP_CHARGE_SHOTGUN_PUMP, ageInTicks);
-		this.animate((item).overpumpAnimationState, JNEAnimationDefinition.PUMP_CHARGE_SHOTGUN_OVERPUMPED, ageInTicks);
+		this.animate(stack, (item).fireAnimationState, JNEAnimationDefinition.PUMP_CHARGE_SHOTGUN_FIRE, ageInTicks);
+		this.animate(stack, (item).pumpAnimationState, JNEAnimationDefinition.PUMP_CHARGE_SHOTGUN_PUMP, ageInTicks);
+		this.animate(stack, (item).overpumpAnimationState, JNEAnimationDefinition.PUMP_CHARGE_SHOTGUN_OVERPUMPED, ageInTicks);
 	}
+
 
     public ModelPart root() {
         return shotgun;
