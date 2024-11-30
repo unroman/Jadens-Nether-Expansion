@@ -5,7 +5,7 @@ import net.jadenxgamer.netherexp.registry.enchantment.JNEEnchantments;
 import net.jadenxgamer.netherexp.registry.entity.custom.SoulBullet;
 import net.jadenxgamer.netherexp.registry.item.JNEItemRenderer;
 import net.jadenxgamer.netherexp.registry.item.JNEItems;
-import net.jadenxgamer.netherexp.registry.item.client.ItemAnimationState;
+import net.jadenxgamer.netherexp.registry.item.client.NonEntityAnimationState;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNEDamageSources;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNESoundEvents;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -15,7 +15,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -37,9 +36,9 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class PumpChargeShotgunItem extends ProjectileWeaponItem implements Vanishable, IShotgun {
-    public final ItemAnimationState fireAnimationState = new ItemAnimationState();
-    public final ItemAnimationState pumpAnimationState = new ItemAnimationState();
-    public final ItemAnimationState overpumpAnimationState = new ItemAnimationState();
+    public final NonEntityAnimationState fireAnimationState = new NonEntityAnimationState();
+    public final NonEntityAnimationState pumpAnimationState = new NonEntityAnimationState();
+    public final NonEntityAnimationState overpumpAnimationState = new NonEntityAnimationState();
 
     private int pumpTimeOut;
     private boolean pumpFlag;
@@ -62,17 +61,20 @@ public class PumpChargeShotgunItem extends ProjectileWeaponItem implements Vanis
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean selected) {
-        if (this.pumpFlag) {
-            playPumpAnimation(stack, entity.tickCount);
-        }
-        if (this.fireFlag) {
-            playFireAnimation(stack, entity.tickCount);
-        }
-        if (getCharge(stack) >= 4) {
-            overpumpAnimationState.startIfStopped(entity.tickCount, stack);
-        } else {
-            overpumpAnimationState.stop(stack);
+    public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
+        super.onInventoryTick(stack, level, player, slotIndex, selectedIndex);
+        if (level.isClientSide()) {
+            if (this.pumpFlag) {
+                playPumpAnimation(player, player.tickCount);
+            }
+            if (this.fireFlag) {
+                playFireAnimation(player, player.tickCount);
+            }
+            if (getCharge(stack) >= 4) {
+                overpumpAnimationState.startIfStopped(player.tickCount, player);
+            } else {
+                overpumpAnimationState.stop(player);
+            }
         }
     }
 
@@ -99,12 +101,11 @@ public class PumpChargeShotgunItem extends ProjectileWeaponItem implements Vanis
     @Override
     public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
         ItemStack stack = player.getItemInHand(interactionHand);
-        int cartridge = EnchantmentHelper.getItemEnchantmentLevel(JNEEnchantments.CARTRIDGE.get(), stack) * 10;
+        int cartridge = EnchantmentHelper.getItemEnchantmentLevel(JNEEnchantments.CARTRIDGE.get(), stack);
         if (player.isShiftKeyDown() && getCharge(stack) <= 3) {
-            this.pumpFlag = true;
             setCharge(stack, getCharge(stack) + 1);
-            player.startUsingItem(interactionHand);
             level.playSound(null, player.getX(), player.getY(), player.getZ(), JNESoundEvents.SHOTGUN_LOAD.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+            this.pumpFlag = true;
         }
         else {
             if (getCharge(stack) <= 3) {
@@ -113,22 +114,32 @@ public class PumpChargeShotgunItem extends ProjectileWeaponItem implements Vanis
                     stack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(player.getUsedItemHand()));
                     level.playSound(null, player.getX(), player.getY(), player.getZ(), JNESoundEvents.SHOTGUN_USE.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
                     player.getCooldowns().addCooldown(this, 15);
-                    useProjectile(stack, player);
+                    if (cartridge > 0 && level.random.nextInt(cartridge) == 0) {
+                        useProjectile(stack, player);
+                    } else {
+                        useProjectile(stack, player);
+                    }
                     setCharge(stack, 0);
+                    this.fireFlag = true;
+
                     return InteractionResultHolder.pass(stack);
                 }
             }
             else {
                 if (!player.getProjectile(stack).isEmpty() || player.getAbilities().instabuild) {
-                    this.fireFlag = true;
                     performShooting(level, player, stack);
                     level.explode(player, player.getX(), player.getY(), player.getZ(), 3, false, Level.ExplosionInteraction.NONE);
                     player.getCooldowns().addCooldown(this, 100);
                     player.hurt(level.damageSources().source(JNEDamageSources.SHOTGUN_EXPLOSION, player), 10);
                     stack.hurtAndBreak(5, player, (p) -> p.broadcastBreakEvent(player.getUsedItemHand()));
-                    useProjectile(stack, player);
+                    if (cartridge > 0 && level.random.nextInt(cartridge) == 0) {
+                        useProjectile(stack, player);
+                    } else {
+                        useProjectile(stack, player);
+                    }
                     level.playSound(null, player.getX(), player.getY(), player.getZ(), JNESoundEvents.SHOTGUN_USE.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                     setCharge(stack, 0);
+                    this.fireFlag = true;
 
                     Vec3 look = player.getLookAngle();
                     Vec3 pushBack = new Vec3(-look.x, -look.y, -look.z).normalize();
@@ -145,8 +156,6 @@ public class PumpChargeShotgunItem extends ProjectileWeaponItem implements Vanis
     }
 
     public void performShooting(Level level, LivingEntity user, ItemStack stack) {
-        this.fireFlag = true;
-
         int chargeCount = getCharge(stack) * 6;
         int chargeInaccuracy = getCharge(stack) * 8;
         int recoil = EnchantmentHelper.getItemEnchantmentLevel(JNEEnchantments.RECOIL.get(), stack);
@@ -197,34 +206,38 @@ public class PumpChargeShotgunItem extends ProjectileWeaponItem implements Vanis
     public static void setCharge(ItemStack stack, int i) {
         CompoundTag nbt = stack.getOrCreateTag();
         nbt.putInt("Charge", i);
-        nbt.putInt("CustomModelData", i);
     }
 
-    private void playPumpAnimation(ItemStack stack, int tickCount) {
+    private void playPumpAnimation(Player player, int tickCount) {
         if (this.pumpTimeOut == 20) {
-            this.pumpAnimationState.startIfStopped(tickCount, stack);
+            this.pumpAnimationState.startIfStopped(tickCount, player);
         }
         if (this.pumpTimeOut > 0) {
             --this.pumpTimeOut;
         }
         if (this.pumpTimeOut <= 0) {
-            this.pumpAnimationState.stop(stack);
+            this.pumpAnimationState.stop(player);
             this.pumpTimeOut = 20;
             this.pumpFlag = false;
         }
     }
 
-    private void playFireAnimation(ItemStack stack, int tickCount) {
+    private void playFireAnimation(Player player, int tickCount) {
         if (this.fireTimeOut == 20) {
-            this.fireAnimationState.startIfStopped(tickCount, stack);
+            this.fireAnimationState.startIfStopped(tickCount, player);
         }
         if (this.fireTimeOut > 0) {
             --this.fireTimeOut;
         }
         if (this.fireTimeOut <= 0) {
-            this.fireAnimationState.stop(stack);
+            this.fireAnimationState.stop(player);
             this.fireTimeOut = 20;
             this.fireFlag = false;
         }
+    }
+
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        return !oldStack.is(JNEItems.PUMP_CHARGE_SHOTGUN.get()) || !newStack.is(JNEItems.PUMP_CHARGE_SHOTGUN.get());
     }
 }

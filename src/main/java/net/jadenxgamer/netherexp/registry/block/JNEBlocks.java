@@ -802,7 +802,7 @@ public class JNEBlocks {
             new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_GREEN).strength(0.5f, 0.5f).requiresCorrectToolForDrops()), new Item.Properties().fireResistant(), CompatUtil.CAVERNS_AND_CHASMS);
 
     public static final RegistryObject<Block> CUT_NECROMIUM_BLOCK = registerItemPropertiesCompatBlock("cut_necromium_block", () ->
-            new Block(BlockBehaviour.Properties.copy(JNEBlocks.NETHERITE_PLATED_BLOCK.get())), new Item.Properties().fireResistant(), CompatUtil.CAVERNS_AND_CHASMS);
+            new Block(BlockBehaviour.Properties.copy(JNEBlocks.NECROMIUM_PLATED_BLOCK.get())), new Item.Properties().fireResistant(), CompatUtil.CAVERNS_AND_CHASMS);
 
     public static final RegistryObject<Block> CUT_NECROMIUM_SLAB = registerItemPropertiesCompatBlock("cut_necromium_slab", () ->
             new SlabBlock(BlockBehaviour.Properties.copy(JNEBlocks.CUT_NECROMIUM_BLOCK.get())), new Item.Properties().fireResistant(), CompatUtil.CAVERNS_AND_CHASMS);

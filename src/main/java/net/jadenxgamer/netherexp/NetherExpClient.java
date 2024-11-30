@@ -5,8 +5,8 @@ import net.jadenxgamer.netherexp.registry.block.entity.client.JNEBrushableBlockR
 import net.jadenxgamer.netherexp.registry.client.AgitatedOverlay;
 import net.jadenxgamer.netherexp.registry.entity.JNEEntityType;
 import net.jadenxgamer.netherexp.registry.item.JNEItems;
-import net.jadenxgamer.netherexp.registry.item.client.PumpChargeShotgunModel;
-import net.jadenxgamer.netherexp.registry.item.client.ShotgunFistModel;
+import net.jadenxgamer.netherexp.registry.item.client.custom.PumpChargeShotgunModel;
+import net.jadenxgamer.netherexp.registry.item.client.custom.ShotgunFistModel;
 import net.jadenxgamer.netherexp.registry.item.custom.AntidoteItem;
 import net.jadenxgamer.netherexp.registry.item.custom.SanctumCompassItem;
 import net.jadenxgamer.netherexp.registry.particle.JNEParticleTypes;

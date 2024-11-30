@@ -130,6 +130,9 @@ public class NetherExp {
             if (CompatUtil.checkGardensOfTheDead()) {
                 JNEBuiltinPacks.dpGardensOfTheDeadCompat(event);
             }
+            if (CompatUtil.checkRubinatedNether()) {
+                JNEBuiltinPacks.dpRubinatedNetherCompat(event);
+            }
             if (CompatUtil.checkCavernsAndChasms()) {
                 JNEBuiltinPacks.dpCavernsAndChasmsCompat(event);
             }

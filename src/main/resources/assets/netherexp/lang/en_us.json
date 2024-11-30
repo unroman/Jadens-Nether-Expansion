@@ -587,12 +587,12 @@
   "item.netherexp.firearm_pottery_sherd": "Firearm Pottery Sherd",
   "item.netherexp.botanical_pottery_sherd": "Botanical Pottery Sherd",
 
-  "enchantment.netherexp.phantasm_hull.desc": "Most projectiles will phase through you when you crouch.",
+  "enchantment.netherexp.phantasm_hull.desc": "Most projectiles will phase through you when sneaking.",
   "enchantment.netherexp.bloodshed.desc": "Mobs burst into healing blood upon death.",
-  "enchantment.netherexp.cartridge.desc": "Allows the Shotgun-Fist to store ammo and shoot multiple times.",
-  "enchantment.netherexp.recoil.desc": "Increases self pushback of the Shotgun-Fist.",
-  "enchantment.netherexp.barrage.desc": "Increases shots fired at once of the Shotgun-Fist.",
-  "enchantment.netherexp.artemis.desc": "Increases range of the bullets and arrows for Shotgun-Fist and Bows",
+  "enchantment.netherexp.cartridge.desc": "Has a chance to conserve ammo when using shotguns.",
+  "enchantment.netherexp.recoil.desc": "Increases self pushback of shotguns.",
+  "enchantment.netherexp.barrage.desc": "Increases bullets fired by Shotguns but gets a longer cooldown.",
+  "enchantment.netherexp.artemis.desc": "Increases the range of projectiles for many ranged weapons.",
 
   "item.netherexp.roasted_bone": "Roasted Bone",
   "block.netherexp.cerebrage_skull": "Cerebrage Skull",

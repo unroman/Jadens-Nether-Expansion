@@ -2,7 +2,7 @@ package net.jadenxgamer.netherexp.registry.worldgen;
 
 import com.mojang.serialization.Codec;
 import net.jadenxgamer.netherexp.NetherExp;
-import net.jadenxgamer.netherexp.registry.worldgen.biomemods.SpawnCostsBiomeModifier;
+import net.jadenxgamer.netherexp.registry.worldgen.biome.SpawnCostsBiomeModifier;
 import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;

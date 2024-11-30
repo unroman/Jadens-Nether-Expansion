@@ -380,6 +380,15 @@ public class JNECreativeModeTabs {
                         if (CompatUtil.checkRubinatedNether()) {
                             output.accept(JNEBlocks.SOUL_RUBY_ORE.get());
                         }
+                        if (CompatUtil.checkCavernsAndChasms()) {
+                            output.accept(JNEItems.NECROMIUM_PLATING.get());
+                            output.accept(JNEBlocks.NECROMIUM_PLATED_BLOCK.get());
+                            output.accept(JNEBlocks.NECROMIUM_GRATE.get());
+                            output.accept(JNEBlocks.CUT_NECROMIUM_BLOCK.get());
+                            output.accept(JNEBlocks.CUT_NECROMIUM_STAIRS.get());
+                            output.accept(JNEBlocks.CUT_NECROMIUM_SLAB.get());
+                            output.accept(JNEBlocks.CUT_NECROMIUM_PILLAR.get());
+                        }
                     }).build());
 
     private static void addAntidotes(CreativeModeTab.Output output) {

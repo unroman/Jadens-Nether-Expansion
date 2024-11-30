@@ -327,7 +327,7 @@ public class Apparition extends Monster implements FlyingAnimal {
                 boolean isWearingSilverArmor = player.getInventory().armor.stream().anyMatch(itemStack -> itemStack.is(JNETags.Items.SILVER_ARMORS));
 
                 if (isWearingSilverArmor) {
-                    this.hurt(level().damageSources().playerAttack(player), 2);
+                    this.hurt(level().damageSources().playerAttack(player), 5);
                     this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 2));
                 }
             }

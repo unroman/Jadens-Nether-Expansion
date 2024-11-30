@@ -7,7 +7,7 @@ import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.entity.Entity;
 import org.joml.Vector3f;
 
 import java.util.Optional;
@@ -34,14 +34,15 @@ public abstract class NonEntityHierarchicalModel extends Model {
         return pName.equals("root") ? Optional.of(this.root()) : this.root().getAllParts().filter((p_233400_) -> p_233400_.hasChild(pName)).findFirst().map((p_233397_) -> p_233397_.getChild(pName));
     }
 
-    protected void animate(ItemStack stack, ItemAnimationState pAnimationState, AnimationDefinition pAnimationDefinition, float pAgeInTicks) {
-        this.animate(stack, pAnimationState, pAnimationDefinition, pAgeInTicks, 1.0F);
+    protected void animate(Entity entity, NonEntityAnimationState nonEAnimationState, AnimationDefinition definition, float ageInTicks) {
+        this.animate(entity, nonEAnimationState, definition, ageInTicks, 1.0F);
     }
 
-    protected void animate(ItemStack stack, ItemAnimationState animationState, AnimationDefinition pAnimationDefinition, float pAgeInTicks, float pSpeed) {
-        animationState.updateTime(pAgeInTicks, pSpeed);
-        if (animationState.matchesStack(stack)) {
-            animationState.ifStarted((p_233392_) -> NonEntityKeyframeAnimations.animate(this, pAnimationDefinition, p_233392_.getAccumulatedTime(), 1.0F, ANIMATION_VECTOR_CACHE));
+    protected void animate(Entity entity, NonEntityAnimationState nonEAnimationState, AnimationDefinition definition, float ageInTicks, float speed) {
+        nonEAnimationState.updateTime(ageInTicks, speed);
+        // AnimationStates are synced up across all items and unless we use this condition the animation will play for all of them
+        if (nonEAnimationState.matchesViewingEntity(entity)) {
+            nonEAnimationState.ifStarted((state) -> NonEntityKeyframeAnimations.animate(this, definition, state.getAccumulatedTime(), 1.0F, ANIMATION_VECTOR_CACHE));
         }
     }
 }

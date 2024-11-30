@@ -1,18 +1,21 @@
-package net.jadenxgamer.netherexp.registry.item.client;
+package net.jadenxgamer.netherexp.registry.item.client.custom;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.Model;
+import net.jadenxgamer.netherexp.registry.item.client.NonEntityHierarchicalModel;
+import net.jadenxgamer.netherexp.registry.item.custom.ShotgunFistItem;
+import net.jadenxgamer.netherexp.registry.misc_registry.JNEAnimationDefinition;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.function.Function;
 
-public class ShotgunFistModel extends Model {
+public class ShotgunFistModel extends NonEntityHierarchicalModel {
 	private ModelPart shotgun;
 
 	public ShotgunFistModel(ModelPart root) {
@@ -46,8 +49,10 @@ public class ShotgunFistModel extends Model {
 		shotgun.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
 
-	public void setupAnim(Entity entity, float ageInTicks) {
+	public void setupAnim(Entity entity, ItemStack stack, float ageInTicks) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
+		ShotgunFistItem item = (ShotgunFistItem) stack.getItem();
+		this.animate(entity, (item).fireAnimationState, JNEAnimationDefinition.SHOTGUN_FIST_FIRE, ageInTicks);
 	}
 
 	public ModelPart root() {

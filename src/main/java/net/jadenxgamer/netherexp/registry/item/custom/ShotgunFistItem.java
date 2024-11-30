@@ -2,14 +2,11 @@ package net.jadenxgamer.netherexp.registry.item.custom;
 
 import net.jadenxgamer.netherexp.registry.enchantment.JNEEnchantments;
 import net.jadenxgamer.netherexp.registry.entity.custom.SoulBullet;
+import net.jadenxgamer.netherexp.registry.item.JNEItemRenderer;
 import net.jadenxgamer.netherexp.registry.item.JNEItems;
+import net.jadenxgamer.netherexp.registry.item.client.NonEntityAnimationState;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNESoundEvents;
-import net.jadenxgamer.netherexp.registry.particle.JNEParticleTypes;
-import net.minecraft.ChatFormatting;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.CommonComponents;
-import net.minecraft.network.chat.Component;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
@@ -18,42 +15,51 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ProjectileWeaponItem;
+import net.minecraft.world.item.Vanishable;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class ShotgunFistItem extends ProjectileWeaponItem implements Vanishable, IShotgun {
+    public final NonEntityAnimationState fireAnimationState = new NonEntityAnimationState();
+
+    private int fireTimeOut;
+    private boolean fireFlag;
 
     public ShotgunFistItem(Properties settings) {
         super(settings);
     }
 
-    public static int getAmmo(ItemStack stack) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        return nbt.getInt("Ammo");
-    }
-
-    public static void setAmmo(ItemStack stack, int i) {
-        CompoundTag nbt = stack.getOrCreateTag();
-        nbt.putInt("Ammo", i);
+    @Override
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        consumer.accept(new IClientItemExtensions() {
+            @Override
+            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+                return new JNEItemRenderer();
+            }
+        });
     }
 
     @Override
-    public @NotNull ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity user) {
-        useProjectile(stack, user);
-        setAmmo(stack, getAmmo(stack) + 1);
-        level.playSound(null, user.getX(), user.getY(), user.getZ(), JNESoundEvents.SHOTGUN_LOAD.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
-        return stack;
+    public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
+        super.onInventoryTick(stack, level, player, slotIndex, selectedIndex);
+        if (level.isClientSide()) {
+            if (this.fireFlag) {
+                playFireAnimation(player, player.tickCount);
+            }
+        }
     }
+
 
     private void useProjectile(ItemStack stack, LivingEntity user) {
         if (user instanceof Player player) {
@@ -82,31 +88,18 @@ public class ShotgunFistItem extends ProjectileWeaponItem implements Vanishable,
         int barrage = EnchantmentHelper.getItemEnchantmentLevel(JNEEnchantments.BARRAGE.get(), stack);
         int quickCharge = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.QUICK_CHARGE, stack);
         int cooldown = barrage > 0 ? 40 + (barrage * 15) : 40 - (quickCharge * 8);
-        if (cartridge > 0) {
-            if (getAmmo(stack) >= 1 && !player.isShiftKeyDown()) {
-                performShooting(level, player, stack);
-                player.getCooldowns().addCooldown(this, 10);
-                setAmmo(stack, getAmmo(stack) - 1);
-                stack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(player.getUsedItemHand()));
-                level.playSound(null, player.getX(), player.getY(), player.getZ(), JNESoundEvents.SHOTGUN_USE.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
-                return InteractionResultHolder.success(stack);
-            }
-            else if (player.isShiftKeyDown() && getAmmo(stack) <= cartridge) {
-                if (!player.getProjectile(stack).isEmpty() || player.getAbilities().instabuild) {
-                    player.startUsingItem(interactionHand);
-                    return InteractionResultHolder.consume(stack);
-                }
-            }
-        }
-        else {
-            if (!player.getProjectile(stack).isEmpty() || player.getAbilities().instabuild) {
+        if (!player.getProjectile(stack).isEmpty() || player.getAbilities().instabuild) {
+            if (cartridge > 0 && level.random.nextInt(cartridge) == 0) {
                 useProjectile(stack, player);
-                performShooting(level, player, stack);
-                stack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(player.getUsedItemHand()));
-                level.playSound(null, player.getX(), player.getY(), player.getZ(), JNESoundEvents.SHOTGUN_USE.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
-                player.getCooldowns().addCooldown(this, cooldown);
-                return InteractionResultHolder.success(stack);
+            } else {
+                useProjectile(stack, player);
             }
+            performShooting(level, player, stack);
+            stack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(player.getUsedItemHand()));
+            level.playSound(null, player.getX(), player.getY(), player.getZ(), JNESoundEvents.SHOTGUN_USE.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
+            player.getCooldowns().addCooldown(this, cooldown);
+            this.fireFlag = true;
+            return InteractionResultHolder.pass(stack);
         }
         return InteractionResultHolder.fail(stack);
     }
@@ -145,25 +138,6 @@ public class ShotgunFistItem extends ProjectileWeaponItem implements Vanishable,
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag tooltipFlag) {
-        if (EnchantmentHelper.getItemEnchantmentLevel(JNEEnchantments.CARTRIDGE.get(), stack) > 0) {
-            tooltip.add(Component.translatable("shotgun_fist.ammo").append(CommonComponents.SPACE).append(Component.literal("" + getAmmo(stack))).withStyle(ChatFormatting.DARK_AQUA));
-            tooltip.add((Component.empty()));
-        }
-    }
-
-    @Override
-    public @NotNull UseAnim getUseAnimation(ItemStack stack) {
-        return UseAnim.BOW;
-    }
-
-    @Override
-    public int getUseDuration(ItemStack stack) {
-        int ammo = getAmmo(stack) * 10;
-        return 10 + ammo;
-    }
-
-    @Override
     public @NotNull Predicate<ItemStack> getAllSupportedProjectiles() {
         return (stack) -> stack.is(JNEItems.WRAITHING_FLESH.get());
     }
@@ -171,5 +145,24 @@ public class ShotgunFistItem extends ProjectileWeaponItem implements Vanishable,
     @Override
     public int getDefaultProjectileRange() {
         return 15;
+    }
+
+    private void playFireAnimation(Player player, int tickCount) {
+        if (this.fireTimeOut == 20) {
+            this.fireAnimationState.startIfStopped(tickCount, player);
+        }
+        if (this.fireTimeOut > 0) {
+            --this.fireTimeOut;
+        }
+        if (this.fireTimeOut <= 0) {
+            this.fireAnimationState.stop(player);
+            this.fireTimeOut = 20;
+            this.fireFlag = false;
+        }
+    }
+
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        return !oldStack.is(JNEItems.SHOTGUN_FIST.get()) || !newStack.is(JNEItems.SHOTGUN_FIST.get());
     }
 }

@@ -214,6 +214,10 @@ public class JNEItems {
     public static final RegistryObject<Item> NECROMIUM_PLATING = registerItem("necromium_plating", () ->
             new Item(new Item.Properties().fireResistant()));
 
+    public static final RegistryObject<Item> JACKHAMMER_FIST = registerItem("jackhammer_fist", () ->
+            new JackhammerFistItem(new Item.Properties().stacksTo(1).durability(640).fireResistant().rarity(Rarity.EPIC)));
+
+
     private static <T extends Item> RegistryObject<T> registerItem(String name, Supplier<T> item) {
         return ITEMS.register(name, item);
     }

@@ -84,11 +84,6 @@ public class JackhammerFistItem extends ProjectileWeaponItem implements Vanishab
         return 15;
     }
 
-    @Override
-    public @NotNull UseAnim getUseAnimation(ItemStack stack) {
-        return UseAnim.BOW;
-    }
-
     private void useProjectile(ItemStack stack, LivingEntity user) {
         if (user instanceof Player player) {
             boolean creative = player.getAbilities().instabuild;
