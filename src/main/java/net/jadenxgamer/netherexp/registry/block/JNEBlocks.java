@@ -1,7 +1,7 @@
 package net.jadenxgamer.netherexp.registry.block;
 
 import net.jadenxgamer.netherexp.NetherExp;
-import net.jadenxgamer.netherexp.compat.CompatUtil;
+import net.jadenxgamer.netherexp.util.CompatUtil;
 import net.jadenxgamer.netherexp.registry.block.custom.*;
 import net.jadenxgamer.netherexp.registry.item.JNEItems;
 import net.jadenxgamer.netherexp.registry.item.custom.GargoyleStatueItem;

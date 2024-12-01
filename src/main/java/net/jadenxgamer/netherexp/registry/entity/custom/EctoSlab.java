@@ -1,6 +1,6 @@
 package net.jadenxgamer.netherexp.registry.entity.custom;
 
-import net.jadenxgamer.netherexp.compat.CompatUtil;
+import net.jadenxgamer.netherexp.util.CompatUtil;
 import net.jadenxgamer.netherexp.registry.advancements.JNECriteriaTriggers;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNESoundEvents;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNETags;

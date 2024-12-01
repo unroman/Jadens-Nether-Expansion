@@ -1,4 +1,4 @@
-package net.jadenxgamer.netherexp.compat;
+package net.jadenxgamer.netherexp.util;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;

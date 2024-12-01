@@ -1,13 +1,16 @@
-package net.jadenxgamer.netherexp.registry.item.client;
+package net.jadenxgamer.netherexp.util;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.jadenxgamer.netherexp.registry.item.custom.PumpChargeShotgunItem;
+import net.jadenxgamer.netherexp.registry.misc_registry.JNEAnimationDefinition;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.ItemStack;
 import org.joml.Vector3f;
 
 import java.util.Optional;
@@ -44,5 +47,9 @@ public abstract class NonEntityHierarchicalModel extends Model {
         if (nonEAnimationState.matchesViewingEntity(entity)) {
             nonEAnimationState.ifStarted((state) -> NonEntityKeyframeAnimations.animate(this, definition, state.getAccumulatedTime(), 1.0F, ANIMATION_VECTOR_CACHE));
         }
+    }
+
+    public void setupAnim(Entity entity, ItemStack stack, float ageInTicks) {
+
     }
 }

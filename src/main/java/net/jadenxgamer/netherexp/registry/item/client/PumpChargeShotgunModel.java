@@ -1,8 +1,8 @@
-package net.jadenxgamer.netherexp.registry.item.client.custom;
+package net.jadenxgamer.netherexp.registry.item.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.jadenxgamer.netherexp.registry.item.client.NonEntityHierarchicalModel;
+import net.jadenxgamer.netherexp.util.NonEntityHierarchicalModel;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNEAnimationDefinition;
 import net.jadenxgamer.netherexp.registry.item.custom.PumpChargeShotgunItem;
 import net.minecraft.client.model.geom.ModelPart;
@@ -42,6 +42,7 @@ public class PumpChargeShotgunModel extends NonEntityHierarchicalModel {
 		super.renderToBuffer(pPoseStack, pBuffer, pPackedLight, pPackedOverlay, pRed, pGreen, pBlue, pAlpha);
 	}
 
+	@Override
 	public void setupAnim(Entity entity, ItemStack stack, float ageInTicks) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
 		PumpChargeShotgunItem item = (PumpChargeShotgunItem) stack.getItem();

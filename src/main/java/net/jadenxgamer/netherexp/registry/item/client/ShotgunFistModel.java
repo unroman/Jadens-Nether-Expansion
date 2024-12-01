@@ -1,8 +1,8 @@
-package net.jadenxgamer.netherexp.registry.item.client.custom;
+package net.jadenxgamer.netherexp.registry.item.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.jadenxgamer.netherexp.registry.item.client.NonEntityHierarchicalModel;
+import net.jadenxgamer.netherexp.util.NonEntityHierarchicalModel;
 import net.jadenxgamer.netherexp.registry.item.custom.ShotgunFistItem;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNEAnimationDefinition;
 import net.minecraft.client.model.geom.ModelPart;
@@ -49,6 +49,7 @@ public class ShotgunFistModel extends NonEntityHierarchicalModel {
 		shotgun.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
 
+	@Override
 	public void setupAnim(Entity entity, ItemStack stack, float ageInTicks) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
 		ShotgunFistItem item = (ShotgunFistItem) stack.getItem();

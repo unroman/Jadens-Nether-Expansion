@@ -1,6 +1,6 @@
 package net.jadenxgamer.netherexp.registry.item.brewing;
 
-import net.jadenxgamer.netherexp.compat.CompatUtil;
+import net.jadenxgamer.netherexp.util.CompatUtil;
 import net.jadenxgamer.netherexp.registry.item.JNEItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;

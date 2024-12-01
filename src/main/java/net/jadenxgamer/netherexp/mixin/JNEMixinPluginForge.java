@@ -1,8 +1,6 @@
 package net.jadenxgamer.netherexp.mixin;
 
-import net.jadenxgamer.netherexp.compat.CompatUtil;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.loading.FMLLoader;
+import net.jadenxgamer.netherexp.util.CompatUtil;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;

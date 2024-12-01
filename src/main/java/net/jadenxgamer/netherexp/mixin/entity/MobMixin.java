@@ -1,7 +1,7 @@
 package net.jadenxgamer.netherexp.mixin.entity;
 
 import net.jadenxgamer.netherexp.NetherExp;
-import net.jadenxgamer.netherexp.compat.CompatUtil;
+import net.jadenxgamer.netherexp.util.CompatUtil;
 import net.jadenxgamer.netherexp.config.JNEConfigs;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Mob;

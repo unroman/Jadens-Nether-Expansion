@@ -1,7 +1,7 @@
 package net.jadenxgamer.netherexp.registry.effect;
 
 import net.jadenxgamer.netherexp.NetherExp;
-import net.jadenxgamer.netherexp.compat.CompatUtil;
+import net.jadenxgamer.netherexp.util.CompatUtil;
 import net.jadenxgamer.netherexp.registry.effect.custom.FogSightEffect;
 import net.jadenxgamer.netherexp.registry.effect.custom.ImmunityEffect;
 import net.jadenxgamer.netherexp.registry.effect.custom.IncurableEffect;

@@ -4,7 +4,7 @@ import net.jadenxgamer.netherexp.registry.enchantment.JNEEnchantments;
 import net.jadenxgamer.netherexp.registry.entity.custom.SoulBullet;
 import net.jadenxgamer.netherexp.registry.item.JNEItemRenderer;
 import net.jadenxgamer.netherexp.registry.item.JNEItems;
-import net.jadenxgamer.netherexp.registry.item.client.NonEntityAnimationState;
+import net.jadenxgamer.netherexp.util.NonEntityAnimationState;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNESoundEvents;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.sounds.SoundSource;

@@ -1,6 +1,6 @@
 package net.jadenxgamer.netherexp.registry.item.brewing;
 
-import net.jadenxgamer.netherexp.compat.CompatUtil;
+import net.jadenxgamer.netherexp.util.CompatUtil;
 import net.minecraft.nbt.CompoundTag;
 
 import java.util.ArrayList;

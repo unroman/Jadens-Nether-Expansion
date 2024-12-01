@@ -43,4 +43,7 @@ public class JNEModelLayers {
 
     public static final ModelLayerLocation PUMP_CHARGE_SHOTGUN_LAYER = new ModelLayerLocation(
             new ResourceLocation(NetherExp.MOD_ID, "pump_charge_shotgun_layer"), "main");
+
+    public static final ModelLayerLocation JACKHAMMER_FIST_LAYER = new ModelLayerLocation(
+            new ResourceLocation(NetherExp.MOD_ID, "jackhammer_fist_layer"), "main");
 }

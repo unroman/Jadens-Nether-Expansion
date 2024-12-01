@@ -1,7 +1,7 @@
 package net.jadenxgamer.netherexp.registry.item;
 
 import net.jadenxgamer.netherexp.NetherExp;
-import net.jadenxgamer.netherexp.compat.CompatUtil;
+import net.jadenxgamer.netherexp.util.CompatUtil;
 import net.jadenxgamer.netherexp.registry.block.JNEBlocks;
 import net.jadenxgamer.netherexp.registry.fluid.JNEFluids;
 import net.jadenxgamer.netherexp.registry.item.brewing.Antidotes;

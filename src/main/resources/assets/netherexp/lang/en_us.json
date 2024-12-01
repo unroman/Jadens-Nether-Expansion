@@ -587,6 +587,8 @@
   "item.netherexp.firearm_pottery_sherd": "Firearm Pottery Sherd",
   "item.netherexp.botanical_pottery_sherd": "Botanical Pottery Sherd",
 
+  "item.netherexp.jackhammer_fist": "Jackhammer-Fist",
+
   "enchantment.netherexp.phantasm_hull.desc": "Most projectiles will phase through you when sneaking.",
   "enchantment.netherexp.bloodshed.desc": "Mobs burst into healing blood upon death.",
   "enchantment.netherexp.cartridge.desc": "Has a chance to conserve ammo when using shotguns.",

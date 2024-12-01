@@ -1,4 +1,4 @@
-package net.jadenxgamer.netherexp.registry.item.client;
+package net.jadenxgamer.netherexp.util;
 
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;

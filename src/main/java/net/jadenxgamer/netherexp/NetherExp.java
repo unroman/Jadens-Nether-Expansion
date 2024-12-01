@@ -1,7 +1,7 @@
 package net.jadenxgamer.netherexp;
 
 import com.mojang.logging.LogUtils;
-import net.jadenxgamer.netherexp.compat.CompatUtil;
+import net.jadenxgamer.netherexp.util.CompatUtil;
 import net.jadenxgamer.netherexp.config.JNEConfigs;
 import net.jadenxgamer.netherexp.config.JNEForgeConfigs;
 import net.jadenxgamer.netherexp.registry.advancements.JNECriteriaTriggers;
@@ -45,7 +45,7 @@ import org.slf4j.Logger;
 @Mod(NetherExp.MOD_ID)
 public class NetherExp {
     public static final String MOD_ID = "netherexp";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public NetherExp() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
