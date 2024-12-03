@@ -131,10 +131,10 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
     }
 
     @Inject(
-            method = "remove",
+            method = "createWitherRose",
             at = @At(value = "HEAD")
     )
-    private void netherexp$customRemoveBehavior(RemovalReason removalReason, CallbackInfo ci) {
+    private void netherexp$afterDeathBehavior(LivingEntity pEntitySource, CallbackInfo ci) {
         LivingEntity entity = ((LivingEntity) (Object) this);
         BlockState floor = this.getBlockStateOn();
         BlockPos floorPos = this.blockPosition().below();
