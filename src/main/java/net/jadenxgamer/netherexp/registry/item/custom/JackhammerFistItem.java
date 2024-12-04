@@ -108,7 +108,7 @@ public class JackhammerFistItem extends ProjectileWeaponItem implements Vanishab
 
         Vec3 velocity = user.getDeltaMovement();
         double horizontalSpeed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);
-        float damage = (float) (5.0f + horizontalSpeed * 3);
+        float damage = (float) (5.0f + horizontalSpeed * 64);
         NetherExp.LOGGER.info("Calculated Damage: {} for Velocity: {}", damage, horizontalSpeed);
 
         Vec3 raycastStart = user.getEyePosition(1.0F);
@@ -116,7 +116,7 @@ public class JackhammerFistItem extends ProjectileWeaponItem implements Vanishab
         AABB aabb = new AABB(raycastStart, raycastEnd).inflate(1.3, 1.3, 0);
         List<Entity> entities = level.getEntities(user, aabb, EntitySelector.NO_CREATIVE_OR_SPECTATOR);
         for (Entity entity : entities) {
-            if (entity instanceof LivingEntity livingEntity) {
+            if (entity instanceof LivingEntity livingEntity && !level.isClientSide()) {
                 livingEntity.hurt(user.level().damageSources().source(JNEDamageSources.JACKHAMMER, user), damage);
             }
         }

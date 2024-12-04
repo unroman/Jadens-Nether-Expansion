@@ -1,6 +1,7 @@
 package net.jadenxgamer.netherexp;
 
 import com.mojang.logging.LogUtils;
+import net.jadenxgamer.netherexp.event.RightClickBlock;
 import net.jadenxgamer.netherexp.util.CompatUtil;
 import net.jadenxgamer.netherexp.config.JNEConfigs;
 import net.jadenxgamer.netherexp.config.JNEForgeConfigs;
@@ -32,6 +33,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -41,6 +43,9 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Mod(NetherExp.MOD_ID)
 public class NetherExp {
@@ -107,6 +112,9 @@ public class NetherExp {
 
     public static void loadComplete(FMLLoadCompleteEvent event) {
         event.enqueueWork(JNEFluids::initFluidInteractions);
+    }
+
+    private static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
     }
 
     private static void addBuiltinPacks(AddPackFindersEvent event) {

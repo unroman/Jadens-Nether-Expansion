@@ -1,4 +1,4 @@
-modLoader="javafml" #mandatory
+modLoader="javafml"
 loaderVersion="${loader_version_range}"
 license="${mod_license}"
 issueTrackerURL = "https://github.com/ThatJadenXgamer/Jadens-Nether-Expansion/issues"
@@ -9,7 +9,7 @@ displayName="${mod_name}"
 authors="${mod_authors}"
 description='''${mod_description}'''
 credits = "AlwaysMuddy, Shroomaniac, ceasingbonsai17, Sydokiddo, LudoCrypt, Faithful, Wawwior"
-logoFile = "icon.png"
+logoFile = "netherexp.png"
 [[dependencies.${mod_id}]]
     modId="forge"
     mandatory=true
@@ -20,5 +20,11 @@ logoFile = "icon.png"
     modId="minecraft"
     mandatory=true
     versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.${mod_id}]]
+    modId="elysium_api"
+    mandatory=true
+    versionRange="[1.0.0,)"
     ordering="NONE"
     side="BOTH"

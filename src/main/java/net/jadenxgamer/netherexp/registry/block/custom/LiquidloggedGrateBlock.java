@@ -58,7 +58,11 @@ public class LiquidloggedGrateBlock extends Block implements SimpleWaterloggedBl
             return this.defaultBlockState().setValue(LIQUIDLOGGED, Liquidlogged.LAVA);
         }
         else if (fluidState.getType() == JNEFluids.ECTOPLASM_SOURCE.get()) {
-            return JNEBlocks.RUSTY_NETHERITE_GRATE.get().defaultBlockState().setValue(LIQUIDLOGGED, Liquidlogged.ECTOPLASM);
+            if (context.getLevel().getBlockState(context.getClickedPos()).is(JNEBlocks.NETHERITE_GRATE.get())) {
+                return JNEBlocks.RUSTY_NETHERITE_GRATE.get().defaultBlockState().setValue(LIQUIDLOGGED, Liquidlogged.ECTOPLASM);
+            } else {
+                return this.defaultBlockState().setValue(LIQUIDLOGGED, Liquidlogged.ECTOPLASM);
+            }
         }
         else return this.defaultBlockState();
     }
