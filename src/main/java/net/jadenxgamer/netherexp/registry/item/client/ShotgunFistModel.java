@@ -2,7 +2,7 @@ package net.jadenxgamer.netherexp.registry.item.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.jadenxgamer.netherexp.util.NonEntityHierarchicalModel;
+import net.jadenxgamer.elysium_api.api.keyframe.NonEntityHierarchicalModel;
 import net.jadenxgamer.netherexp.registry.item.custom.ShotgunFistItem;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNEAnimationDefinition;
 import net.minecraft.client.model.geom.ModelPart;

@@ -1,7 +1,11 @@
 package net.jadenxgamer.netherexp;
 
 import com.mojang.logging.LogUtils;
+import net.jadenxgamer.elysium_api.api.biome.ElysiumBiomeRegistry;
+import net.jadenxgamer.elysium_api.api.surface_rules.SurfaceRulesRegistry;
 import net.jadenxgamer.netherexp.event.RightClickBlock;
+import net.jadenxgamer.netherexp.registry.worldgen.JNEBiomes;
+import net.jadenxgamer.netherexp.registry.worldgen.JNESurfaceRules;
 import net.jadenxgamer.netherexp.util.CompatUtil;
 import net.jadenxgamer.netherexp.config.JNEConfigs;
 import net.jadenxgamer.netherexp.config.JNEForgeConfigs;
@@ -24,9 +28,11 @@ import net.jadenxgamer.netherexp.registry.particle.JNEParticleTypes;
 import net.jadenxgamer.netherexp.registry.worldgen.JNEBiomeModifiers;
 import net.jadenxgamer.netherexp.registry.worldgen.feature.JNEFeature;
 import net.jadenxgamer.netherexp.registry.worldgen.structure.JNEStructureType;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -34,7 +40,9 @@ import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.server.ServerAboutToStartEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -85,7 +93,17 @@ public class NetherExp {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(JNEPotionRecipe::addInvokerPotionRecipes);
+        event.enqueueWork(() -> {
+            SurfaceRulesRegistry.registerSurfaceRule(JNESurfaceRules.init());
+            JNEPotionRecipe.addInvokerPotionRecipes();
+        });
+    }
+
+    @SubscribeEvent
+    public void onServerStart(ServerAboutToStartEvent event) {
+        RegistryAccess registryAccess = event.getServer().registryAccess();
+        ElysiumBiomeRegistry.replaceNetherBiome(JNEBiomes.SORROWSQUASH_PASTURES, Biomes.SOUL_SAND_VALLEY, 0.15, 32, registryAccess);
+        ElysiumBiomeRegistry.replaceNetherBiome(JNEBiomes.BLACK_ICE_GLACIERS, Biomes.SOUL_SAND_VALLEY, 0.15, 32, registryAccess);
     }
 
     public static void registerAttributes(EntityAttributeCreationEvent event) {

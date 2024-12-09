@@ -1,0 +1,19 @@
+{
+  "blocks": "minecraft:nether_wart_block",
+  "item_condition": "minecraft:bone_meal",
+  "chance_to_fail": 2,
+  "behaviors": {
+    "type": "place",
+    "blockstate": {
+      "Name": "netherexp:nether_wart_beard"
+    },
+    "pos": "below",
+    "after_use_item": "consume",
+    "can_replace_solids": true,
+    "sounds": {
+      "sound_event": "minecraft:item.bone_meal.use",
+      "volume": 1.0,
+      "pitch": 1.0
+    }
+  }
+}

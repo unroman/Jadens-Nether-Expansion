@@ -14,9 +14,6 @@ import net.minecraft.world.level.material.Fluid;
 
 public class JNETags {
     public static class Blocks {
-        public static final TagKey<Block> ASH_CAN_SURVIVE_ON = createBlockTag("ash_can_survive_on"); // Allows White Ash to be placed on non-full Blocks
-        public static final TagKey<Block> ASH_CANNOT_SURVIVE_ON = createBlockTag("ash_cannot_survive_on"); // Prevents White Ash from being placed on these Blocks
-        public static final TagKey<Block> WHITE_ASH = createBlockTag("white_ash"); // Tag to define all White Ash related Blocks
         public static final TagKey<Block> STEMS = createBlockTag("stems"); // Tag to define all Nether Stem Blocks
         public static final TagKey<Block> SOUL_LAYER_CAN_SURVIVE_ON = createBlockTag("soul_layer_can_survive_on"); // Allows Soul Layer to be placed on non-full Blocks
         public static final TagKey<Block> SOUL_LAYER_CANNOT_SURVIVE_ON = createBlockTag("soul_layer_cannot_survive_on"); // Prevents Soul Layer from being placed on these Blocks

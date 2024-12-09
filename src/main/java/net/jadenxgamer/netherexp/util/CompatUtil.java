@@ -1,15 +1,10 @@
 package net.jadenxgamer.netherexp.util;
 
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.block.Block;
-import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fml.loading.FMLLoader;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class CompatUtil {
 
@@ -109,21 +104,6 @@ public class CompatUtil {
 
         private static ResourceKey<Biome> register(String namespace, String id) {
             return ResourceKey.create(Registries.BIOME, new ResourceLocation(namespace, id));
-        }
-    }
-
-    public static class Registry {
-
-        public static Block getBlock(ResourceLocation id) {
-            return BuiltInRegistries.BLOCK.get(id);
-        }
-
-        public static Item getItem(ResourceLocation id) {
-            return BuiltInRegistries.ITEM.get(id);
-        }
-
-        public static FluidType getFluidType(ResourceLocation id) {
-            return ForgeRegistries.FLUID_TYPES.get().getValue(id);
         }
     }
 }

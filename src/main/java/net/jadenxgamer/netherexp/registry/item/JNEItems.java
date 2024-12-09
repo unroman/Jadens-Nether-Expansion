@@ -39,11 +39,8 @@ public class JNEItems {
     public static final RegistryObject<Item> IRON_SCRAP = registerItem("iron_scrap", () ->
         new Item(new Item.Properties()));
 
-    public static final RegistryObject<Item> WHITE_ASH_POWDER = registerItem("white_ash_powder", () ->
-        new Item(new Item.Properties()));
-
     public static final RegistryObject<Item> FOSSIL_FUEL = registerItem("fossil_fuel", () ->
-        new Item(new Item.Properties()));
+        new FuelItem(new Item.Properties(), 1600));
 
     public static final RegistryObject<Item> RIFT_ARMOR_TRIM_SMITHING_TEMPLATE = registerItem("rift_armor_trim_smithing_template", () ->
         SmithingTemplateItem.createArmorTrimTemplate(JNETrimPatterns.RIFT));

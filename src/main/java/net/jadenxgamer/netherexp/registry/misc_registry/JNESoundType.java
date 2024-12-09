@@ -36,25 +36,9 @@ public class JNESoundType {
             JNESoundEvents.BLOCK_SOUL_CANDLE_BREAK.get(), JNESoundEvents.BLOCK_SOUL_CANDLE_STEP.get(), JNESoundEvents.BLOCK_SOUL_CANDLE_PLACE.get(),
             JNESoundEvents.BLOCK_SOUL_CANDLE_HIT.get(), JNESoundEvents.BLOCK_SOUL_CANDLE_FALL.get());
 
-    public static final SoundType BLACKSTONE = new SoundType(1f, 1f,
-            JNESoundEvents.BLOCK_BLACKSTONE_BREAK.get(), JNESoundEvents.BLOCK_BLACKSTONE_STEP.get(), JNESoundEvents.BLOCK_BLACKSTONE_PLACE.get(),
-            JNESoundEvents.BLOCK_BLACKSTONE_HIT.get(), JNESoundEvents.BLOCK_BLACKSTONE_FALL.get());
-
-    public static final SoundType POLISHED_BLACKSTONE_BRICKS = new SoundType(1f, 1f,
-            JNESoundEvents.BLOCK_POLISHED_BLACKSTONE_BRICKS_BREAK.get(), JNESoundEvents.BLOCK_POLISHED_BLACKSTONE_BRICKS_STEP.get(), JNESoundEvents.BLOCK_POLISHED_BLACKSTONE_BRICKS_PLACE.get(),
-            JNESoundEvents.BLOCK_POLISHED_BLACKSTONE_BRICKS_HIT.get(), JNESoundEvents.BLOCK_POLISHED_BLACKSTONE_BRICKS_FALL.get());
-
-    public static final SoundType MAGMA_BLOCK = new SoundType(1f, 1f,
-            JNESoundEvents.BLOCK_MAGMA_BLOCK_BREAK.get(), SoundEvents.NETHERRACK_STEP, JNESoundEvents.BLOCK_MAGMA_BLOCK_PLACE.get(),
-            SoundEvents.NETHERRACK_HIT, SoundEvents.NETHERRACK_FALL);
-
     public static final SoundType SOUL_MAGMA_BLOCK = new SoundType(1f, 1f,
             JNESoundEvents.BLOCK_SOUL_MAGMA_BLOCK_BREAK.get(), SoundEvents.SOUL_SOIL_STEP, JNESoundEvents.BLOCK_SOUL_MAGMA_BLOCK_PLACE.get(),
             SoundEvents.SOUL_SOIL_HIT, SoundEvents.SOUL_SOIL_FALL);
-
-    public static final SoundType GLOWSTONE = new SoundType(1f, 1f,
-            JNESoundEvents.BLOCK_GLOWSTONE_BREAK.get(), SoundEvents.NETHER_ORE_STEP, JNESoundEvents.BLOCK_GLOWSTONE_PLACE.get(),
-            SoundEvents.NETHER_ORE_HIT, SoundEvents.NETHER_ORE_FALL);
 
     public static final SoundType QUARTZ_BLOCK = new SoundType(1f, 1f,
             JNESoundEvents.BLOCK_QUARTZ_BLOCK_BREAK.get(), SoundEvents.NETHER_ORE_STEP, JNESoundEvents.BLOCK_QUARTZ_BLOCK_PLACE.get(),

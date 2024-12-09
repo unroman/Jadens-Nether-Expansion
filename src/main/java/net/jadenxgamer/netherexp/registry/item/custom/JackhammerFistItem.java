@@ -1,12 +1,12 @@
 package net.jadenxgamer.netherexp.registry.item.custom;
 
+import net.jadenxgamer.elysium_api.api.keyframe.NonEntityAnimationState;
 import net.jadenxgamer.netherexp.NetherExp;
 import net.jadenxgamer.netherexp.registry.enchantment.JNEEnchantments;
 import net.jadenxgamer.netherexp.registry.item.JNEItemRenderer;
 import net.jadenxgamer.netherexp.registry.item.JNEItems;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNEDamageSources;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNESoundEvents;
-import net.jadenxgamer.netherexp.util.NonEntityAnimationState;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundSource;

@@ -15,7 +15,6 @@
     "renderer.ParticleEngineMixin"
   ],
   "mixins": [
-    "block.BlockMixin",
     "block.BlocksMixin",
     "block.RootsBlockMixin",
     "block.SoulFireBlockMixin",
@@ -41,6 +40,7 @@
     "entity.StriderMixin",
     "item.BlockItemMixin",
     "item.BowItemMixin",
+    "item.BucketItemMixin",
     "item.EnchantmentMixin",
     "item.ItemMixin",
     "item.ItemStackMixin",

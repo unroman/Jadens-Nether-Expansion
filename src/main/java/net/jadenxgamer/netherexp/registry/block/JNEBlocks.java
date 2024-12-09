@@ -578,16 +578,6 @@ public class JNEBlocks {
 
     public static final RegistryObject<Block> BASALTIC_GEYSER = registerBlock("basaltic_geyser", () ->
             new GeyserBlock(BlockBehaviour.Properties.copy(Blocks.BASALT).pushReaction(PushReaction.DESTROY).sound(SoundType.BASALT), () -> ParticleTypes.WHITE_ASH, JNEParticleTypes.WHITE_SMOKE, true, JNETags.Biomes.HAS_WHITE_ASH));
-    
-    // White Ash
-
-    public static final RegistryObject<Block> WHITE_ASH = registerBlock("white_ash", () ->
-            new WhiteAshBlock(BlockBehaviour.Properties.of().strength(0.1f).requiresCorrectToolForDrops().replaceable().forceSolidOff().isViewBlocking(
-                    ((state, world, pos) -> state.getValue(SoulSoilLayerBlock.LAYERS) >= 8))
-                    .sound(JNESoundType.WHITE_ASH).mapColor(MapColor.COLOR_LIGHT_GRAY)));
-
-    public static final RegistryObject<Block> WHITE_ASH_BLOCK = registerBlock("white_ash_block", () ->
-            new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).strength(0.1f).requiresCorrectToolForDrops().sound(JNESoundType.WHITE_ASH)));
 
     // Bones
 

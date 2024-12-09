@@ -1,5 +1,6 @@
 package net.jadenxgamer.netherexp.registry.fluid;
 
+import net.jadenxgamer.elysium_api.api.util.ResourceKeyRegistryHelper;
 import net.jadenxgamer.netherexp.NetherExp;
 import net.jadenxgamer.netherexp.util.CompatUtil;
 import net.jadenxgamer.netherexp.registry.block.JNEBlocks;
@@ -61,7 +62,7 @@ public class JNEFluids {
                 ForgeMod.WATER_TYPE.get(), state -> JNEBlocks.BLACK_ICE.get().defaultBlockState()));
         if (CompatUtil.checkAlexsCaves()) {
             FluidInteractionRegistry.addInteraction(ECTOPLASM_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
-                CompatUtil.Registry.getFluidType(new ResourceLocation(CompatUtil.ALEXS_CAVES, "purple_soda")), state -> CompatUtil.Registry.getBlock(new ResourceLocation(CompatUtil.ALEXS_CAVES, "rock_candy_light_blue")).defaultBlockState()));
+                ResourceKeyRegistryHelper.getFluidType(new ResourceLocation(CompatUtil.ALEXS_CAVES, "purple_soda")), state -> ResourceKeyRegistryHelper.getBlock(new ResourceLocation(CompatUtil.ALEXS_CAVES, "rock_candy_light_blue")).defaultBlockState()));
         }
     }
 }
