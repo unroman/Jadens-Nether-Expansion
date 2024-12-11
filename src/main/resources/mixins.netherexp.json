@@ -6,7 +6,6 @@
   "minVersion": "0.8",
   "plugin": "net.jadenxgamer.netherexp.mixin.JNEMixinPluginForge",
   "client": [
-    "entity.AbstractClientPlayerMixin",
     "entity.LocalPlayerMixin",
     "renderer.BlazeRendererMixin",
     "renderer.CameraMixin",

@@ -1,10 +1,10 @@
 {
-  "blocks": "gardens_of_the_dead:soulwart_block",
+  "blocks": "gardens_of_the_dead:blightwart_block",
   "item_condition": "minecraft:bone_meal",
   "chance_to_fail": 2,
   "behaviors": {
     "type": "place",
-    "place": "netherexp:soulwart_beard",
+    "place": "netherexp:blightwart_beard",
     "pos": "below",
     "after_use_item": "consume",
     "can_replace_solids": false,

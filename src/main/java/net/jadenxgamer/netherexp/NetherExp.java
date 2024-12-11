@@ -94,7 +94,7 @@ public class NetherExp {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            SurfaceRulesRegistry.registerSurfaceRule(JNESurfaceRules.init());
+//            SurfaceRulesRegistry.registerSurfaceRule(JNESurfaceRules.init());
             JNEPotionRecipe.addInvokerPotionRecipes();
         });
     }
@@ -102,8 +102,8 @@ public class NetherExp {
     @SubscribeEvent
     public void onServerStart(ServerAboutToStartEvent event) {
         RegistryAccess registryAccess = event.getServer().registryAccess();
-        ElysiumBiomeRegistry.replaceNetherBiome(JNEBiomes.SORROWSQUASH_PASTURES, Biomes.SOUL_SAND_VALLEY, 0.15, 32, registryAccess);
-        ElysiumBiomeRegistry.replaceNetherBiome(JNEBiomes.BLACK_ICE_GLACIERS, Biomes.SOUL_SAND_VALLEY, 0.15, 32, registryAccess);
+//        ElysiumBiomeRegistry.replaceNetherBiome(JNEBiomes.SORROWSQUASH_PASTURES, Biomes.SOUL_SAND_VALLEY, 0.15, 64, registryAccess);
+//        ElysiumBiomeRegistry.replaceNetherBiome(JNEBiomes.BLACK_ICE_GLACIERS, Biomes.SOUL_SAND_VALLEY, 0.15, 64, registryAccess);
     }
 
     public static void registerAttributes(EntityAttributeCreationEvent event) {
@@ -130,9 +130,6 @@ public class NetherExp {
 
     public static void loadComplete(FMLLoadCompleteEvent event) {
         event.enqueueWork(JNEFluids::initFluidInteractions);
-    }
-
-    private static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
     }
 
     private static void addBuiltinPacks(AddPackFindersEvent event) {
