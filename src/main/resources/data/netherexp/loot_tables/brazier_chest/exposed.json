@@ -166,7 +166,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:copper_ingot",
+          "name": "minecraft:iron_nugget",
           "weight": 10,
           "functions": [
             {
@@ -270,12 +270,17 @@
         {
           "type": "minecraft:item",
           "name": "netherexp:music_disc_buckshot_wonderland",
-          "weight": 15
+          "weight": 5
         },
         {
           "type": "minecraft:item",
           "name": "netherexp:shotgun_core",
           "weight": 8
+        },
+        {
+          "type": "minecraft:item",
+          "name": "netherexp:pump_charge_upgrade_smithing_template",
+          "weight": 1
         },
         {
           "type": "minecraft:item",
@@ -288,6 +293,31 @@
                 "min": 1,
                 "max": 2
               }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:brush",
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "type": "minecraft:uniform",
+                "min": 5,
+                "max": 32
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.15
             }
           ]
         }
