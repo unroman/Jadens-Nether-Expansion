@@ -48,7 +48,7 @@ public class JNEConfigs {
     public static Supplier<Boolean> LARGER_NETHER_BIOMES = () -> false;
     public static Supplier<Boolean> AMPLIFIER_IMMUNITY_REDUCTION = () -> false;
     public static Supplier<Boolean> ECTOPLASM_RUSTS_NETHERITE = () -> true;
-    public static Supplier<Boolean> ECTOPLASM_SOURCE_CONVERSION = () -> true;
+    public static Supplier<Boolean> ECTOPLASM_FREEZING_DAMAGE = () -> true;
     public static Supplier<Boolean> REDUCE_SOUL_SAND_SLOWNESS = () -> false;
     public static Supplier<Boolean> REMOVE_SOUL_SPEED_DURABILITY_PENALTY = () -> false;
     public static Supplier<Boolean> ENABLE_SUB_BIOMES = () -> true;
@@ -60,9 +60,4 @@ public class JNEConfigs {
     public static Supplier<Boolean> ENABLE_BLACK_ICE_PARTICLES = () -> true;
     public static Supplier<Boolean> ENABLE_ECTOPLASM_PARTICLES = () -> true;
     public static Supplier<Boolean> ENABLE_ECTOPLASM_SOUNDS = () -> true;
-    public static Supplier<Boolean> BLACKSTONE_SOUNDS = () -> true;
-    public static Supplier<Boolean> POLISHED_BLACKSTONE_SOUNDS = () -> true;
-    public static Supplier<Boolean> MAGMA_BLOCK_SOUNDS = () -> true;
-    public static Supplier<Boolean> GLOWSTONE_SOUNDS = () -> true;
-    public static Supplier<Boolean> QUARTZ_BLOCK_SOUNDS = () -> true;
 }

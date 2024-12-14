@@ -125,9 +125,9 @@ public class JNEForgeConfigs {
         ECTOPLASM_RUSTS_NETHERITE = BUILDER
                 .comment("Ectoplasm will rust all nearby plated netherite blocks it comes in contact with")
                 .define("ectoplasm_rusts_netherite", true);
-        ECTOPLASM_SOURCE_CONVERSION = BUILDER
-                .comment("When Flowing Ectoplasm is surrounded on two sides by sources it converts to source")
-                .define("ectoplasm_source_conversion", true);
+        ECTOPLASM_FREEZING_DAMAGE = BUILDER
+                .comment("Ectoplasm slowly starts dealing freezing damage when in contact")
+                .define("ectoplasm_freezing_damage", true);
         REDUCE_SOUL_SAND_SLOWNESS = BUILDER
                 .comment("Soul Sand movement speed reduction will be less intrusive when enabled")
                 .define("reduce_soul_sand_slowness", false);
@@ -158,21 +158,6 @@ public class JNEForgeConfigs {
         ENABLE_ECTOPLASM_SOUNDS = BUILDER
                 .comment("Ectoplasm will occasionally produce whispering sounds")
                 .define("enable_ectoplasm_sounds", true);
-        BLACKSTONE_SOUNDS = BUILDER
-                .comment("Blackstone will produce unique sounds")
-                .define("blackstone_sounds", true);
-        POLISHED_BLACKSTONE_SOUNDS = BUILDER
-                .comment("Polished Blackstone will produce unique sounds")
-                .define("polished_blackstone_sounds", true);
-        MAGMA_BLOCK_SOUNDS = BUILDER
-                .comment("Magma Blocks will produce unique sounds")
-                .define("magma_block_sounds", true);
-        GLOWSTONE_SOUNDS = BUILDER
-                .comment("Glowstone and Redstone Lamps will produce unique sounds")
-                .define("glowstone_sounds", true);
-        QUARTZ_BLOCK_SOUNDS = BUILDER
-                .comment("Quartz Blocks will produce unique sounds")
-                .define("quartz_sounds", true);
     }
 
     static {

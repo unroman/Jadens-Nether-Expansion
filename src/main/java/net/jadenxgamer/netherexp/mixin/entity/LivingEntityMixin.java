@@ -5,6 +5,7 @@ import net.jadenxgamer.netherexp.registry.block.JNEBlocks;
 import net.jadenxgamer.netherexp.registry.effect.JNEMobEffects;
 import net.jadenxgamer.netherexp.registry.effect.custom.ImmunityEffect;
 import net.jadenxgamer.netherexp.registry.entity.custom.Banshee;
+import net.jadenxgamer.netherexp.registry.fluid.JNEFluids;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNETags;
 import net.jadenxgamer.netherexp.registry.particle.JNEParticleTypes;
 import net.minecraft.core.BlockPos;
@@ -144,6 +145,19 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
             }
             else if (entity instanceof WitherSkeleton && JNEConfigs.WITHER_SKELETON_FOSSILIZATION.get()) {
                 level().setBlock(floorPos, JNEBlocks.FOSSIL_FUEL_ORE.get().defaultBlockState(), Block.UPDATE_ALL);
+            }
+        }
+    }
+
+    @Inject(
+            method = "aiStep",
+            at = @At(value = "TAIL")
+    )
+    private void netherexp$tickFreeze(CallbackInfo ci) {
+        LivingEntity entity = ((LivingEntity) (Object) this);
+        if (!entity.level().isClientSide() && !entity.isInPowderSnow && !entity.isDeadOrDying() && entity.canFreeze()) {
+            if (entity.isInFluidType(JNEFluids.ECTOPLASM_TYPE.get()) && JNEConfigs.ECTOPLASM_FREEZING_DAMAGE.get()) {
+                entity.setTicksFrozen(entity.getTicksFrozen() + 3);
             }
         }
     }
