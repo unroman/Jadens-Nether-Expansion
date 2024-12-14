@@ -319,10 +319,10 @@ public class JNEBlocks {
     // Claret
 
     public static final RegistryObject<Block> CEREBRAGE_CLARET_STEM = registerBlock("cerebrage_claret_stem", () ->
-            new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.WARPED_STEM).mapColor(MapColor.CRIMSON_HYPHAE)));
+            new LogBlock(BlockBehaviour.Properties.copy(Blocks.WARPED_STEM).mapColor(MapColor.CRIMSON_HYPHAE), JNEBlocks.STRIPPED_CLARET_STEM));
 
     public static final RegistryObject<Block> CEREBRAGE_CLARET_HYPHAE = registerBlock("cerebrage_claret_hyphae", () ->
-            new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.WARPED_HYPHAE).mapColor(MapColor.CRIMSON_HYPHAE)));
+            new LogBlock(BlockBehaviour.Properties.copy(Blocks.WARPED_HYPHAE).mapColor(MapColor.CRIMSON_HYPHAE), JNEBlocks.STRIPPED_CLARET_HYPHAE));
 
     public static final RegistryObject<Block> STRIPPED_CLARET_STEM = registerBlock("stripped_claret_stem", () ->
             new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_WARPED_STEM).mapColor(MapColor.NETHER)));
@@ -386,7 +386,7 @@ public class JNEBlocks {
     // Smokestalk
 
     public static final RegistryObject<Block> SMOKESTALK_BLOCK = registerBlock("smokestalk_block", () ->
-            new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.WARPED_STEM).mapColor(MapColor.TERRACOTTA_CYAN).sound(JNESoundType.SMOKESTALK_WOOD)));
+            new LogBlock(BlockBehaviour.Properties.copy(Blocks.WARPED_STEM).mapColor(MapColor.TERRACOTTA_CYAN).sound(JNESoundType.SMOKESTALK_WOOD), JNEBlocks.STRIPPED_SMOKESTALK_BLOCK));
 
     public static final RegistryObject<Block> STRIPPED_SMOKESTALK_BLOCK = registerBlock("stripped_smokestalk_block", () ->
             new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_WARPED_STEM).mapColor(MapColor.TERRACOTTA_GRAY).sound(JNESoundType.SMOKESTALK_WOOD)));
