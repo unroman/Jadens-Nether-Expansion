@@ -36,6 +36,7 @@
     "entity.PiglinAiMixin",
     "entity.PlayerMixin",
     "entity.ProjectileMixin",
+    "entity.StrayMixin",
     "entity.StriderMixin",
     "item.BlockItemMixin",
     "item.BowItemMixin",

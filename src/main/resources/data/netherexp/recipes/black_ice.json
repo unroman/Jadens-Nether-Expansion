@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "netherexp:black_icicle"
+    }
+  },
+  "result": {
+    "item": "netherexp:black_ice",
+    "count": 2
+  }
+}

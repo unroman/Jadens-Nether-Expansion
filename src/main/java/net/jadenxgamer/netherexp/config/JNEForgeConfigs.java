@@ -134,12 +134,21 @@ public class JNEForgeConfigs {
         REMOVE_SOUL_SPEED_DURABILITY_PENALTY = BUILDER
                 .comment("Soul Speed will no longer damage your boots when enabled")
                 .define("remove_soul_speed_durability_penalty", false);
+        DEV_TEST_MODE = BUILDER
+                .comment("Developer Mode enables various Loggers and other technical information for debugging sake \nIf you aren't a dev or someone with technical knowledge then keep it at \"false\" lol")
+                .define("dev_test_mode", false);
+    }
+
+    private static void registerSubBiomeConfigs(ForgeConfigSpec.Builder BUILDER) {
         ENABLE_SUB_BIOMES = BUILDER
-                .comment("Secondary and Tertiary sub-biomes will start generating if enabled")
+                .comment("Defines if Sub-Biomes should be enabled")
                 .define("enable_sub_biomes", true);
-        SECONDARY_SUB_BIOME_WEIGHTS = BUILDER
-                .comment("Defines the weight for Secondary sub-biome regions")
-                .define("secondary_sub_biome_weights", 2);
+        BLACK_ICE_GLACIERS_RARITY = BUILDER
+                .comment("Defines how often Black Ice Glaciers replace Soul Sand Valleys")
+                .defineInRange("black_ice_glaciers_rarity", 0.05, 0, 1);
+        BLACK_ICE_GLACIERS_SIZE = BUILDER
+                .comment("Defines how big Black Ice Glaciers should be")
+                .define("black_ice_glaciers_size", 64);
     }
 
     private static void registerParticlesAndSoundsConfigs(ForgeConfigSpec.Builder BUILDER) {
@@ -176,6 +185,10 @@ public class JNEForgeConfigs {
 
         BUILDER.comment("Game Mechanic Settings").push("game_mechanics");
         registerGameMechanicConfigs(BUILDER);
+        BUILDER.pop();
+
+        BUILDER.comment("Sub-Biome Settings").push("sub_biome");
+        registerSubBiomeConfigs(BUILDER);
         BUILDER.pop();
 
         BUILDER.comment("Particle & Sound Settings").push("particles_and_sounds");

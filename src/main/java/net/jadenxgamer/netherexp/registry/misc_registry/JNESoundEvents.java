@@ -98,6 +98,7 @@ public class JNESoundEvents {
     public static RegistryObject<SoundEvent> BLOCK_BLACK_ICE_PLACE = registerSoundEvents("block.black_ice.place");
     public static RegistryObject<SoundEvent> BLOCK_BLACK_ICE_HIT = registerSoundEvents("block.black_ice.hit");
     public static RegistryObject<SoundEvent> BLOCK_BLACK_ICE_FALL = registerSoundEvents("block.black_ice.fall");
+    public static RegistryObject<SoundEvent> BLOCK_THIN_BLACK_ICE_CRACKING = registerSoundEvents("block.thin_black_ice.cracking");
 
     // Magma Block
 

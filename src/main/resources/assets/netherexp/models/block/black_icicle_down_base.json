@@ -1,0 +1,6 @@
+{
+  "parent": "netherexp:block/black_icicle",
+  "textures": {
+    "cross": "netherexp:block/black_icicle_down_base"
+  }
+}

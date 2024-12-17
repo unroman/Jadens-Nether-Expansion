@@ -909,6 +909,16 @@
       "netherexp:block/black_ice/step5"
     ]
   },
+  "block.thin_black_ice.cracking": {
+    "subtitle": "subtitles.block.thin_black_ice.cracking",
+    "sounds": [
+      "netherexp:block/thin_black_ice/cracking1",
+      "netherexp:block/thin_black_ice/cracking2",
+      "netherexp:block/thin_black_ice/cracking3",
+      "netherexp:block/thin_black_ice/cracking4",
+      "netherexp:block/thin_black_ice/cracking5"
+    ]
+  },
   "block.suspicious_soul_sand.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [

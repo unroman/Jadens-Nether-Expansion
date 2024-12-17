@@ -21,28 +21,28 @@ public class JNESurfaceRules {
                 SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("bedrock_roof", VerticalAnchor.belowTop(5), VerticalAnchor.top())), SurfaceRules.ifTrue(SurfaceRules.yBlockCheck(VerticalAnchor.belowTop(5), 0), BEDROCK)),
 
                 SurfaceRules.ifTrue(SurfaceRules.UNDER_CEILING, SurfaceRules.sequence(
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(JNEBiomes.SORROWSQUASH_PASTURES), SurfaceRules.sequence(
-                                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.NETHER_STATE_SELECTOR, 0, 1.7976931348623157e+308), SOUL_SAND),
-                                SOUL_SOIL
-                        )),
+//                        SurfaceRules.ifTrue(SurfaceRules.isBiome(JNEBiomes.SORROWSQUASH_PASTURES), SurfaceRules.sequence(
+//                                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.NETHER_STATE_SELECTOR, 0, 1.7976931348623157e+308), SOUL_SAND),
+//                                SOUL_SOIL
+//                        )),
                         SurfaceRules.ifTrue(SurfaceRules.isBiome(JNEBiomes.BLACK_ICE_GLACIERS), SurfaceRules.sequence(
-                                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.NETHER_STATE_SELECTOR, 0, 1.7976931348623157e+308), SOUL_SAND),
+                                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.NETHER_STATE_SELECTOR, 0, 1.7976931348623157e+308), SOUL_SOIL),
                                 PALE_SOUL_SLATE
                         ))
                 )),
                 SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, SurfaceRules.sequence(
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(JNEBiomes.SORROWSQUASH_PASTURES), SurfaceRules.sequence(
-                                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.PATCH, -0.012, 1.7976931348623157e+30),
-                                        SurfaceRules.ifTrue(SurfaceRules.yStartCheck(VerticalAnchor.absolute(30), 0),
-                                                SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yStartCheck(VerticalAnchor.absolute(35), 0)), GRAVEL))),
-                                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.NETHER_STATE_SELECTOR, 0, 1.7976931348623157e+308), SOUL_SAND),
-                                SOUL_SOIL
-                        )),
+//                        SurfaceRules.ifTrue(SurfaceRules.isBiome(JNEBiomes.SORROWSQUASH_PASTURES), SurfaceRules.sequence(
+//                                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.PATCH, -0.012, 1.7976931348623157e+30),
+//                                        SurfaceRules.ifTrue(SurfaceRules.yStartCheck(VerticalAnchor.absolute(30), 0),
+//                                                SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yStartCheck(VerticalAnchor.absolute(35), 0)), GRAVEL))),
+//                                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.NETHER_STATE_SELECTOR, 0, 1.7976931348623157e+308), SOUL_SAND),
+//                                SOUL_SOIL
+//                        )),
                         SurfaceRules.ifTrue(SurfaceRules.isBiome(JNEBiomes.BLACK_ICE_GLACIERS), SurfaceRules.sequence(
                                 SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.PATCH, -0.012, 1.7976931348623157e+30),
                                         SurfaceRules.ifTrue(SurfaceRules.yStartCheck(VerticalAnchor.absolute(30), 0),
                                                 SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yStartCheck(VerticalAnchor.absolute(35), 0)), GRAVEL))),
-                                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.NETHER_STATE_SELECTOR, 0, 1.7976931348623157e+308), SOUL_SAND),
+                                SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.NETHER_STATE_SELECTOR, 0, 1.7976931348623157e+308), SOUL_SOIL),
                                 PALE_SOUL_SLATE
                         ))
                 ))

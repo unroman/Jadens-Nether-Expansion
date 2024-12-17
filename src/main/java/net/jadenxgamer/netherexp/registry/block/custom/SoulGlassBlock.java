@@ -53,16 +53,14 @@ public class SoulGlassBlock extends AbstractGlassBlock {
     @SuppressWarnings("deprecation")
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (!(entity instanceof LivingEntity) || entity.getFeetBlockState().is(this)) {
-            if (entity instanceof LivingEntity && !EnchantmentHelper.hasSoulSpeed((LivingEntity)entity)) {
-                entity.makeStuckInBlock(state, new Vec3(0.6, 0.5, 0.6));
-            }
-            if (level.isClientSide) {
-                boolean bl = entity.xOld != entity.getX() || entity.zOld != entity.getZ();
-                RandomSource random = level.getRandom();
-                if (bl && random.nextBoolean()) {
-                    level.addParticle(ParticleTypes.SOUL, entity.getX(), pos.getY() + 1, entity.getZ(), Mth.randomBetween(random, -1.0f, 1.0f) * 0.083333336f, 0.05f, Mth.randomBetween(random, -1.0f, 1.0f) * 0.083333336f);
-                }
+        if (entity instanceof LivingEntity livingEntity && !EnchantmentHelper.hasSoulSpeed(livingEntity)) {
+            entity.makeStuckInBlock(state, new Vec3(0.6, 0.5, 0.6));
+        }
+        if (level.isClientSide) {
+            boolean bl = entity.xOld != entity.getX() || entity.zOld != entity.getZ();
+            RandomSource random = level.getRandom();
+            if (bl && random.nextBoolean()) {
+                level.addParticle(ParticleTypes.SOUL, entity.getX(), pos.getY() + 1, entity.getZ(), Mth.randomBetween(random, -1.0f, 1.0f) * 0.083333336f, 0.05f, Mth.randomBetween(random, -1.0f, 1.0f) * 0.083333336f);
             }
         }
     }

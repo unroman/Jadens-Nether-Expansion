@@ -89,8 +89,10 @@ public class JNECreativeModeTabs {
                         output.accept(JNEItems.BANSHEE_POWDER.get());
                         output.accept(JNEItems.WILL_O_WISP.get());
 
-                        output.accept(JNEBlocks.BLACK_ICE.get());
                         output.accept(JNEFluids.ECTOPLASM_BUCKET.get());
+                        output.accept(JNEBlocks.BLACK_ICE.get());
+                        output.accept(JNEBlocks.THIN_BLACK_ICE.get());
+                        output.accept(JNEBlocks.BLACK_ICICLE.get());
 
                         output.accept(Blocks.SOUL_TORCH);
                         output.accept(Blocks.SOUL_LANTERN);

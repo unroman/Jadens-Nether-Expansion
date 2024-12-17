@@ -618,5 +618,10 @@
   "subtitles.entity.stampede.eat": "Stampede chews its food",
   "subtitles.entity.stampede.agitated": "Stampede gets agitated",
 
+  "block.netherexp.black_icicle": "Black Icicle",
+  "block.netherexp.thin_black_ice": "Thin Black Ice",
+
+  "subtitles.block.thin_black_ice.cracking": "Thin Black Ice cracks",
+
   "itemGroup.netherexp.netherexp_tab": "Jaden's Nether Expansion"
 }

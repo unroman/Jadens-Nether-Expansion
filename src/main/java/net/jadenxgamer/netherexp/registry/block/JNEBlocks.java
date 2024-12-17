@@ -149,7 +149,13 @@ public class JNEBlocks {
             new SoulMagmaBlock(BlockBehaviour.Properties.copy(Blocks.MAGMA_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE).lightLevel((state) -> 4).sound(JNESoundType.SOUL_MAGMA_BLOCK)));
 
     public static final RegistryObject<Block> BLACK_ICE = registerBlock("black_ice", () ->
-            new BlackIceBlock(BlockBehaviour.Properties.copy(Blocks.PACKED_ICE).mapColor(MapColor.COLOR_BLACK).randomTicks().requiresCorrectToolForDrops().strength(0.5f).lightLevel((state) -> 7).sound(JNESoundType.BLACK_ICE)));
+            new BlackIceBlock(BlockBehaviour.Properties.copy(Blocks.PACKED_ICE).mapColor(MapColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(0.3f).lightLevel((state) -> 2).sound(JNESoundType.BLACK_ICE)));
+
+    public static final RegistryObject<Block> BLACK_ICICLE = registerBlock("black_icicle", () ->
+            new BlackIcicleBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).requiresCorrectToolForDrops().forceSolidOn().noOcclusion().randomTicks().strength(0.1F, 3.0F).dynamicShape().offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY).sound(JNESoundType.BLACK_ICE)));
+
+    public static final RegistryObject<Block> THIN_BLACK_ICE = registerBlock("thin_black_ice", () ->
+            new ThinBlackIceBlock(BlockBehaviour.Properties.copy(BLACK_ICE.get()).strength(0.05f).noOcclusion().sound(JNESoundType.BLACK_ICE)));
 
     public static final RegistryObject<Block> FOSSIL_ORE = registerBlock("fossil_ore", () ->
             new FossilOreBlock(BlockBehaviour.Properties.copy(Blocks.SOUL_SOIL).randomTicks().strength(0.6f)));

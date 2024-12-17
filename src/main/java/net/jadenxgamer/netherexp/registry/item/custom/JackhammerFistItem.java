@@ -2,6 +2,7 @@ package net.jadenxgamer.netherexp.registry.item.custom;
 
 import net.jadenxgamer.elysium_api.api.keyframe.NonEntityAnimationState;
 import net.jadenxgamer.netherexp.NetherExp;
+import net.jadenxgamer.netherexp.config.JNEConfigs;
 import net.jadenxgamer.netherexp.registry.enchantment.JNEEnchantments;
 import net.jadenxgamer.netherexp.registry.item.JNEItemRenderer;
 import net.jadenxgamer.netherexp.registry.item.JNEItems;
@@ -109,7 +110,9 @@ public class JackhammerFistItem extends ProjectileWeaponItem implements Vanishab
         Vec3 velocity = user.getDeltaMovement();
         double horizontalSpeed = Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);
         float damage = (float) (5.0f + horizontalSpeed * 64);
-        NetherExp.LOGGER.info("Calculated Damage: {} for Velocity: {}", damage, horizontalSpeed);
+        if (JNEConfigs.DEV_TEST_MODE.get()) {
+            NetherExp.LOGGER.info("Jackhammer-Fist Calculated Damage: {} for Velocity: {}", damage, horizontalSpeed);
+        }
 
         Vec3 raycastStart = user.getEyePosition(1.0F);
         Vec3 raycastEnd = raycastStart.add(user.getViewVector(1.0F).scale(5));
