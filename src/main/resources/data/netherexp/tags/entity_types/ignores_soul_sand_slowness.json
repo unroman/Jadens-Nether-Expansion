@@ -1,12 +1,9 @@
 {
   "replace": false,
   "values": [
-    "netherexp:wisp",
-    "netherexp:apparition",
     "netherexp:vessel",
     "netherexp:ecto_slab",
     "netherexp:banshee",
-    "netherexp:stampede",
-    "netherexp:carcass"
+    "netherexp:stampede"
   ]
 }

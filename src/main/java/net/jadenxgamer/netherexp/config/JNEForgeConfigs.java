@@ -71,9 +71,6 @@ public class JNEForgeConfigs {
     }
 
     private static void registerEntityConfigs(ForgeConfigSpec.Builder BUILDER) {
-        THREED_FIREBALLS = BUILDER
-                .comment("Ghast and Blaze Fireballs will render 3D if enabled")
-                .define("3d_fireballs", false);
         DIMINISHING_BLAZES = BUILDER
                 .comment("Blazes get dimmer as their health decreases like in Minecraft Dungeons")
                 .define("diminishing_blazes", true);
@@ -141,13 +138,13 @@ public class JNEForgeConfigs {
 
     private static void registerSubBiomeConfigs(ForgeConfigSpec.Builder BUILDER) {
         ENABLE_SUB_BIOMES = BUILDER
-                .comment("Defines if Sub-Biomes should be enabled")
+                .comment("Enables Secondary & Tertiary Sub-Biomes")
                 .define("enable_sub_biomes", true);
         BLACK_ICE_GLACIERS_RARITY = BUILDER
-                .comment("Defines how often Black Ice Glaciers replace Soul Sand Valleys")
-                .defineInRange("black_ice_glaciers_rarity", 0.05, 0, 1);
+                .comment("How often Black Ice Glaciers should replace Soul Sand Valley")
+                .defineInRange("black_ice_glaciers_rarity", 0.08, 0, 1);
         BLACK_ICE_GLACIERS_SIZE = BUILDER
-                .comment("Defines how big Black Ice Glaciers should be")
+                .comment("How big Black Ice Glaciers should be")
                 .define("black_ice_glaciers_size", 64);
     }
 

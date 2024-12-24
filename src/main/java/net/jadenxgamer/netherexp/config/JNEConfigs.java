@@ -29,7 +29,6 @@ public class JNEConfigs {
     public static Supplier<Integer> POTION_STACK_SIZE = () -> 16;
 
     // Entities
-    public static Supplier<Boolean> THREED_FIREBALLS = () -> false;
     public static Supplier<Boolean> DIMINISHING_BLAZES = () -> true;
     public static Supplier<Boolean> PIXEL_CONSISTENT_MAGMA_CUBES = () -> true;
     public static Supplier<Boolean> SKELETON_FOSSILIZATION = () -> true;
@@ -56,7 +55,7 @@ public class JNEConfigs {
     // Sub Biomes
 
     public static Supplier<Boolean> ENABLE_SUB_BIOMES = () -> true;
-    public static Supplier<Double> BLACK_ICE_GLACIERS_RARITY = () -> 0.05;
+    public static Supplier<Double> BLACK_ICE_GLACIERS_RARITY = () -> 0.08;
     public static Supplier<Integer> BLACK_ICE_GLACIERS_SIZE = () -> 64;
 
     // Particles & Sounds

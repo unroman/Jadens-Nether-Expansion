@@ -21,9 +21,11 @@ import net.minecraft.world.level.block.PointedDripstoneBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DripstoneThickness;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
@@ -73,7 +75,16 @@ public class BlackIcicleBlock extends PointedDripstoneBlock {
     @Override
     public void onBrokenAfterFall(Level pLevel, BlockPos pPos, FallingBlockEntity pFallingBlock) {
         if (!pFallingBlock.isSilent()) {
+            pLevel.levelEvent(2001, pPos, BlackIcicleBlock.getId(this.defaultBlockState()));
             pLevel.playSound(null, pPos, JNESoundEvents.BLOCK_BLACK_ICE_BREAK.get(), SoundSource.BLOCKS, 0.7f, 1.5f);
+        }
+
+        List<Entity> entities = pLevel.getEntitiesOfClass(Entity.class, new AABB(pPos).inflate(1.0));
+
+        for (Entity entity : entities) {
+            if (entity instanceof LivingEntity livingEntity && pFallingBlock.getBlockState().getValue(THICKNESS) == DripstoneThickness.TIP) {
+                livingEntity.setTicksFrozen(livingEntity.getTicksFrozen() + 240);
+            }
         }
     }
 
@@ -185,11 +196,11 @@ public class BlackIcicleBlock extends PointedDripstoneBlock {
     private static boolean canTipGrow(BlockState pState, ServerLevel pLevel, BlockPos pPos) {
         Direction direction = pState.getValue(TIP_DIRECTION);
         BlockPos relative = pPos.relative(direction);
-        BlockState relativePos = pLevel.getBlockState(relative);
-        if (!relativePos.getFluidState().isEmpty()) {
+        BlockState relativeState = pLevel.getBlockState(relative);
+        if (!relativeState.getFluidState().isEmpty()) {
             return false;
         } else {
-            return relativePos.isAir() || relativePos.is(Blocks.WATER) || isUnmergedTipWithDirection(relativePos, direction.getOpposite());
+            return relativeState.isAir() || relativeState.getFluidState().is(Fluids.WATER) || isUnmergedTipWithDirection(relativeState, direction.getOpposite());
         }
     }
 

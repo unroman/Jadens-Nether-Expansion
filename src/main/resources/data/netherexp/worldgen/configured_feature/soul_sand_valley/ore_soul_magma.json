@@ -12,17 +12,7 @@
         "state": {
           "Name": "netherexp:soul_magma_block"
         }
-      },
-      {
-        "target": {
-          "predicate_type": "minecraft:block_match",
-          "block": "minecraft:netherrack"
-        },
-        "state": {
-          "Name": "minecraft:magma_block"
-        }
       }
     ]
   }
 }
-

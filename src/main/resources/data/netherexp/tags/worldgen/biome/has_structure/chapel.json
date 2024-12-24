@@ -6,6 +6,10 @@
     "minecraft:crimson_forest",
     "minecraft:warped_forest",
     {
+      "id": "netherexp:black_ice_glaciers",
+      "required": false
+    },
+    {
       "id": "cinderscapes:ashy_shoals",
       "required": false
     },

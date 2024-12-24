@@ -1,12 +1,14 @@
 package net.jadenxgamer.netherexp.registry.worldgen.feature;
 
 import net.jadenxgamer.netherexp.NetherExp;
-import net.jadenxgamer.netherexp.registry.worldgen.feature.custom.BrainTreeFeature;
-import net.jadenxgamer.netherexp.registry.worldgen.feature.custom.SoulMagmaClusterFeature;
-import net.jadenxgamer.netherexp.registry.worldgen.feature.custom.WarpedFungusFeature;
+import net.jadenxgamer.netherexp.registry.worldgen.feature.custom.*;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.HugeFungusConfiguration;
+import net.minecraft.world.level.levelgen.feature.PointedDripstoneFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.DripstoneClusterConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.LargeDripstoneConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.PointedDripstoneConfiguration;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -23,6 +25,21 @@ public class JNEFeature {
 
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> BRAIN_TREE = FEATURES.register("brain_tree", () ->
             new BrainTreeFeature(NoneFeatureConfiguration.CODEC));
+
+    public static final RegistryObject<Feature<LargeDripstoneConfiguration>> LARGE_BLACK_ICE = FEATURES.register("large_black_ice", () ->
+            new LargeBlackIceFeature(LargeDripstoneConfiguration.CODEC));
+
+    public static final RegistryObject<Feature<PointedDripstoneConfiguration>> BLACK_ICICLE = FEATURES.register("black_icicle", () ->
+            new BlackIcicleFeature(PointedDripstoneConfiguration.CODEC));
+
+    public static final RegistryObject<Feature<DripstoneClusterConfiguration>> BLACK_ICE_CLUSTER = FEATURES.register("black_ice_cluster", () ->
+            new BlackIceClusterFeature(DripstoneClusterConfiguration.CODEC));
+
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> MOUND = FEATURES.register("mound", () ->
+            new MoundFeature(NoneFeatureConfiguration.CODEC));
+
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> HANGING_MOUND = FEATURES.register("hanging_mound", () ->
+            new HangingMoundFeature(NoneFeatureConfiguration.CODEC));
 
     public static void init(IEventBus eventBus) {
         FEATURES.register(eventBus);

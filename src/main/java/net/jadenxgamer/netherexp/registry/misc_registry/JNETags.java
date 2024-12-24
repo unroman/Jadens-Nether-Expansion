@@ -25,6 +25,7 @@ public class JNETags {
         public static final TagKey<Block> PIGLIN_CANNOT_SPAWN_ON = createBlockTag("piglin_cannot_spawn_on"); // Piglins cannot spawn on these Blocks
         public static final TagKey<Block> HOGLIN_CANNOT_SPAWN_ON = createBlockTag("hoglin_cannot_spawn_on"); // Hoglins cannot spawn on these Blocks
         public static final TagKey<Block> SOUL_SAND_BLOCKS = createBlockTag("soul_sand_blocks"); // Blocks in this tag are considered Soul Sand
+        public static final TagKey<Block> MOUND_BLOCKS = createBlockTag("mound_blocks"); // Mounds can have terrain variation on top of these blocks
         public static final TagKey<Block> SOUL_CROP_MUTATION_BLOCKS = createBlockTag("soul_crop_mutation_blocks"); // Blocks in this tag can change certain crops that are planned on it
         public static final TagKey<Block> WEEPING_VINES_FEATURE_VALID = createBlockTag("weeping_vines_feature_valid"); // Weeping Vines can generate on these Blocks
         public static final TagKey<Block> WART_BEARD_FEATURE_VALID = createBlockTag("wart_beard_feature_valid"); // Warped Wart Beard can generate on these Blocks
@@ -45,10 +46,7 @@ public class JNETags {
         public static final TagKey<Block> SOUNDS_MAGMA_BLOCK = createBlockTag("sounds/magma_block"); // Blocks in this tag produce Magma Block Sounds
         public static final TagKey<Block> SOUNDS_GLOWSTONE = createBlockTag("sounds/glowstone"); // Blocks in this tag produce Glowstone Sounds
         public static final TagKey<Block> SOUNDS_QUARTZ_BLOCK = createBlockTag("sounds/quartz_block"); // Blocks in this tag produce Quartz Block Sounds
-
-        // MOD COMPAT
-        public static final TagKey<Block> UMBRAL_WART_BLOCKS = createBlockTag("mod_compat/umbral_wart_blocks"); // Blocks in this tag will be considered as Umbral Wart Block, it's used to grow Umbral Wart Beards
-        public static final TagKey<Block> UMBRAL_NYLIUM = createBlockTag("mod_compat/umbral_nylium"); // Blocks in this tag will be considered as Umbral Nylium, it's used to turn them into Umbral Paths
+        public static final TagKey<Block> BLACK_ICE_REPLACEABLE = createBlockTag("black_ice_replaceable");
 
         private static TagKey<Block> createBlockTag(String name) {
             return TagKey.create(Registries.BLOCK, new ResourceLocation(NetherExp.MOD_ID, name));

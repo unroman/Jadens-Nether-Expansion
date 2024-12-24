@@ -8,6 +8,7 @@
       "Name": "netherexp:nether_wart_beard"
     },
     "pos": "below",
+    "pos_offset": 1,
     "after_use_item": "consume",
     "can_replace_solids": false,
     "sounds": {

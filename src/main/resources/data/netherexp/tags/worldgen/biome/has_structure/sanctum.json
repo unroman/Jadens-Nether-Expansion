@@ -6,6 +6,10 @@
       "required": false
     },
     {
+      "id": "netherexp:black_ice_glaciers",
+      "required": false
+    },
+    {
       "id": "cinderscapes:ashy_shoals",
       "required": false
     },

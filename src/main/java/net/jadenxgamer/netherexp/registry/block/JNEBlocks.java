@@ -104,7 +104,7 @@ public class JNEBlocks {
 
     public static final RegistryObject<Block> BRAZIER_CHEST = registerBlock("brazier_chest", () ->
             new BrazierChestBlock(BlockBehaviour.Properties.of().strength(120.0f, 1200.0f).lightLevel(
-                    blockState -> blockState.getValue(BrazierChestBlock.LOCKED) ? 0 : 10).sound(JNESoundType.SOUL_SLATE)));
+                    blockState -> blockState.getValue(BrazierChestBlock.LOCKED) ? 0 : 10).isRedstoneConductor((a, b, c) -> false).sound(JNESoundType.SOUL_SLATE)));
 
     public static final RegistryObject<Block> TREACHEROUS_CANDLE = registerBlock("treacherous_candle", () ->
             new TreacherousCandleBlock(BlockBehaviour.Properties.of().strength(120.0f, 1200.0f).noOcclusion().lightLevel(

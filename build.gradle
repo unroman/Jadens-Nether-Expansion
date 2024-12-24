@@ -95,6 +95,9 @@ dependencies {
     }
     implementation fg.deobf("curse.maven:elysium-api-1158628:${elysium_version}")
 
+    // For Dev Testing
+    runtimeOnly fg.deobf("curse.maven:jade-324717:5876199")
+
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")

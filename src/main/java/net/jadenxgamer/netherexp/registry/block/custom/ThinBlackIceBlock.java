@@ -55,7 +55,7 @@ public class ThinBlackIceBlock extends BlackIceBlock {
 
     @Override
     public void fallOn(Level pLevel, BlockState pState, BlockPos pPos, Entity pEntity, float pFallDistance) {
-        if (pFallDistance >= 2.0f) {
+        if (pFallDistance >= 1.0f) {
             pLevel.destroyBlock(pPos, false);
             pLevel.playSound(null, pPos, JNESoundEvents.BLOCK_THIN_BLACK_ICE_CRACKING.get(), SoundSource.BLOCKS, 1.0f, 1.0f);
         }

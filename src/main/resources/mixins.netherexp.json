@@ -11,7 +11,9 @@
     "renderer.CameraMixin",
     "renderer.FogRendererMixin",
     "renderer.MagmaCubeRendererMixin",
-    "renderer.ParticleEngineMixin"
+    "renderer.ParticleEngineMixin",
+    "renderer.StrayClothingLayerMixin",
+    "renderer.StrayRendererMixin"
   ],
   "mixins": [
     "block.BlocksMixin",

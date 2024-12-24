@@ -86,7 +86,8 @@ public class BrazierChestBlockEntity extends RandomizableContainerBlockEntity {
         this.lockTimer = nbt.getInt("LockTimer");
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         if (!this.tryLoadLootTable(nbt)) {
-            ContainerHelper.loadAllItems(nbt, this.items);}
+            ContainerHelper.loadAllItems(nbt, this.items);
+        }
     }
 
     public int getContainerSize() {
@@ -131,9 +132,7 @@ public class BrazierChestBlockEntity extends RandomizableContainerBlockEntity {
         boolean locked = state.getValue(BrazierChestBlock.LOCKED);
         if (level != null) {
             if (this.lootTable != null && refillLootTable == null) {
-                this.clearContent();
                 this.refillLootTable = lootTable;
-                this.lootTable = null;
             }
             if (!locked) {
                 --this.lockTimer;
