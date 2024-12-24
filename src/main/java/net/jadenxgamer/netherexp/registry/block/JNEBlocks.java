@@ -71,7 +71,7 @@ public class JNEBlocks {
                     blockState -> blockState.getValue(LightAbleBlock.LIT) ? 7 : 0)));
 
     public static final RegistryObject<Block> CRACKED_SOUL_SLATE_BRICKS = registerBlock("cracked_soul_slate_bricks", () ->
-            new LightAbleBlock(BlockBehaviour.Properties.copy(SOUL_SLATE_BRICKS.get())));
+            new Block(BlockBehaviour.Properties.copy(SOUL_SLATE_BRICKS.get())));
 
     public static final RegistryObject<Block> SOUL_SLATE_BRICK_PILLAR = registerBlock("soul_slate_brick_pillar", () ->
             new RotatedPillarBlock(BlockBehaviour.Properties.copy(SOUL_SLATE_BRICKS.get())));
