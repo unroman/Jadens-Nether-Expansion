@@ -105,6 +105,7 @@ public class JNECreativeModeTabs {
                         output.accept(JNEBlocks.GHOUL_O_LANTERN.get());
                         output.accept(JNEBlocks.SOUL_GHOUL_O_LANTERN.get());
                         output.accept(JNEBlocks.SORROWEED.get());
+                        output.accept(JNEBlocks.SOUL_TORCHFLOWER.get());
 
                         output.accept(Blocks.NETHERRACK);
                         output.accept(JNEBlocks.SMOOTH_NETHERRACK.get());
