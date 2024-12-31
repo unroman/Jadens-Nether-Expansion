@@ -11,17 +11,11 @@ public class JNEForgeConfigs {
         SHOULD_NETHER_VINES_GROW_SPORES = BUILDER
                 .comment("Nether vines have a random chance to grow their biomes' respective spores if they haven't reached maturity")
                 .define("should_nether_vines_grow_spores", true);
-        ENABLE_NYLIUM_PATHS = BUILDER
-                .comment("Nylium can be flattened with a shovel to make Nylium Paths")
-                .define("enable_nylium_paths", true);
-        ENABLE_SOUL_PATHS = BUILDER
-                .comment("Soul Soil can be flattened with a shovel to make Soul Paths")
-                .define("enable_soul_paths", true);
         RENEWABLE_FOSSIL_FUEL = BUILDER
                 .comment("Fossil Ore that is covered on all faces slowly turns to Fossil Fuel")
                 .define("renewable_fossil_fuel", true);
         GEYSER_COOLDOWN = BUILDER
-                .comment("Defines how many seconds a geyser will go into cooldown for \nsetting to \"0\" functionally disables the cooldown mechanic")
+                .comment("How many seconds a geyser will go into cooldown for \nsetting to \"0\" functionally disables the cooldown mechanic")
                 .define("geyser_cooldown", 5);
         GEYSER_PUSH_VELOCITY = BUILDER
                 .comment("Defines how much vertical velocity you'll gain with a geyser")
@@ -42,32 +36,38 @@ public class JNEForgeConfigs {
                 .comment("Stepping into Magma Cream Block will put you out if you're on fire")
                 .define("magma_cream_block_douses_fire", true);
         SHOTGUN_BARREL_BULLETS = BUILDER
-                .comment("Defines how many bullets will be shot when a Shotgun Barrel is powered")
+                .comment("How many bullets will be shot when a Shotgun Barrel is powered")
                 .define("shotgun_barrel_bullets", 10);
         SOUL_MAGMA_DAMAGE_TYPE = BUILDER
-                .comment("Defines what causes Soul Magma Blocks to damage you \nSPRINTING - Only damages when sprinting on the block \nALWAYS - Damages you unless sneaking \n ")
+                .comment("What causes Soul Magma Blocks to damage you \nSPRINTING - Only damages when sprinting on the block \nALWAYS - Damages you unless sneaking \n ")
                 .defineEnum("soul_magma_damage_type", SoulMagmaDamageType.SPRINTING);
         SOUL_SWIRLS_COOLDOWN = BUILDER
-                .comment("Defines how many seconds a Soul Swirl is in cooldown for when activated")
+                .comment("How many seconds a Soul Swirl is in cooldown for when activated")
                 .define("soul_swirls_cooldown", 50);
         UNBOUNDED_SPEED_DURATION = BUILDER
-                .comment("Defines how many seconds the player will be inflicted with Unbounded Speed when passing Soul Swirls")
+                .comment("How many seconds the player will be inflicted with Unbounded Speed when passing Soul Swirls")
                 .define("unbounded_speed_duration", 10);
         SOUL_SWIRLS_BONE_MEAL_BEHAVIOR = BUILDER
-                .comment("Defines what happens when Soul Swirls are bone mealed \nDROPS - Drops more of itself when bone mealed \nDUPLICATES - Places another soul swirl beside it \nDISABLED - Disables bone mealing soul swirls \n ")
+                .comment("What happens when Soul Swirls are bone mealed \nDROPS - Drops more of itself when bone mealed \nDUPLICATES - Places another soul swirl beside it \nDISABLED - Disables bone mealing soul swirls \n ")
                 .defineEnum("soul_swirls_bone_meal_behavior", SoulSwirlsBoneMeal.DUPLICATES);
         SCULK_GRINDER_EXPERIENCE = BUILDER
-                .comment("Defines how much experience is dropped when treacherous flames are grinded down")
+                .comment("How much experience is dropped when treacherous flames are grinded down")
                 .define("sculk_grinder_experience", 450);
     }
 
     private static void registerItemConfigs(ForgeConfigSpec.Builder BUILDER) {
         POTION_STACK_SIZE = BUILDER
-                .comment("Defines the stack size for all Potions & Antidotes \nVanilla value is \"1\"")
+                .comment("The stack size for all Potions & Antidotes \nVanilla value is \"1\"")
                 .defineInRange("potion_stack_size", 16, 1, 64);
         WILL_O_WISP_STACK_SIZE = BUILDER
-                .comment("Defines the stack size for Will O' Wisps")
+                .comment("The stack size for Will O' Wisps")
                 .defineInRange("will_o_wisp_stack_size", 16, 1, 64);
+        JACKHAMMER_FIST_MAX_DAMAGE = BUILDER
+                .comment("Caps the Maximum Damage of the Jackhammer-Fist to this value")
+                .define("will_o_wisp_stack_size", 40.0);
+        BLACK_ICICLE_FREEZE_TICKS = BUILDER
+                .comment("The amount of time Black Icicle deal Freezing Damage when shot or skewered")
+                .define("black_icicle_freeze_ticks", 500);
     }
 
     private static void registerEntityConfigs(ForgeConfigSpec.Builder BUILDER) {
@@ -142,7 +142,7 @@ public class JNEForgeConfigs {
                 .define("enable_sub_biomes", true);
         BLACK_ICE_GLACIERS_RARITY = BUILDER
                 .comment("How often Black Ice Glaciers should replace Soul Sand Valley")
-                .defineInRange("black_ice_glaciers_rarity", 0.08, 0, 1);
+                .defineInRange("black_ice_glaciers_rarity", 0.075, 0, 1);
         BLACK_ICE_GLACIERS_SIZE = BUILDER
                 .comment("How big Black Ice Glaciers should be")
                 .define("black_ice_glaciers_size", 64);

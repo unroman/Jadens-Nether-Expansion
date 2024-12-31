@@ -4,8 +4,11 @@
   "chance_to_fail": 2,
   "behaviors": {
     "type": "place",
-    "place": "netherexp:blightwart_beard",
+    "blockstate": {
+      "Name": "netherexp:blightwart_beard"
+    },
     "pos": "below",
+    "pos_offset": 1,
     "after_use_item": "consume",
     "can_replace_solids": false,
     "sounds": {

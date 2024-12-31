@@ -48,6 +48,10 @@ public class JNEEntityType {
             EntityType.Builder.<SoulBullet>of(SoulBullet::new, MobCategory.MISC)
                     .sized(0.5f, 0.5f).build("soul_bullet"));
 
+    public static final RegistryObject<EntityType<BlackIcicle>> BLACK_ICICLE = ENTITY_TYPES.register("black_icicle", () ->
+            EntityType.Builder.<BlackIcicle>of(BlackIcicle::new, MobCategory.MISC)
+                    .sized(0.5f, 0.5f).build("black_icicle"));
+
     public static final RegistryObject<EntityType<BloodDrop>> BLOOD_DROP = ENTITY_TYPES.register("blood_drop", () ->
             EntityType.Builder.<BloodDrop>of(BloodDrop::new, MobCategory.MISC)
                     .sized(0.8f, 0.8f).build("blood_drop"));

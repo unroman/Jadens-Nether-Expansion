@@ -5,6 +5,7 @@ import net.jadenxgamer.netherexp.registry.block.JNEBlocks;
 import net.jadenxgamer.netherexp.registry.effect.JNEMobEffects;
 import net.jadenxgamer.netherexp.registry.effect.custom.ImmunityEffect;
 import net.jadenxgamer.netherexp.registry.entity.custom.Banshee;
+import net.jadenxgamer.netherexp.registry.entity.custom.Vessel;
 import net.jadenxgamer.netherexp.registry.fluid.JNEFluids;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNETags;
 import net.jadenxgamer.netherexp.registry.particle.JNEParticleTypes;
@@ -21,6 +22,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -140,11 +142,14 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
         BlockState floor = this.getBlockStateOn();
         BlockPos floorPos = this.blockPosition().below();
         if (floor.is(JNETags.Blocks.FOSSIL_ORE_CONVERTIBLE)) {
-            if (entity instanceof Skeleton && JNEConfigs.SKELETON_FOSSILIZATION.get()) {
-                level().setBlock(floorPos, JNEBlocks.FOSSIL_ORE.get().defaultBlockState(), Block.UPDATE_ALL);
+            if (entity instanceof WitherSkeleton && JNEConfigs.WITHER_SKELETON_FOSSILIZATION.get()) {
+                level().setBlock(floorPos, JNEBlocks.FOSSIL_FUEL_ORE.get().defaultBlockState(), 3);
             }
-            else if (entity instanceof WitherSkeleton && JNEConfigs.WITHER_SKELETON_FOSSILIZATION.get()) {
-                level().setBlock(floorPos, JNEBlocks.FOSSIL_FUEL_ORE.get().defaultBlockState(), Block.UPDATE_ALL);
+            else if (entity instanceof AbstractSkeleton && JNEConfigs.SKELETON_FOSSILIZATION.get()) {
+                level().setBlock(floorPos, JNEBlocks.FOSSIL_ORE.get().defaultBlockState(), 3);
+            }
+            else if (entity instanceof Vessel && JNEConfigs.SKELETON_FOSSILIZATION.get()) {
+                level().setBlock(floorPos, JNEBlocks.FOSSIL_ORE.get().defaultBlockState(), 3);
             }
         }
     }

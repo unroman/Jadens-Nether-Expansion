@@ -6,9 +6,7 @@ import java.util.function.Supplier;
 
 public class JNEConfigs {
     // Blocks
-    public static Supplier<Boolean> ENABLE_NYLIUM_PATHS = () -> true;
     public static Supplier<Boolean> SHOULD_NETHER_VINES_GROW_SPORES = () -> true;
-    public static Supplier<Boolean> ENABLE_SOUL_PATHS = () -> true;
     public static Supplier<Boolean> RENEWABLE_FOSSIL_FUEL = () -> true;
     public static Supplier<Integer> GEYSER_COOLDOWN = () -> 5;
     public static Supplier<Double> GEYSER_PUSH_VELOCITY = () -> 1.2;
@@ -27,6 +25,8 @@ public class JNEConfigs {
     // Items
     public static Supplier<Integer> WILL_O_WISP_STACK_SIZE = () -> 16;
     public static Supplier<Integer> POTION_STACK_SIZE = () -> 16;
+    public static Supplier<Double> JACKHAMMER_FIST_MAX_DAMAGE = () -> 40.0;
+    public static Supplier<Integer> BLACK_ICICLE_FREEZE_TICKS = () -> 500;
 
     // Entities
     public static Supplier<Boolean> DIMINISHING_BLAZES = () -> true;
@@ -55,7 +55,7 @@ public class JNEConfigs {
     // Sub Biomes
 
     public static Supplier<Boolean> ENABLE_SUB_BIOMES = () -> true;
-    public static Supplier<Double> BLACK_ICE_GLACIERS_RARITY = () -> 0.08;
+    public static Supplier<Double> BLACK_ICE_GLACIERS_RARITY = () -> 0.075;
     public static Supplier<Integer> BLACK_ICE_GLACIERS_SIZE = () -> 64;
 
     // Particles & Sounds

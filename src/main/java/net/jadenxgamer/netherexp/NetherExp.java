@@ -157,6 +157,9 @@ public class NetherExp {
             if (CompatUtil.checkCavernsAndChasms()) {
                 JNEBuiltinPacks.dpCavernsAndChasmsCompat(event);
             }
+            if (CompatUtil.checkOreganized()) {
+                JNEBuiltinPacks.dpOreganizedCompat(event);
+            }
         }
     }
 }

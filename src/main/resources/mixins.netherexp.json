@@ -43,6 +43,7 @@
     "item.BlockItemMixin",
     "item.BowItemMixin",
     "item.BucketItemMixin",
+    "item.CrossbowItemMixin",
     "item.EnchantmentMixin",
     "item.ItemMixin",
     "item.ItemStackMixin",

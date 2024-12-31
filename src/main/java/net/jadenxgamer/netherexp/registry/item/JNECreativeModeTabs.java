@@ -91,8 +91,9 @@ public class JNECreativeModeTabs {
 
                         output.accept(JNEFluids.ECTOPLASM_BUCKET.get());
                         output.accept(JNEBlocks.BLACK_ICE.get());
-//                        output.accept(JNEBlocks.THIN_BLACK_ICE.get());
-//                        output.accept(JNEBlocks.BLACK_ICICLE.get());
+                        output.accept(JNEBlocks.THIN_BLACK_ICE.get());
+                        output.accept(JNEBlocks.BLACK_ICICLE.get());
+                        output.accept(JNEBlocks.SOUL_PERMAFROST.get());
 
                         output.accept(Blocks.SOUL_TORCH);
                         output.accept(Blocks.SOUL_LANTERN);

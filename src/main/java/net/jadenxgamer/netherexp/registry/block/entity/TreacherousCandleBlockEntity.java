@@ -20,6 +20,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -194,7 +195,7 @@ public class TreacherousCandleBlockEntity extends BlockEntity {
         if (blockEntity.currentWaveDelay == 40) {
             level.playSound(null, pos, SoundEvents.ELDER_GUARDIAN_CURSE, SoundSource.BLOCKS, 0.50f, 0.60f);
         }
-        // for some reason causes a weird desync if in the (<= 0) check
+        // for some reason causes a weird desync if in the (<= 0) check??
         if (blockEntity.currentWaveDelay == 1) {
             level.addParticle(JNEParticleTypes.CANDLE_BURST.get(), pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 0.0, 0.0, 0.0);
         }
@@ -233,7 +234,7 @@ public class TreacherousCandleBlockEntity extends BlockEntity {
     private void spawnWave(Level level, BlockPos pos) {
         RandomSource random = level.random;
         if (!spawnableMobs.isEmpty()) {
-            int bonusSpawns = this.playersNearby > 1 ? playersNearby : 0;
+            int bonusSpawns = this.playersNearby > 1 ? playersNearby * 2 : 0;
             for (int i = 0; i < this.mobsPerWave + bonusSpawns; i++) {
                 BlockPos spawnPos = findValidSpawnPosition(level, pos, random);
 

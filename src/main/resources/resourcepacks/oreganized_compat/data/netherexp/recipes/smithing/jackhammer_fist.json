@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "oreganized:electrum_upgrade_smithing_template"
+  },
+  "base": {
+    "item": "netherexp:shotgun_fist"
+  },
+  "addition": {
+    "item": "oreganized:electrum_ingot"
+  },
+  "result": {
+    "item": "netherexp:jackhammer_fist"
+  }
+}

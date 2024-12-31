@@ -609,7 +609,6 @@
   "advancements.nether.big_brain_time.description": "Grow a Brain Tree by overgrowing cerebrage with bone-meal",
   "advancements.nether.rodeo_stampede.title": "Rodeo Stampede",
   "advancements.nether.rodeo_stampede.description": "befriend a stampede by feeding it roasted bones",
-
   "subtitles.entity.stampede.ambient": "Stampede gurgles",
   "subtitles.entity.stampede.hurt": "Stampede hurts",
   "subtitles.entity.stampede.death": "Stampede dies",
@@ -620,8 +619,16 @@
 
   "block.netherexp.black_icicle": "Black Icicle",
   "block.netherexp.thin_black_ice": "Thin Black Ice",
-
+  "block.netherexp.soul_permafrost": "Soul Permafrost",
+  "advancements.nether.fright_before_xmas.title": "The Fright Before Xmas",
+  "advancements.nether.fright_before_xmas.description": "Visit all Soul Sand Valley Sub-Biomes",
+  "advancements.nether.witwicky.title": "I'm Alright Lads",
+  "advancements.nether.witwicky.description": "Fall a great distance through Thin Black Ice and survive",
+  "advancements.nether.black_ice_black_everything_black.title": "Black Ice, Black Everything Black",
+  "advancements.nether.black_ice_black_everything_black.description": "Shoot a Black Icicle using your crossbow",
   "subtitles.block.thin_black_ice.cracking": "Thin Black Ice cracks",
+  "subtitles.entity.vessel.warn": "Vessel charges barrel",
+  "subtitles.entity.vessel.fire": "Vessel shoots",
 
   "itemGroup.netherexp.netherexp_tab": "Jaden's Nether Expansion"
 }

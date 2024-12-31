@@ -1,8 +1,11 @@
 package net.jadenxgamer.netherexp.registry.block.custom;
 
+import net.jadenxgamer.netherexp.registry.block.JNEBlocks;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNESoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -41,8 +44,13 @@ public class ThinBlackIceBlock extends BlackIceBlock {
 
     @Override
     public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
-        if (!pLevel.isClientSide() && pEntity instanceof LivingEntity livingEntity && pLevel.random.nextFloat() < 0.07f) {
-            int breakingOdds = livingEntity.isSprinting() ? 5 : 15;
+        int breakingOdds = pEntity.isSprinting() ? 5 : 15;
+        if (pLevel.isClientSide()) {
+            if (pLevel.random.nextFloat() < 0.07f && pLevel.random.nextInt(breakingOdds) == 0) {
+                pLevel.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, JNEBlocks.THIN_BLACK_ICE.get().defaultBlockState()), pPos.getX() + 0.5, pPos.getY() + 1.1, pPos.getZ() + 0.5, 0.0, 0.0, 0.0);
+            }
+        }
+        else if (pEntity instanceof LivingEntity livingEntity && pLevel.random.nextFloat() < 0.07f) {
             if (!livingEntity.isShiftKeyDown() && !EnchantmentHelper.hasSoulSpeed(livingEntity)) {
                 if (pLevel.random.nextInt(breakingOdds) == 0) {
                     pLevel.destroyBlock(pPos, false);

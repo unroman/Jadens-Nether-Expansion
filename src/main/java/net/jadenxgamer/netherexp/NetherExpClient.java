@@ -1,6 +1,7 @@
 package net.jadenxgamer.netherexp;
 
 import net.jadenxgamer.netherexp.registry.block.JNEBlockEntityType;
+import net.jadenxgamer.netherexp.registry.block.JNEBlocks;
 import net.jadenxgamer.netherexp.registry.block.entity.client.JNEBrushableBlockRenderer;
 import net.jadenxgamer.netherexp.registry.client.AgitatedOverlay;
 import net.jadenxgamer.netherexp.registry.entity.JNEEntityType;
@@ -22,6 +23,8 @@ import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.CompassItemPropertyFunction;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CrossbowItem;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
@@ -61,6 +64,7 @@ public class NetherExpClient {
         EntityRenderers.register(JNEEntityType.STAMPEDE.get(), StampedeRenderer::new);
         EntityRenderers.register(JNEEntityType.CARCASS.get(), CarcassRenderer::new);
         EntityRenderers.register(JNEEntityType.SOUL_BULLET.get(), SoulBulletRenderer::new);
+        EntityRenderers.register(JNEEntityType.BLACK_ICICLE.get(), BlackIcicleRenderer::new);
         EntityRenderers.register(JNEEntityType.BLOOD_DROP.get(), NoopRenderer::new);
         EntityRenderers.register(JNEEntityType.PHASMO_ARROW.get(), PhasmoArrowRenderer::new);
         EntityRenderers.register(JNEEntityType.MIST_CHARGE.get(), MistChargeRenderer::new);
@@ -74,6 +78,10 @@ public class NetherExpClient {
                         JNEItems.SANCTUM_COMPASS.get(),
                         new ResourceLocation("angle"),
                         new CompassItemPropertyFunction((level, stack, entity) -> SanctumCompassItem.getStructurePosition(stack.getOrCreateTag()))
+                ));
+        event.enqueueWork(() ->
+                ItemProperties.register(Items.CROSSBOW, new ResourceLocation(NetherExp.MOD_ID, "black_icicle"), (stack, level, entity, i) ->
+                        CrossbowItem.isCharged(stack) && CrossbowItem.containsChargedProjectile(stack, JNEBlocks.BLACK_ICICLE.get().asItem()) ? 1.0f : 0.0f
                 ));
     }
 
@@ -105,6 +113,7 @@ public class NetherExpClient {
         event.registerSpriteSet(JNEParticleTypes.ECTORAYS.get(), EctoraysParticle.Factory::new);
         event.registerSpriteSet(JNEParticleTypes.ECTOPLASMA.get(), EctoplasmaParticle.Factory::new);
         event.registerSpriteSet(JNEParticleTypes.BLACK_FLAKE.get(), JNECherryParticle.Factory::new);
+        event.registerSpriteSet(JNEParticleTypes.TRAIL_BLACK_FLAKE.get(), GlimmerParticle.FireballFactory::new);
         event.registerSpriteSet(JNEParticleTypes.SWIRL_POP.get(), RisingParticle.Factory::new);
         event.registerSpriteSet(JNEParticleTypes.GRASP_MIST.get(), GraspMistParticle.Factory::new);
         event.registerSpriteSet(JNEParticleTypes.WISP.get(), GlimmerParticle.LongFactory::new);

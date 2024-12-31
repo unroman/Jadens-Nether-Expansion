@@ -24,6 +24,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.item.Vanishable;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
@@ -102,10 +103,11 @@ public class PumpChargeShotgunItem extends ProjectileWeaponItem implements Vanis
     public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
         ItemStack stack = player.getItemInHand(interactionHand);
         int cartridge = EnchantmentHelper.getItemEnchantmentLevel(JNEEnchantments.CARTRIDGE.get(), stack);
-        if (player.isShiftKeyDown() && getCharge(stack) <= 3) {
-            setCharge(stack, getCharge(stack) + 1);
+        if (player.isShiftKeyDown()) {
+            if (getCharge(stack) <= 3) {
+                setCharge(stack, getCharge(stack) + 1);
+            }
             level.playSound(null, player.getX(), player.getY(), player.getZ(), JNESoundEvents.SHOTGUN_LOAD.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-            this.pumpFlag = true;
         }
         else {
             if (getCharge(stack) <= 3) {
@@ -114,7 +116,7 @@ public class PumpChargeShotgunItem extends ProjectileWeaponItem implements Vanis
                     stack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(player.getUsedItemHand()));
                     level.playSound(null, player.getX(), player.getY(), player.getZ(), JNESoundEvents.SHOTGUN_USE.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
                     player.getCooldowns().addCooldown(this, 15);
-                    if (cartridge > 0 && level.random.nextInt(cartridge) == 0) {
+                    if (cartridge > 0 && level.random.nextInt(1 + cartridge) == 0) {
                         useProjectile(stack, player);
                     } else {
                         useProjectile(stack, player);
@@ -239,5 +241,10 @@ public class PumpChargeShotgunItem extends ProjectileWeaponItem implements Vanis
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
         return !oldStack.is(JNEItems.PUMP_CHARGE_SHOTGUN.get()) || !newStack.is(JNEItems.PUMP_CHARGE_SHOTGUN.get());
+    }
+
+    @Override
+    public boolean isValidRepairItem(ItemStack pStack, ItemStack pRepair) {
+        return pRepair.is(JNEItems.STRIDITE.get()) || super.isValidRepairItem(pStack, pRepair);
     }
 }

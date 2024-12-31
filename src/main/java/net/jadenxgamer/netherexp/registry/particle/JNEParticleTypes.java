@@ -34,6 +34,7 @@ public class JNEParticleTypes {
     public static final RegistryObject<SimpleParticleType> ECTORAYS = PARTICLE_TYPES.register("ectorays", () -> new SimpleParticleType(false){});
     public static final RegistryObject<SimpleParticleType> ECTOPLASMA = PARTICLE_TYPES.register("ectoplasma", () -> new SimpleParticleType(false){});
     public static final RegistryObject<SimpleParticleType> BLACK_FLAKE = PARTICLE_TYPES.register("black_flake", () -> new SimpleParticleType(false){});
+    public static final RegistryObject<SimpleParticleType> TRAIL_BLACK_FLAKE = PARTICLE_TYPES.register("trail_black_flake", () -> new SimpleParticleType(false){});
     public static final RegistryObject<SimpleParticleType> SWIRL_POP = PARTICLE_TYPES.register("swirl_pop", () -> new SimpleParticleType(false){});
     public static final RegistryObject<SimpleParticleType> GRASP_MIST = PARTICLE_TYPES.register("grasp_mist", () -> new SimpleParticleType(false){});
     public static final RegistryObject<SimpleParticleType> WISP = PARTICLE_TYPES.register("wisp", () -> new SimpleParticleType(false){});

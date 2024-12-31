@@ -1,3 +1,11 @@
 {
-  "parent": "netherexp:block/netherite_plated_block"
+  "parent": "netherexp:block/netherite_plated_block",
+  "overrides": [
+    {
+      "predicate": {
+        "custom_model_data": 1
+      },
+      "model": "netherexp:item/advancements/ssv_sub_biomes"
+    }
+  ]
 }

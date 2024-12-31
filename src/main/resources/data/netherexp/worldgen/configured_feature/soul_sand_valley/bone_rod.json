@@ -81,7 +81,8 @@
                   "minecraft:soul_soil",
                   "minecraft:soul_sand",
                   "netherexp:soul_slate",
-                  "netherexp:pale_soul_slate"
+                  "netherexp:pale_soul_slate",
+                  "netherexp:soul_permafrost"
                 ]
               }
             ]

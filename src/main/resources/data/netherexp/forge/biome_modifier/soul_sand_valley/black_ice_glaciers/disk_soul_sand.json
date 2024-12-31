@@ -2,5 +2,5 @@
   "type": "forge:add_features",
   "biomes": "netherexp:black_ice_glaciers",
   "features": "netherexp:soul_sand_valley/black_ice_glaciers/disk_soul_sand",
-  "step": "lakes"
+  "step": "underground_structures"
 }

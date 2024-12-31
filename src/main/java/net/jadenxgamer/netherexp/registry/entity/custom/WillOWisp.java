@@ -61,9 +61,15 @@ public class WillOWisp extends ThrowableItemProjectile {
     @Override
     protected void onHitEntity(EntityHitResult entityHitResult) {
         Entity entity = entityHitResult.getEntity();
-        entity.hurt(this.damageSources().source(JNEDamageSources.WILL_O_WISP), damage);
-        this.level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
+        if (entity instanceof LivingEntity livingEntity) {
+            if (livingEntity.isBlocking()) {
+                this.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.SHIELD_BLOCK, SoundSource.NEUTRAL, 1F, 1F);
+            } else {
+                entity.hurt(this.damageSources().source(JNEDamageSources.WILL_O_WISP, this.getOwner()), damage);
+            }
+        }
         if (!this.level().isClientSide) {
+            this.level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
             this.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.MUD_PLACE, SoundSource.NEUTRAL, 1F, 1F);
             this.discard();
         }
@@ -90,13 +96,7 @@ public class WillOWisp extends ThrowableItemProjectile {
         if (!this.level().isClientSide && tickCount > 600) {
             this.discard();
         }
-        this.spawnParticles();
-    }
-
-    private void spawnParticles() {
-        for (int j = 0; j < 1; ++j) {
-            this.level().addParticle(JNEParticleTypes.WISP.get(), this.getRandomX(0.5), this.getRandomY(), this.getRandomZ(0.5), 0, 0, 0);
-        }
+        this.level().addParticle(JNEParticleTypes.WISP.get(), this.getRandomX(0.5), this.getRandomY(), this.getRandomZ(0.5), 0, 0, 0);
     }
 
     @Override

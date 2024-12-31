@@ -21,7 +21,7 @@
     "target": {
       "type": "minecraft:matching_blocks",
       "blocks": [
-        "netherexp:pale_soul_slate"
+        "minecraft:soul_soil"
       ]
     }
   }

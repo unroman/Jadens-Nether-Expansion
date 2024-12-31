@@ -172,6 +172,8 @@ public class JNESoundEvents {
     public static RegistryObject<SoundEvent> ENTITY_CARCASS_AMBIENT = registerSoundEvents("entity.carcass.ambient");
 
     public static RegistryObject<SoundEvent> ENTITY_VESSEL_AMBIENT = registerSoundEvents("entity.vessel.ambient");
+    public static RegistryObject<SoundEvent> ENTITY_VESSEL_WARN = registerSoundEvents("entity.vessel.warn");
+    public static RegistryObject<SoundEvent> ENTITY_VESSEL_FIRE = registerSoundEvents("entity.vessel.fire");
     public static RegistryObject<SoundEvent> ENTITY_VESSEL_HURT = registerSoundEvents("entity.vessel.hurt");
     public static RegistryObject<SoundEvent> ENTITY_VESSEL_DEATH = registerSoundEvents("entity.vessel.death");
 

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "netherexp:soul_bullet"
+    "netherexp:soul_bullet",
+    "netherexp:jackhammer"
   ]
 }

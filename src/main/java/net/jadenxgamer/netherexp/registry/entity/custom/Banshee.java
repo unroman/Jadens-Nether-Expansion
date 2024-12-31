@@ -9,7 +9,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.Difficulty;
@@ -45,6 +44,7 @@ import java.util.List;
 
 public class Banshee extends Monster {
     private int changeType = 1;
+    private int attackTime;
     public final AnimationState idleAnimationState = new AnimationState();
     public final AnimationState walkAnimationState = new AnimationState();
 
@@ -151,6 +151,10 @@ public class Banshee extends Monster {
         }
         else if (damageSource.getEntity() instanceof LivingEntity) {
             teleport();
+            attackTime = 80;
+        }
+        if (damageSource.getEntity() instanceof WillOWisp willOWisp && willOWisp.getOwner() == this) {
+            this.die(damageSource);
         }
         return super.hurt(damageSource, f);
     }
@@ -282,7 +286,6 @@ public class Banshee extends Monster {
     }
 
     static class BansheeAttackGoal extends Goal {
-        private int attackTime;
         private final Banshee banshee;
 
         public BansheeAttackGoal(Banshee banshee) {
@@ -296,7 +299,7 @@ public class Banshee extends Monster {
         }
 
         public void start() {
-            this.attackTime = 20;
+            banshee.attackTime = 20;
         }
 
         public boolean requiresUpdateEveryTick() {
@@ -304,7 +307,7 @@ public class Banshee extends Monster {
         }
 
         public void tick() {
-            --this.attackTime;
+            --banshee.attackTime;
             LivingEntity target = this.banshee.getTarget();
             if (target != null) {
                 this.banshee.getLookControl().setLookAt(target, 10.0f, 10.0f);
@@ -313,12 +316,12 @@ public class Banshee extends Monster {
                     this.banshee.teleport();
                 }
                 else if (distance < 300.0) {
-                    if (this.attackTime == 20) {
+                    if (banshee.attackTime == 20) {
                         this.banshee.level().addFreshEntity(new WillOWisp(this.banshee, this.banshee.level(), target, banshee.getX(), banshee.getY() + 0.5, banshee.getZ(), 0.2f, 6));
                         this.banshee.playSound(JNESoundEvents.ENTITY_BANSHEE_SHOOT.get(), 2.0F, (this.banshee.random.nextFloat() - this.banshee.random.nextFloat()) * 0.2F + 1.0F);
                     }
-                    if (this.attackTime <= 0) {
-                        this.attackTime = 40 + this.banshee.random.nextInt(30);
+                    if (banshee.attackTime <= 0) {
+                        banshee.attackTime = 40 + this.banshee.random.nextInt(30);
                         this.banshee.teleport();
                     }
                 }

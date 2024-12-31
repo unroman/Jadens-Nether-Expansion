@@ -89,7 +89,7 @@ public class ShotgunFistItem extends ProjectileWeaponItem implements Vanishable,
         int quickCharge = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.QUICK_CHARGE, stack);
         int cooldown = barrage > 0 ? 40 + (barrage * 15) : 40 - (quickCharge * 8);
         if (!player.getProjectile(stack).isEmpty() || player.getAbilities().instabuild) {
-            if (cartridge > 0 && level.random.nextInt(cartridge) == 0) {
+            if (cartridge > 0 && level.random.nextInt(1 + cartridge) == 0) {
                 useProjectile(stack, player);
             } else {
                 useProjectile(stack, player);
@@ -164,5 +164,10 @@ public class ShotgunFistItem extends ProjectileWeaponItem implements Vanishable,
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
         return !oldStack.is(JNEItems.SHOTGUN_FIST.get()) || !newStack.is(JNEItems.SHOTGUN_FIST.get());
+    }
+
+    @Override
+    public boolean isValidRepairItem(ItemStack pStack, ItemStack pRepair) {
+        return pRepair.is(JNEItems.STRIDITE.get()) || super.isValidRepairItem(pStack, pRepair);
     }
 }

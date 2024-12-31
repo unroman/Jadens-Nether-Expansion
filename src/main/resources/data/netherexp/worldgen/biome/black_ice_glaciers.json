@@ -8,7 +8,9 @@
       "sound": "minecraft:ambient.soul_sand_valley.additions",
       "tick_chance": 0.0111
     },
-    "ambient_sound": "minecraft:ambient.soul_sand_valley.loop",
+    "ambient_sound": {
+      "sound_id": "netherexp:ambient.soul_sand_valley.black_ice_glaciers.loop"
+    },
     "fog_color": 1185564,
     "mood_sound": {
       "block_search_extent": 8,
@@ -17,16 +19,18 @@
       "tick_delay": 6000
     },
     "music": {
-      "max_delay": 24000,
-      "min_delay": 12000,
+      "max_delay": 20000,
+      "min_delay": 10000,
       "replace_current_music": false,
-      "sound": "minecraft:music.nether.soul_sand_valley"
+      "sound": {
+        "sound_id": "netherexp:music.nether.soul_sand_valley.black_ice_glaciers"
+      }
     },
     "particle": {
       "options": {
         "type": "netherexp:black_flake"
       },
-      "probability": 0.0127
+      "probability": 0.0091
     },
     "sky_color": 7254527,
     "water_color": 4159204,
@@ -48,7 +52,7 @@
       "minecraft:patch_soul_fire",
       "minecraft:glowstone_extra",
       "minecraft:glowstone",
-      "minecraft:patch_crimson_roots",
+      "netherexp:soul_sand_valley/black_ice_glaciers/patch_warped_roots",
       "minecraft:ore_magma",
       "minecraft:spring_closed",
       "minecraft:ore_soul_sand",

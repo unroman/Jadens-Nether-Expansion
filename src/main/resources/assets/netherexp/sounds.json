@@ -8,6 +8,15 @@
       }
     ]
   },
+  "ambient.soul_sand_valley.black_ice_glaciers.loop": {
+    "sounds": [
+      {
+        "name": "netherexp:ambient/nether/soul_sand_valley/black_ice_glaciers/ambience",
+        "stream": true,
+        "volume": 0.95
+      }
+    ]
+  },
   "ambient.vent_mire.mood": {
     "sounds": [
       {
@@ -1175,6 +1184,18 @@
       "netherexp:mob/vessel/death1"
     ]
   },
+  "entity.vessel.warn": {
+    "subtitle": "subtitles.entity.vessel.warn",
+    "sounds": [
+      "netherexp:mob/vessel/warn"
+    ]
+  },
+  "entity.vessel.fire": {
+    "subtitle": "subtitles.entity.vessel.fire",
+    "sounds": [
+      "netherexp:mob/vessel/fire"
+    ]
+  },
   "entity.shotgun_guy.ambient": {
     "subtitle": "subtitles.entity.vessel.ambient",
     "sounds": [
@@ -1334,6 +1355,14 @@
     "sounds": [
       {
         "name": "netherexp:records/buckshot_wonderland",
+        "stream": true
+      }
+    ]
+  },
+  "music.nether.soul_sand_valley.black_ice_glaciers": {
+    "sounds": [
+      {
+        "name": "netherexp:music/game/nether/soul_sand_valley/black_ice_glaciers/sublimate",
         "stream": true
       }
     ]

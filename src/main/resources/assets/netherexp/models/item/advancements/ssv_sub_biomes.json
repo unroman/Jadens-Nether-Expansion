@@ -1,0 +1,9 @@
+{
+  "parent": "netherexp:block/cube_bottom_top_facing",
+  "textures": {
+    "top": "netherexp:block/advancements/ssv_sub_biomes_top",
+    "bottom": "netherexp:block/advancements/ssv_sub_biomes_top",
+    "side": "netherexp:block/advancements/ssv_sub_biomes_side",
+    "front": "netherexp:block/advancements/ssv_sub_biomes"
+  }
+}

@@ -1,5 +1,6 @@
 package net.jadenxgamer.netherexp.registry.block.custom;
 
+import net.jadenxgamer.netherexp.config.JNEConfigs;
 import net.jadenxgamer.netherexp.registry.block.JNEBlocks;
 import net.jadenxgamer.netherexp.registry.misc_registry.JNESoundEvents;
 import net.minecraft.core.BlockPos;
@@ -83,7 +84,7 @@ public class BlackIcicleBlock extends PointedDripstoneBlock {
 
         for (Entity entity : entities) {
             if (entity instanceof LivingEntity livingEntity && pFallingBlock.getBlockState().getValue(THICKNESS) == DripstoneThickness.TIP) {
-                livingEntity.setTicksFrozen(livingEntity.getTicksFrozen() + 240);
+                livingEntity.setTicksFrozen(livingEntity.getTicksFrozen() + JNEConfigs.BLACK_ICICLE_FREEZE_TICKS.get());
             }
         }
     }

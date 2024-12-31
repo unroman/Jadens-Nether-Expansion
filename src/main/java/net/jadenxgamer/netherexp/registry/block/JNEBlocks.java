@@ -157,6 +157,9 @@ public class JNEBlocks {
     public static final RegistryObject<Block> THIN_BLACK_ICE = registerBlock("thin_black_ice", () ->
             new ThinBlackIceBlock(BlockBehaviour.Properties.copy(BLACK_ICE.get()).strength(0.05f).noOcclusion().sound(JNESoundType.BLACK_ICE)));
 
+    public static final RegistryObject<Block> SOUL_PERMAFROST = registerBlock("soul_permafrost", () ->
+            new SoulPermafrostBlock(BlockBehaviour.Properties.copy(Blocks.SOUL_SOIL).speedFactor(0.9F).friction(0.98F)));
+
     public static final RegistryObject<Block> FOSSIL_ORE = registerBlock("fossil_ore", () ->
             new FossilOreBlock(BlockBehaviour.Properties.copy(Blocks.SOUL_SOIL).randomTicks().strength(0.6f)));
 

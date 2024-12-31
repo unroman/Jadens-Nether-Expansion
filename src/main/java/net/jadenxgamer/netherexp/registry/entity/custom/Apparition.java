@@ -191,9 +191,9 @@ public class Apparition extends Monster implements FlyingAnimal {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new PossessGargoyleStatueGoal(this, 12));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0, false));
         this.goalSelector.addGoal(2, new ApparitionWanderAroundGoal());
+        this.goalSelector.addGoal(3, new PossessGargoyleStatueGoal(this, 5));
         this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 6.0f));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
@@ -312,6 +312,7 @@ public class Apparition extends Monster implements FlyingAnimal {
                 if (blaze.hasCustomName()) {
                     banshee.setCustomName(blaze.getCustomName());
                 }
+                ((ServerLevel) this.level()).sendParticles(ParticleTypes.SOUL, banshee.getRandomX(0.5), banshee.getRandomY() - 0.25, banshee.getRandomZ(0.5), 1, 0.0, 0.0, 0.0, 0.0);
                 this.discard();
                 return false;
             }
@@ -511,7 +512,8 @@ public class Apparition extends Monster implements FlyingAnimal {
                     }
                 }
                 else {
-                    /* Fallback in case the tag was tampered with and included a statue which doesn't have a hardcoded transformation
+                    /*
+                     * Fallback in case the tag was tampered with and included a statue which doesn't have a hardcoded transformation
                      * this also deals with Ossified Statue's transformation
                      */
                     Vessel vessel = JNEEntityType.VESSEL.get().create(level);
@@ -536,7 +538,7 @@ public class Apparition extends Monster implements FlyingAnimal {
                         double e = axis == Direction.Axis.X ? 0.5 + 0.5625 * direction.getStepX() : random.nextFloat();
                         double f = axis == Direction.Axis.Y ? 0.5 + 0.5625 * direction.getStepY() : random.nextFloat();
                         double g = axis == Direction.Axis.Z ? 0.5 + 0.5625 * direction.getStepZ() : random.nextFloat();
-                        level.addParticle(ParticleTypes.SOUL, target.getX() + e, target.getY() + f, target.getZ() + g, 0.0, 0.0, 0.0);
+                        ((ServerLevel) level).sendParticles(ParticleTypes.SOUL, target.getX() + e, target.getY() + f, target.getZ() + g, 2, 0.0, 0.0, 0.0, 0.0);
                     }
                 }
             }
